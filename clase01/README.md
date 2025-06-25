@@ -1,4 +1,4 @@
-# ComIt-intro-desarrollo-web-estudiantes# Clase 1: HTML Básico + Git
+# Clase 1: HTML Básico + Git
 
 ¡Bienvenido a tu primera clase de desarrollo web!
 

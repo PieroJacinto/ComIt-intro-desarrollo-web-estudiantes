@@ -52,7 +52,6 @@
 - [ ] Navegar por todas las páginas usando los enlaces
 - [ ] Verificar que el formulario se ve bien
 - [ ] Revisar que no hay errores de HTML obvios
-- [ ] Probar en el teléfono (opcional pero recomendado)
 
 ## 🎯 Ejemplos de commits correctos
 
