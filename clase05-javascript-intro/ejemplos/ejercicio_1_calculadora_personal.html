@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1: Calculadora Personal</title>
+    <link rel="stylesheet" href="./ejercicio_1_calculadora_personal.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 Ejercicio 1: Calculadora Personal</h1>
+        
+        <!-- Escenario -->
+        <div class="exercise-card">
+            <div class="scenario">
+                <h3>🎬 ESCENARIO:</h3>
+                <p>Trabajas en una empresa de recursos humanos y necesitas crear un programa que calcule información personal y laboral de los empleados. El programa debe procesar datos básicos y generar reportes automáticos.</p>
+            </div>
+        </div>
+
+        <!-- Objetivo -->
+        <div class="exercise-card">
+            <div class="objetive">
+                🎯 <strong>TU MISIÓN:</strong> Crear un sistema que calcule estadísticas personales y laborales usando variables, operaciones matemáticas y concatenación de strings.
+            </div>
+        </div>
+
+        <!-- Desafío 1 -->
+        <div class="exercise-card">
+            <h2>💼 Desafío 1: Perfil del Empleado</h2>
+            
+            <div class="requirements">
+                <strong>📋 REQUISITOS:</strong>
+                <ol>
+                    <li>Crear variables para: nombre completo, edad actual, salario mensual, años en la empresa</li>
+                    <li>Calcular: salario anual, edad cuando entró a la empresa, salario total ganado</li>
+                    <li>Generar un reporte completo con toda la información</li>
+                </ol>
+            </div>
+            
+            <div class="challenge">
+                <strong>⚡ DESAFÍO EXTRA:</strong> El programa debe calcular automáticamente cuánto dinero ha ganado el empleado durante todo el tiempo que lleva en la empresa.
+            </div>
+            
+            <div class="code-area">// Escribe tu código aquí
+// Recuerda: let para variables que cambian, const para constantes
+
+
+</div>
+            
+            <button class="test-button" onclick="testDesafio1()">🧪 Verificar Desafío 1</button>
+        </div>
+
+        <!-- Desafío 2 -->
+        <div class="exercise-card">
+            <h2>📊 Desafío 2: Proyecciones Futuras</h2>
+            
+            <div class="requirements">
+                <strong>📋 REQUISITOS:</strong>
+                <ol>
+                    <li>Calcular la edad de jubilación (65 años) y en qué año será</li>
+                    <li>Calcular cuántos años faltan para jubilarse</li>
+                    <li>Estimar cuánto dinero ganará hasta jubilarse (asumiendo mismo salario)</li>
+                    <li>Mostrar un resumen de proyecciones</li>
+                </ol>
+            </div>
+            
+            <div class="challenge">
+                <strong>⚡ DESAFÍO EXTRA:</strong> Calcular cuántos años lleva trabajando como porcentaje de su vida total.
+            </div>
+            
+            <div class="code-area">// Continúa usando las variables del desafío anterior
+// Año actual: 2025
+
+
+</div>
+            
+            <button class="test-button" onclick="testDesafio2()">🧪 Verificar Desafío 2</button>
+        </div>
+
+        <!-- Desafío 3 -->
+        <div class="exercise-card">
+            <h2>🏆 Desafío 3: Evaluación de Rendimiento</h2>
+            
+            <div class="requirements">
+                <strong>📋 REQUISITOS:</strong>
+                <ol>
+                    <li>Crear variables para: horas trabajadas por semana, días de vacaciones usados, proyectos completados</li>
+                    <li>Calcular: horas totales por año, días trabajados en el año, promedio de proyectos por mes</li>
+                    <li>Determinar si es un empleado "dedicado" (más de 40 horas/semana)</li>
+                    <li>Generar reporte de rendimiento</li>
+                </ol>
+            </div>
+            
+            <div class="challenge">
+                <strong>⚡ DESAFÍO EXTRA:</strong> Calcular su "índice de productividad": proyectos completados dividido por semanas trabajadas en el año.
+            </div>
+            
+            <div class="code-area">// Variables adicionales para el análisis de rendimiento
+// Considerar: 52 semanas al año, 5 días laborales por semana
+
+
+</div>
+            
+            <button class="test-button" onclick="testDesafio3()">🧪 Verificar Desafío 3</button>
+        </div>
+
+        <!-- Instrucciones de prueba -->
+        <div class="exercise-card">
+            <h2>🧪 ¿Cómo Probar tu Código?</h2>
+            <div class="tip">
+                <strong>Método recomendado:</strong>
+                <br>1. Presiona <strong>F12</strong> para abrir DevTools
+                <br>2. Ve a la pestaña <strong>"Console"</strong>
+                <br>3. Copia y pega tu código línea por línea
+                <br>4. Verifica que cada console.log() muestre la información correcta
+                <br>5. Los botones "🧪 Verificar" te dan pistas sobre qué calcular
+            </div>
+        </div>
+
+        <!-- Resultado de pruebas -->
+        <div class="exercise-card">
+            <h2>📱 Verificación de Desafíos</h2>
+            <div class="output-section">
+                <div id="test-output">⏰ Tiempo estimado: 25-35 minutos
+
+🎯 Este ejercicio te desafía a:
+• Crear variables con propósito específico
+• Hacer cálculos complejos paso a paso  
+• Combinar matemáticas con lógica de negocio
+• Generar reportes informativos
+
+¡Cuando completes los 3 desafíos serás capaz de resolver problemas reales con JavaScript!</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function mostrarResultado(texto) {
+            const output = document.getElementById('test-output');
+            output.textContent += texto + '\n';
+        }
+
+        function limpiarResultado() {
+            document.getElementById('test-output').textContent = '';
+        }
+
+        function testDesafio1() {
+            limpiarResultado();
+            mostrarResultado("=== 💼 VERIFICANDO DESAFÍO 1: Perfil del Empleado ===");
+            mostrarResultado("");
+            mostrarResultado("🔍 Tu código debería incluir:");
+            mostrarResultado("  □ Variables: nombre, edad, salarioMensual, añosEmpresa");
+            mostrarResultado("  □ Cálculo: salarioAnual = salarioMensual * 12");
+            mostrarResultado("  □ Cálculo: edadIngreso = edad - añosEmpresa");
+            mostrarResultado("  □ Cálculo: totalGanado = salarioAnual * añosEmpresa");
+            mostrarResultado("  □ Reporte con console.log() mostrando toda la info");
+            mostrarResultado("");
+            mostrarResultado("💡 EJEMPLO de cálculo:");
+            mostrarResultado("   Si gana $50,000/mes y lleva 3 años:");
+            mostrarResultado("   • Salario anual: $600,000");
+            mostrarResultado("   • Total ganado: $1,800,000");
+            mostrarResultado("");
+            mostrarResultado("🔍 Abre la CONSOLA (F12) para ver tus resultados");
+        }
+
+        function testDesafio2() {
+            limpiarResultado();
+            mostrarResultado("=== 📊 VERIFICANDO DESAFÍO 2: Proyecciones Futuras ===");
+            mostrarResultado("");
+            mostrarResultado("🔍 Tu código debería calcular:");
+            mostrarResultado("  □ Años hasta jubilación: 65 - edad");
+            mostrarResultado("  □ Año de jubilación: 2025 + añosHastaJubilacion");
+            mostrarResultado("  □ Dinero hasta jubilarse: salarioAnual * añosHastaJubilacion");
+            mostrarResultado("  □ Porcentaje vida trabajando: (añosEmpresa / edad) * 100");
+            mostrarResultado("");
+            mostrarResultado("💡 EJEMPLO con empleado de 30 años:");
+            mostrarResultado("   • Años hasta jubilación: 35 años");
+            mostrarResultado("   • Se jubila en: 2060");
+            mostrarResultado("   • Si lleva 5 años trabajando: 16.7% de su vida");
+            mostrarResultado("");
+            mostrarResultado("🔍 Verifica tus cálculos en la CONSOLA (F12)");
+        }
+
+        function testDesafio3() {
+            limpiarResultado();
+            mostrarResultado("=== 🏆 VERIFICANDO DESAFÍO 3: Evaluación de Rendimiento ===");
+            mostrarResultado("");
+            mostrarResultado("🔍 Tu código debería incluir:");
+            mostrarResultado("  □ Variables: horasSemana, diasVacaciones, proyectosCompletados");
+            mostrarResultado("  □ Cálculo: horasAño = horasSemana * 52");
+            mostrarResultado("  □ Cálculo: diasTrabajados = (52 * 5) - diasVacaciones");
+            mostrarResultado("  □ Cálculo: proyectosPorMes = proyectosCompletados / 12");
+            mostrarResultado("  □ Verificar: esDedicado = horasSemana > 40");
+            mostrarResultado("  □ Índice productividad: proyectosCompletados / 52");
+            mostrarResultado("");
+            mostrarResultado("💡 EJEMPLO con empleado que trabaja 45h/semana:");
+            mostrarResultado("   • Horas al año: 2,340 horas");
+            mostrarResultado("   • Es dedicado: true (más de 40h)");
+            mostrarResultado("   • Si completó 24 proyectos: 0.46 proyectos/semana");
+            mostrarResultado("");
+            mostrarResultado("🎉 ¡DESAFÍO COMPLETADO!");
+            mostrarResultado("Has demostrado que puedes:");
+            mostrarResultado("   ✓ Crear variables con propósito específico");
+            mostrarResultado("   ✓ Realizar cálculos matemáticos complejos");
+            mostrarResultado("   ✓ Combinar diferentes tipos de datos");
+            mostrarResultado("   ✓ Generar reportes informativos");
+            mostrarResultado("   ✓ Resolver problemas de negocio reales");
+        }
+    </script>
+</body>
+</html>

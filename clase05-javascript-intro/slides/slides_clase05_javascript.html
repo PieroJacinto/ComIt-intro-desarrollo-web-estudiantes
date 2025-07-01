@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 5: JavaScript Intro</title>
+    <link rel="stylesheet" href="./slides_clase05_javascript.css">
+</head>
+<body>
+    <div class="slideshow-container">
+        
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <div class="big-emoji">⚡</div>
+            <h1>CLASE 5</h1>
+            <h2>JAVASCRIPT INTRO</h2>
+            <p>🎯 <span class="highlight">Tu sitio va a cobrar VIDA</span></p>
+            <p>💻 <span class="highlight">Lógica, variables y funciones</span></p>
+            <p>⏰ <span class="highlight">3 horas de programación pura</span></p>
+        </div>
+
+        <!-- Slide 2: Repaso -->
+        <div class="slide">
+            <h2>🔄 REPASO RÁPIDO</h2>
+            <p><span class="highlight">¿Qué dominamos hasta ahora?</span></p>
+            <ul class="check-list">
+                <li><strong>Clase 1:</strong> HTML semántico + Git básico</li>
+                <li><strong>Clase 2:</strong> CSS básico (colores, tipografías, modelo de caja)</li>
+                <li><strong>Clase 3:</strong> Flexbox para layouts modernos</li>
+                <li><strong>Clase 4:</strong> Responsive + efectos interactivos</li>
+            </ul>
+            <p>🚀 <span class="highlight">Hoy agregamos: LÓGICA y PROGRAMACIÓN</span></p>
+        </div>
+
+        <!-- Slide 3: ¿Qué es JavaScript? -->
+        <div class="slide theory-slide">
+            <h2>🤔 ¿QUÉ ES JAVASCRIPT?</h2>
+            <div class="demo-box">
+                <h3>🏠 Analogía de la Casa:</h3>
+                <ul>
+                    <li><strong>HTML</strong> = Esqueleto (estructura)</li>
+                    <li><strong>CSS</strong> = Decoración (diseño)</li>
+                    <li><strong>JavaScript</strong> = Electricidad (funcionalidad)</li>
+                </ul>
+            </div>
+            <p>✨ <span class="highlight">JavaScript hace que las páginas web sean INTERACTIVAS</span></p>
+        </div>
+
+        <!-- Slide 4: Ejemplos que conoces -->
+        <div class="slide">
+            <h2>📱 EJEMPLOS QUE YA CONOCES</h2>
+            <ul>
+                <li>🔘 Botones que muestran/ocultan menús</li>
+                <li>📝 Formularios que validan datos</li>
+                <li>🖼️ Carruseles de imágenes</li>
+                <li>🧮 Calculadoras</li>
+                <li>🎮 Juegos simples</li>
+                <li>💬 Chats en tiempo real</li>
+            </ul>
+            <p><span class="highlight">¡Todo eso lo puedes hacer tú!</span></p>
+        </div>
+
+        <!-- Slide 5: DEMO - Setup Consola -->
+        <div class="slide demo-slide">
+            <h2>🧪 DEMO: SETUP DE LA CONSOLA</h2>
+            <p><span class="highlight">Vamos a configurar nuestra herramienta principal:</span></p>
+            <ol>
+                <li>Abrir cualquier página web</li>
+                <li>Presionar <strong>F12</strong> (DevTools)</li>
+                <li>Ir a la pestaña <strong>"Console"</strong></li>
+                <li>Escribir nuestro primer código</li>
+            </ol>
+            <div class="code-block">
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"¡Hola mundo!"</span>);
+            </div>
+        </div>
+
+        <!-- Slide 6: Tu primera línea -->
+        <div class="slide exercise-slide">
+            <h2>⚡ TU PRIMERA LÍNEA DE CÓDIGO</h2>
+            <p><span class="highlight">¡Todos juntos en la consola!</span></p>
+            <div class="code-block">
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Mi primer mensaje en JavaScript"</span>);<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="number">2</span> + <span class="number">3</span>);<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Mi nombre es: [tu nombre]"</span>);
+            </div>
+            <p>🎉 <span class="highlight">¡Ya estás programando!</span></p>
+        </div>
+
+        <!-- Slide 7: Variables - Concepto -->
+        <div class="slide theory-slide">
+            <h2>📦 VARIABLES - CONCEPTO</h2>
+            <div class="demo-box">
+                <h3>📦 Las variables son como cajas con etiquetas</h3>
+                <p>Donde guardamos información para usar después</p>
+            </div>
+            <div class="two-column">
+                <div>
+                    <h4>🏷️ Etiqueta</h4>
+                    <p>Nombre de la variable</p>
+                    <code>nombre</code>
+                </div>
+                <div>
+                    <h4>📦 Contenido</h4>
+                    <p>Valor que guardamos</p>
+                    <code>"Ana"</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: DEMO - Variables -->
+        <div class="slide demo-slide">
+            <h2>🧪 DEMO: CREANDO VARIABLES</h2>
+            <div class="code-block">
+                <span class="comment">// Como una caja con nombre</span><br>
+                <span class="keyword">let</span> nombre = <span class="string">"Ana"</span>;<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(nombre);<br><br>
+                
+                <span class="comment">// Cambiar el contenido de la caja</span><br>
+                nombre = <span class="string">"Carlos"</span>;<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(nombre);<br><br>
+                
+                <span class="comment">// Una caja que nunca cambia</span><br>
+                <span class="keyword">const</span> edad = <span class="number">25</span>;<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(edad);
+            </div>
+        </div>
+
+        <!-- Slide 9: EJERCICIO - Variables -->
+        <div class="slide exercise-slide">
+            <h2>⚡ EJERCICIO: TUS PRIMERAS VARIABLES</h2>
+            <p><span class="highlight">¡Todos en la consola - 5 minutos!</span></p>
+            <div class="code-block">
+                <span class="keyword">let</span> miNombre = <span class="string">"TU_NOMBRE_AQUÍ"</span>;<br>
+                <span class="keyword">let</span> miEdad = <span class="number">TU_EDAD</span>;<br>
+                <span class="keyword">const</span> miPais = <span class="string">"Argentina"</span>;<br><br>
+                
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Hola, soy "</span> + miNombre);<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Tengo "</span> + miEdad + <span class="string">" años"</span>);<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Vivo en "</span> + miPais);
+            </div>
+        </div>
+
+        <!-- Slide 10: Tipos de Datos -->
+        <div class="slide theory-slide">
+            <h2>🎭 TIPOS DE DATOS</h2>
+            <div class="demo-box">
+                <h3>JavaScript maneja 3 tipos principales:</h3>
+                <ul>
+                    <li><strong>String:</strong> Textos "Hola mundo"</li>
+                    <li><strong>Number:</strong> Números 25, 3.14</li>
+                    <li><strong>Boolean:</strong> Verdadero/Falso true, false</li>
+                </ul>
+            </div>
+            <p><span class="highlight">Cada tipo se comporta diferente</span></p>
+        </div>
+
+        <!-- Slide 11: DEMO - Strings -->
+        <div class="slide demo-slide">
+            <h2>🧪 DEMO: STRINGS (TEXTOS)</h2>
+            <div class="code-block">
+                <span class="keyword">let</span> saludo = <span class="string">"¡Hola!"</span>;<br>
+                <span class="keyword">let</span> nombre = <span class="string">"María"</span>;<br>
+                <span class="keyword">let</span> mensaje = saludo + <span class="string">" "</span> + nombre;<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(mensaje); <span class="comment">// "¡Hola! María"</span><br><br>
+                
+                <span class="comment">// Template literals (más fácil)</span><br>
+                <span class="keyword">let</span> mensajeFacil = <span class="string">`¡Hola! ${nombre}`</span>;<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(mensajeFacil);
+            </div>
+        </div>
+
+        <!-- Slide 12: DEMO - Numbers -->
+        <div class="slide demo-slide">
+            <h2>🧪 DEMO: NUMBERS (NÚMEROS)</h2>
+            <div class="code-block">
+                <span class="keyword">let</span> precio = <span class="number">1500</span>;<br>
+                <span class="keyword">let</span> descuento = <span class="number">0.1</span>;<br>
+                <span class="keyword">let</span> precioFinal = precio * (<span class="number">1</span> - descuento);<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(precioFinal); <span class="comment">// 1350</span><br><br>
+                
+                <span class="comment">// Operaciones básicas</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="number">10</span> + <span class="number">5</span>);  <span class="comment">// 15</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="number">10</span> - <span class="number">5</span>);  <span class="comment">// 5</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="number">10</span> * <span class="number">5</span>);  <span class="comment">// 50</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="number">10</span> / <span class="number">5</span>);  <span class="comment">// 2</span>
+            </div>
+        </div>
+
+        <!-- Slide 13: DEMO - Booleans -->
+        <div class="slide demo-slide">
+            <h2>🧪 DEMO: BOOLEANS (VERDADERO/FALSO)</h2>
+            <div class="code-block">
+                <span class="keyword">let</span> esMayorDeEdad = <span class="keyword">true</span>;<br>
+                <span class="keyword">let</span> tieneLicencia = <span class="keyword">false</span>;<br><br>
+                
+                <span class="keyword">console</span>.<span class="keyword">log</span>(esMayorDeEdad); <span class="comment">// true</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(tieneLicencia); <span class="comment">// false</span><br><br>
+                
+                <span class="comment">// Comparaciones</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="number">18</span> >= <span class="number">18</span>); <span class="comment">// true</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="number">5</span> > <span class="number">10</span>);   <span class="comment">// false</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Ana"</span> === <span class="string">"Ana"</span>); <span class="comment">// true</span>
+            </div>
+        </div>
+
+        <!-- Slide 14: EJERCICIO - Tipos de datos -->
+        <div class="slide exercise-slide">
+            <h2>⚡ EJERCICIO: INFORMACIÓN PERSONAL</h2>
+            <p><span class="highlight">¡Completa con tu información - 10 minutos!</span></p>
+            <div class="code-block">
+                <span class="comment">// Completar información personal</span><br>
+                <span class="keyword">let</span> nombre = <span class="string">"TU_NOMBRE"</span>;<br>
+                <span class="keyword">let</span> apellido = <span class="string">"TU_APELLIDO"</span>;<br>
+                <span class="keyword">let</span> edad = <span class="number">TU_EDAD</span>;<br>
+                <span class="keyword">let</span> esMayorDeEdad = edad >= <span class="number">18</span>;<br><br>
+                
+                <span class="comment">// Crear presentación</span><br>
+                <span class="keyword">let</span> presentacion = <span class="string">`Hola, soy ${nombre} ${apellido}, tengo ${edad} años`</span>;<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(presentacion);<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"¿Es mayor de edad?"</span>, esMayorDeEdad);
+            </div>
+        </div>
+
+        <!-- Slide 15: Arrays - Concepto -->
+        <div class="slide theory-slide">
+            <h2>📋 ARRAYS - LISTAS</h2>
+            <div class="demo-box">
+                <h3>📋 Los arrays son como listas numeradas</h3>
+                <p>Donde guardamos varias cosas relacionadas</p>
+            </div>
+            <div class="comparison">
+                <div class="before">
+                    <h4>❌ Sin Arrays</h4>
+                    <code>let color1 = "azul";</code><br>
+                    <code>let color2 = "verde";</code><br>
+                    <code>let color3 = "rojo";</code>
+                </div>
+                <div class="after">
+                    <h4>✅ Con Arrays</h4>
+                    <code>let colores = ["azul", "verde", "rojo"];</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: DEMO - Arrays -->
+        <div class="slide demo-slide">
+            <h2>🧪 DEMO: TRABAJANDO CON ARRAYS</h2>
+            <div class="code-block">
+                <span class="comment">// Crear array</span><br>
+                <span class="keyword">let</span> coloresFavoritos = [<span class="string">"azul"</span>, <span class="string">"verde"</span>, <span class="string">"rojo"</span>];<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(coloresFavoritos);<br><br>
+                
+                <span class="comment">// Acceder a elementos (empezamos en 0)</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(coloresFavoritos[<span class="number">0</span>]); <span class="comment">// "azul"</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(coloresFavoritos[<span class="number">1</span>]); <span class="comment">// "verde"</span><br><br>
+                
+                <span class="comment">// Agregar elementos</span><br>
+                coloresFavoritos.<span class="keyword">push</span>(<span class="string">"amarillo"</span>);<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Tengo "</span> + coloresFavoritos.<span class="keyword">length</span> + <span class="string">" colores"</span>);
+            </div>
+        </div>
+
+        <!-- Slide 17: EJERCICIO - Arrays -->
+        <div class="slide exercise-slide">
+            <h2>⚡ EJERCICIO: TUS HABILIDADES</h2>
+            <p><span class="highlight">¡Completa la información - 10 minutos!</span></p>
+            <div class="code-block">
+                <span class="comment">// TODO: Completar con tu información</span><br>
+                <span class="keyword">let</span> habilidadesAprendidas = [<span class="string">"HTML"</span>, <span class="string">"CSS"</span>, <span class="string">"Flexbox"</span>, <span class="string">"Responsive"</span>];<br>
+                <span class="keyword">let</span> habilidadesPorAprender = [<span class="string">"JavaScript"</span>, <span class="string">"DOM"</span>, <span class="string">"Bootstrap"</span>];<br><br>
+                
+                <span class="comment">// TODO: Agregar "JavaScript básico" a habilidadesAprendidas</span><br>
+                <span class="comment">// TODO: Mostrar cuántas habilidades has aprendido</span><br>
+                <span class="comment">// TODO: Mostrar cuántas habilidades quieres aprender</span>
+            </div>
+        </div>
+
+        <!-- Slide 18: Funciones - Concepto -->
+        <div class="slide theory-slide">
+            <h2>⚙️ FUNCIONES - CONCEPTO</h2>
+            <div class="demo-box">
+                <h3>👩‍🍳 Las funciones son como recetas</h3>
+                <p>Les das ingredientes y te devuelven un resultado</p>
+            </div>
+            <div class="two-column">
+                <div>
+                    <h4>📥 Ingredientes (Parámetros)</h4>
+                    <p>Lo que le das a la función</p>
+                </div>
+                <div>
+                    <h4>📤 Resultado (Return)</h4>
+                    <p>Lo que la función te devuelve</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: DEMO - Funciones Básicas -->
+        <div class="slide demo-slide">
+            <h2>🧪 DEMO: FUNCIONES BÁSICAS</h2>
+            <div class="code-block">
+                <span class="comment">// Función simple</span><br>
+                <span class="keyword">function</span> <span class="keyword">saludar</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"¡Hola mundo!"</span>);<br>
+                }<br><br>
+                
+                <span class="comment">// Llamar (ejecutar) la función</span><br>
+                <span class="keyword">saludar</span>(); <span class="comment">// ¡Hola mundo!</span><br><br>
+                
+                <span class="comment">// Función con parámetros</span><br>
+                <span class="keyword">function</span> <span class="keyword">saludarPersona</span>(nombre) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"¡Hola "</span> + nombre + <span class="string">"!"</span>);<br>
+                }<br><br>
+                
+                <span class="keyword">saludarPersona</span>(<span class="string">"Ana"</span>); <span class="comment">// ¡Hola Ana!</span>
+            </div>
+        </div>
+
+        <!-- Slide 20: DEMO - Funciones con Return -->
+        <div class="slide demo-slide">
+            <h2>🧪 DEMO: FUNCIONES QUE DEVUELVEN VALORES</h2>
+            <div class="code-block">
+                <span class="comment">// Función que devuelve un valor</span><br>
+                <span class="keyword">function</span> <span class="keyword">sumar</span>(a, b) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> a + b;<br>
+                }<br><br>
+                
+                <span class="keyword">let</span> resultado = <span class="keyword">sumar</span>(<span class="number">5</span>, <span class="number">3</span>);<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(resultado); <span class="comment">// 8</span><br><br>
+                
+                <span class="comment">// Usar directo</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"La suma es:"</span>, <span class="keyword">sumar</span>(<span class="number">10</span>, <span class="number">20</span>));<br><br>
+                
+                <span class="comment">// Ejemplo práctico</span><br>
+                <span class="keyword">function</span> <span class="keyword">crearSaludo</span>(nombre, edad) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">`Hola, soy ${nombre} y tengo ${edad} años`</span>;<br>
+                }
+            </div>
+        </div>
+
+        <!-- Slide 21: EJERCICIO - Funciones -->
+        <div class="slide exercise-slide">
+            <h2>⚡ EJERCICIO: CALCULADORA SIMPLE</h2>
+            <p><span class="highlight">¡Crea tu primera función útil - 10 minutos!</span></p>
+            <div class="code-block">
+                <span class="comment">// TODO: Crear función que calcule precio con descuento</span><br>
+                <span class="keyword">function</span> <span class="keyword">calcularPrecioConDescuento</span>(precio, descuento) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// TODO: Completar lógica</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> precio * (<span class="number">1</span> - descuento);<br>
+                }<br><br>
+                
+                <span class="comment">// TODO: Probar la función</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="keyword">calcularPrecioConDescuento</span>(<span class="number">1000</span>, <span class="number">0.1</span>)); <span class="comment">// $900</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="keyword">calcularPrecioConDescuento</span>(<span class="number">500</span>, <span class="number">0.2</span>));  <span class="comment">// $400</span>
+            </div>
+        </div>
+
+        <!-- Slide 22: Condicionales - Concepto -->
+        <div class="slide theory-slide">
+            <h2>🤔 CONDICIONALES - DECISIONES</h2>
+            <div class="demo-box">
+                <h3>🛣️ Los condicionales son como decisiones</h3>
+                <p><strong>SI</strong> esto es verdad, <strong>HAZ</strong> esto<br>
+                <strong>SI NO</strong>, haz esto otro</p>
+            </div>
+            <p><span class="highlight">Permiten que el código tome decisiones automáticamente</span></p>
+        </div>
+
+        <!-- Slide 23: DEMO - If/Else -->
+        <div class="slide demo-slide">
+            <h2>🧪 DEMO: IF/ELSE</h2>
+            <div class="code-block">
+                <span class="keyword">let</span> edad = <span class="number">20</span>;<br><br>
+                
+                <span class="keyword">if</span> (edad >= <span class="number">18</span>) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Eres mayor de edad"</span>);<br>
+                } <span class="keyword">else</span> {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Eres menor de edad"</span>);<br>
+                }<br><br>
+                
+                <span class="comment">// Múltiples condiciones</span><br>
+                <span class="keyword">let</span> nota = <span class="number">8</span>;<br>
+                <span class="keyword">if</span> (nota >= <span class="number">9</span>) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Excelente"</span>);<br>
+                } <span class="keyword">else if</span> (nota >= <span class="number">7</span>) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Muy bueno"</span>);<br>
+                } <span class="keyword">else</span> {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Necesitas estudiar más"</span>);<br>
+                }
+            </div>
+        </div>
+
+        <!-- Slide 24: EJERCICIO - Condicionales -->
+        <div class="slide exercise-slide">
+            <h2>⚡ EJERCICIO: PORTERO DE DISCOTECA</h2>
+            <p><span class="highlight">¡Crea lógica de decisiones - 10 minutos!</span></p>
+            <div class="code-block">
+                <span class="comment">// TODO: Función que determine si alguien puede entrar</span><br>
+                <span class="keyword">function</span> <span class="keyword">puedeEntrar</span>(edad, tieneID) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// TODO: Completar lógica</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Debe ser mayor de 18 Y tener ID</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> (edad >= <span class="number">18</span> && tieneID) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Puede entrar"</span>;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;} <span class="keyword">else</span> {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"No puede entrar"</span>;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                }<br><br>
+                
+                <span class="comment">// TODO: Probar diferentes casos</span><br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="keyword">puedeEntrar</span>(<span class="number">20</span>, <span class="keyword">true</span>));<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="keyword">puedeEntrar</span>(<span class="number">17</span>, <span class="keyword">true</span>));<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="keyword">puedeEntrar</span>(<span class="number">20</span>, <span class="keyword">false</span>));
+            </div>
+        </div>
+
+        <!-- Slide 25: Loops - Concepto -->
+        <div class="slide theory-slide">
+            <h2>🔄 LOOPS - REPETICIÓN</h2>
+            <div class="demo-box">
+                <h3>🔁 Los loops son para hacer algo muchas veces</h3>
+                <p>Sin escribir el mismo código una y otra vez</p>
+            </div>
+            <div class="comparison">
+                <div class="before">
+                    <h4>❌ Sin Loops</h4>
+                    <code>console.log("Hola 1");</code><br>
+                    <code>console.log("Hola 2");</code><br>
+                    <code>console.log("Hola 3");</code><br>
+                    <code>console.log("Hola 4");</code><br>
+                    <code>console.log("Hola 5");</code>
+                </div>
+                <div class="after">
+                    <h4>✅ Con Loops</h4>
+                    <code>for (let i = 1; i <= 5; i++) {</code><br>
+                    <code>&nbsp;&nbsp;console.log("Hola " + i);</code><br>
+                    <code>}</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 26: DEMO - For Loop -->
+        <div class="slide demo-slide">
+            <h2>🧪 DEMO: FOR LOOP</h2>
+            <div class="code-block">
+                <span class="comment">// Contar del 1 al 5</span><br>
+                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i <= <span class="number">5</span>; i++) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Número:"</span>, i);<br>
+                }<br><br>
+                
+                <span class="comment">// Recorrer un array</span><br>
+                <span class="keyword">let</span> frutas = [<span class="string">"manzana"</span>, <span class="string">"banana"</span>, <span class="string">"naranja"</span>];<br>
+                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i < frutas.<span class="keyword">length</span>; i++) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Fruta:"</span>, frutas[i]);<br>
+                }<br><br>
+                
+                <span class="comment">// Sumar números</span><br>
+                <span class="keyword">let</span> suma = <span class="number">0</span>;<br>
+                <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i <= <span class="number">10</span>; i++) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;suma = suma + i;<br>
+                }<br>
+                <span class="keyword">console</span>.<span class="keyword">log</span>(<span class="string">"Suma total:"</span>, suma);
+            </div>
+        </div>
+
+        <!-- Slide 27: EJERCICIO GRANDE - Calculadora -->
+        <div class="slide exercise-slide">
+            <h2>⚡ EJERCICIO FINAL: CALCULADORA</h2>
+            <p><span class="highlight">¡Usa todo lo aprendido - 15 minutos!</span></p>
+            <div class="code-block">
+                <span class="comment">// TODO: Crear funciones de calculadora</span><br>
+                <span class="keyword">function</span> <span class="keyword">sumar</span>(a, b) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// TODO: Completar</span><br>
+                }<br><br>
+                
+                <span class="keyword">function</span> <span class="keyword">restar</span>(a, b) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// TODO: Completar</span><br>
+                }<br><br>
+                
+                <span class="keyword">function</span> <span class="keyword">multiplicar</span>(a, b) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// TODO: Completar</span><br>
+                }<br><br>
+                
+                <span class="keyword">function</span> <span class="keyword">dividir</span>(a, b) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// TODO: ¿Qué pasa si b es 0?</span><br>
+                }<br><br>
+                
+                <span class="comment">// TODO: Probar todas las funciones</span>
+            </div>
+        </div>
+
+        <!-- Slide 28: EJERCICIO - Sistema de Tareas -->
+        <div class="slide exercise-slide">
+            <h2>⚡ EJERCICIO: SISTEMA DE TAREAS</h2>
+            <p><span class="highlight">¡Crea tu primer programa completo - 15 minutos!</span></p>
+            <div class="code-block">
+                <span class="comment">// TODO: Sistema básico de tareas</span><br>
+                <span class="keyword">let</span> tareas = [];<br><br>
+                
+                <span class="keyword">function</span> <span class="keyword">agregarTarea</span>(tarea) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// TODO: Agregar tarea al array</span><br>
+                }<br><br>
+                
+                <span class="keyword">function</span> <span class="keyword">mostrarTareas</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// TODO: Mostrar todas las tareas</span><br>
+                }<br><br>
+                
+                <span class="keyword">function</span> <span class="keyword">contarTareas</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// TODO: Mostrar cuántas tareas hay</span><br>
+                }<br><br>
+                
+                <span class="comment">// TODO: Probar el sistema</span>
+            </div>
+        </div>
+
+        <!-- Slide 29: Lo que lograste hoy -->
+        <div class="slide">
+            <h2>🎯 LO QUE LOGRASTE HOY</h2>
+            <ul class="check-list">
+                <li><strong>Variables:</strong> Guardar información</li>
+                <li><strong>Tipos de datos:</strong> Textos, números, booleanos</li>
+                <li><strong>Arrays:</strong> Listas de información</li>
+                <li><strong>Funciones:</strong> Código reutilizable</li>
+                <li><strong>Condicionales:</strong> Tomar decisiones</li>
+                <li><strong>Loops:</strong> Repetir acciones</li>
+            </ul>
+            <p><span class="highlight">¡Ya puedes pensar como un programador!</span></p>
+        </div>
+
+        <!-- Slide 30: Comparación Antes/Después -->
+        <div class="slide">
+            <h2>🚀 TRANSFORMACIÓN COMPLETADA</h2>
+            <div class="comparison">
+                <div class="before">
+                    <h4>😐 Antes de hoy</h4>
+                    <ul>
+                        <li>Solo HTML y CSS</li>
+                        <li>Sitio estático</li>
+                        <li>Sin lógica</li>
+                        <li>Sin interactividad</li>
+                    </ul>
+                </div>
+                <div class="after">
+                    <h4>⚡ Después de hoy</h4>
+                    <ul>
+                        <li>Programación básica</li>
+                        <li>Lógica de decisiones</li>
+                        <li>Funciones y variables</li>
+                        <li>¡Listo para DOM!</li>
+                    </ul>
+                </div>
+            </div>
+            <p><span class="highlight">¡El salto mental más grande del curso!</span></p>
+        </div>
+
+        <!-- Slide 31: Próxima clase preview -->
+        <div class="slide">
+            <h2>🔮 PRÓXIMA CLASE: DOM BÁSICO</h2>
+            <p>Vamos a conectar JavaScript con HTML:</p>
+            <ul>
+                <li>🎯 querySelector - encontrar elementos</li>
+                <li>✏️ innerHTML - cambiar contenido</li>
+                <li>👆 addEventListener - escuchar clicks</li>
+                <li>🎨 Cambiar estilos desde JavaScript</li>
+                <li>🔄 Mostrar/ocultar elementos</li>
+            </ul>
+            <p>💡 Trae preparado:</p>
+            <ul>
+                <li>Tu proyecto con las 4 páginas funcionando</li>
+                <li>Ideas de qué interactividad agregar</li>
+                <li>JavaScript básico practicado</li>
+            </ul>
+        </div>
+
+        <!-- Slide 32: Tarea para casa -->
+        <div class="slide">
+            <h2>📝 TAREA PARA CASA</h2>
+            <p><span class="highlight">Practicar JavaScript básico:</span></p>
+            <ul>
+                <li>💻 Completar los 3 ejercicios en la consola</li>
+                <li>🧮 Crear 3 funciones útiles propias</li>
+                <li>📝 Practicar arrays con información personal</li>
+                <li>🤔 Pensar qué interactividad agregar al proyecto</li>
+            </ul>
+            <p><span class="highlight">📋 En tu repositorio:</span></p>
+            <ul>
+                <li>tarea-proxima-clase/README.md</li>
+                <li>recursos/javascript-cheatsheet.md</li>
+                <li>recursos/ejercicios-extra.md</li>
+            </ul>
+        </div>
+
+        <!-- Slide 33: Recursos de ayuda -->
+        <div class="slide">
+            <h2>🆘 SI NECESITAS AYUDA</h2>
+            <p>📚 En tu repositorio:</p>
+            <ul>
+                <li>recursos/javascript-cheatsheet.md</li>
+                <li>recursos/console-guia.md</li>
+                <li>recursos/debugging-javascript.md</li>
+                <li>ejercicios-resueltos/ (solo profesor)</li>
+            </ul>
+            <p>🌐 Online:</p>
+            <ul>
+                <li>MDN JavaScript Guide</li>
+                <li>W3Schools JavaScript</li>
+                <li>JavaScript.info (español)</li>
+            </ul>
+            <p><span class="highlight">🤝 ¡Ayúdense entre compañeros en el chat!</span></p>
+        </div>
+
+        <!-- Slide 34: Motivación -->
+        <div class="slide">
+            <h2>💪 ¡INCREÍBLE LOGRO!</h2>
+            <p><span class="highlight">Hoy diste el salto más grande:</span></p>
+            <ul class="check-list">
+                <li>De diseñador a programador</li>
+                <li>De estático a lógico</li>
+                <li>De visual a funcional</li>
+                <li>De HTML/CSS a JavaScript</li>
+            </ul>
+            <p>🎯 <span class="highlight">El cerebro de programador ya está funcionando</span></p>
+            <p>⚡ <span class="highlight">Próxima clase: ¡Tu sitio cobrará vida!</span></p>
+            <p>🚀 <span class="highlight">Ya estás en el 55% del curso</span></p>
+        </div>
+
+        <!-- Slide 35: Cierre -->
+        <div class="slide">
+            <div class="big-emoji">🎉</div>
+            <h1>¡EXCELENTE QUINTA CLASE!</h1>
+            <h2>JavaScript conquistado</h2>
+            <p><span class="highlight">De cero conocimiento a programador funcional</span></p>
+            <p><span class="highlight">💻 Practica en la consola todos los días</span></p>
+            <p><span class="highlight">📝 Completa la tarea para estar listo</span></p>
+            <p><span class="highlight">⚡ ¡Nos vemos la próxima para darle vida a tu proyecto!</span></p>
+        </div>
+
+    </div>
+
+    <!-- Navegación -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">◀ Anterior</button>
+        <button class="nav-btn" onclick="nextSlide()">Siguiente ▶</button>
+    </div>
+
+    <!-- Contador -->
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">35</span>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // Actualizar contador
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Navegación por teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                showSlide(0);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                showSlide(totalSlides - 1);
+            }
+        });
+
+        // Navegación táctil básica
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide(); // Swipe left
+                } else {
+                    previousSlide(); // Swipe right
+                }
+            }
+        }
+
+        // Navegación por click en los lados
+        document.addEventListener('click', function(e) {
+            const screenWidth = window.innerWidth;
+            const clickX = e.clientX;
+            
+            // Evitar navegación si es click en botones
+            if (e.target.classList.contains('nav-btn')) return;
+            
+            if (clickX < screenWidth * 0.3) {
+                previousSlide();
+            } else if (clickX > screenWidth * 0.7) {
+                nextSlide();
+            }
+        });
+
+        // Indicar controles disponibles al cargar
+        console.log('🎮 CONTROLES DISPONIBLES:');
+        console.log('➡️ Flecha derecha o Espacio: Siguiente slide');
+        console.log('⬅️ Flecha izquierda: Slide anterior');
+        console.log('🏠 Inicio: Primer slide');
+        console.log('🔚 Fin: Último slide');
+        console.log('👆 Click izquierda/derecha de pantalla: Navegar');
+        console.log('📱 Swipe izquierda/derecha: Navegar en móvil');
+    </script>
+</body>
+</html>
