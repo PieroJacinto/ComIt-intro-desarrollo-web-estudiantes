@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 6: Funciones y Lógica - ComuIT 2025</title>
+    <style>
+        /* ===== RESET Y BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow: hidden;
+        }
+
+        /* ===== SLIDESHOW CONTAINER ===== */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== SLIDES ===== */
+        .slide {
+            display: none;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem;
+            max-width: 900px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            animation: slideIn 0.6s ease-out;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        /* ===== HIGHLIGHTS ===== */
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        /* ===== EMOJIS ===== */
+        .big-emoji {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        /* ===== CODE BLOCKS ===== */
+        .code {
+            background: linear-gradient(145deg, #1a202c, #2d3748);
+            color: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-align: left;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .code-small {
+            font-size: 0.8rem;
+            padding: 1rem;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-button {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        /* ===== SLIDE COUNTER ===== */
+        .slide-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        /* ===== SPECIFIC STYLES ===== */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .practice-slide {
+            background: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .exercise-slide {
+            background: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(46, 204, 113, 0.3);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .comparison-item {
+            background: rgba(248, 250, 252, 0.8);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .comparison-item h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        ul {
+            text-align: left;
+            margin-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .check-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .check-list li::before {
+            content: "✅ ";
+            margin-right: 0.5rem;
+        }
+
+        .warning-box {
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid rgba(231, 76, 60, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-box {
+            background: rgba(52, 152, 219, 0.1);
+            border: 2px solid rgba(52, 152, 219, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .success-box {
+            background: rgba(46, 204, 113, 0.1);
+            border: 2px solid rgba(46, 204, 113, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .slide {
+                margin: 1rem;
+                padding: 2rem;
+                max-height: 90vh;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .big-emoji {
+                font-size: 4rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .code {
+                font-size: 0.8rem;
+                padding: 1rem;
+            }
+
+            .nav-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <div class="big-emoji">🎯</div>
+            <h1>CLASE 6</h1>
+            <h2>Funciones y Lógica</h2>
+            <p>De código repetitivo a <span class="highlight">código inteligente</span></p>
+            <p>Organizamos nuestro JavaScript con <span class="highlight">funciones</span>, tomamos <span class="highlight">decisiones</span> con condicionales, y usamos <span class="highlight">callbacks modernos</span></p>
+        </div>
+
+        <!-- Slide 2: Repaso Clase 5 -->
+        <div class="slide">
+            <h2>📋 REPASO: ¿Qué dominamos hasta ahora?</h2>
+            <div class="two-column">
+                <div>
+                    <h3>✅ JavaScript Básico:</h3>
+                    <ul class="check-list">
+                        <li>Variables (let, const)</li>
+                        <li>Arrays y objetos</li>
+                        <li>For loops tradicionales</li>
+                        <li>Template literals</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>✅ Métodos Básicos:</h3>
+                    <ul class="check-list">
+                        <li>push, pop, shift, unshift</li>
+                        <li>indexOf, includes, join</li>
+                        <li>Acceso a propiedades</li>
+                        <li>Datos estructurados</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>🎯 Hoy avanzamos:</strong> De código repetitivo a código organizado e inteligente</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: El Problema -->
+        <div class="slide">
+            <h2>🤔 EL PROBLEMA: Código Repetitivo</h2>
+            <p>Tu código de la Clase 5 probablemente se ve así:</p>
+            <div class="code">// ❌ Código repetitivo y sin decisiones
+let proyectos = ["Portfolio", "Blog", "Tienda"];
+
+for (let i = 0; i < proyectos.length; i++) {
+    console.log(proyectos[i]);
+}
+
+// Más código repetitivo...
+for (let i = 0; i < proyectos.length; i++) {
+    console.log(`Proyecto: ${proyectos[i]}`);
+}
+
+// Sin validaciones, sin decisiones, sin organización</div>
+            <div class="warning-box">
+                <p><strong>Problemas:</strong> Se repite código, no hay validaciones, no toma decisiones, difícil de mantener</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: La Solución -->
+        <div class="slide">
+            <h2>✨ LA SOLUCIÓN: Código Inteligente</h2>
+            <p>Al final de esta clase, tu código se verá así:</p>
+            <div class="code">// ✅ Código organizado e inteligente
+function validarProyecto(proyecto) {
+    return proyecto.length > 0 ? "Válido" : "Inválido";
+}
+
+function mostrarProyectos(lista) {
+    lista.forEach(proyecto => {
+        const estado = validarProyecto(proyecto);
+        console.log(`${proyecto}: ${estado}`);
+    });
+}
+
+const proyectosValidos = proyectos.filter(p => p.length > 0);
+const datosJSON = JSON.stringify(proyectosValidos, null, 2);</div>
+            <div class="success-box">
+                <p><strong>¡Nivel Up!</strong> Funciones reutilizables, decisiones automáticas, datos listos para APIs</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: DEMO - Condicionales -->
+        <div class="slide practice-slide">
+            <h2>🚦 DEMO: Condicionales</h2>
+            <p><span class="highlight">Archivo: ejemplo-1-condicionales.html</span></p>
+            <p>Las condicionales permiten que tu código <strong>tome decisiones</strong></p>
+            <div class="code">// Ejemplo básico de decisión
+let edad = 18;
+
+if (edad >= 18) {
+    console.log("✅ Puedes votar");
+} else {
+    console.log("❌ Aún no puedes votar");
+}
+
+// Para tu proyecto
+let proyecto = { nombre: "Portfolio", completado: true };
+
+if (proyecto.completado) {
+    console.log(`🎉 ${proyecto.nombre} está listo!`);
+} else {
+    console.log(`🔧 ${proyecto.nombre} en desarrollo`);
+}</div>
+            <p>🎯 <span class="highlight">Tu código ahora puede "pensar"</span></p>
+        </div>
+
+        <!-- Slide 6: Operadores de Comparación -->
+        <div class="slide">
+            <h2>⚖️ OPERADORES: Las Reglas del Juego</h2>
+            <div class="two-column">
+                <div>
+                    <h3>🔍 Comparación:</h3>
+                    <div class="code code-small">===  // Igual exacto
+!==  // Diferente
+>    // Mayor que
+<    // Menor que
+>=   // Mayor o igual
+<=   // Menor o igual</div>
+                </div>
+                <div>
+                    <h3>🧠 Lógicos:</h3>
+                    <div class="code code-small">&&   // AND (y)
+||   // OR (o)
+!    // NOT (no)
+
+// Ejemplos:
+edad >= 18 && tieneLicencia
+precio < 100 || esOferta</div>
+                </div>
+            </div>
+            <div class="info-box">
+                <p><strong>💡 Regla dorada:</strong> Siempre usa <code>===</code> en lugar de <code>==</code></p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Switch y Ternario -->
+        <div class="slide">
+            <h2>🔀 SWITCH y OPERADOR TERNARIO</h2>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h4>🔀 Switch para múltiples opciones:</h4>
+                    <div class="code code-small">switch (dia) {
+    case "lunes":
+        mensaje = "Inicio de semana";
+        break;
+    case "viernes":
+        mensaje = "¡Por fin viernes!";
+        break;
+    default:
+        mensaje = "Día normal";
+}</div>
+                </div>
+                <div class="comparison-item">
+                    <h4>❓ Ternario para decisiones rápidas:</h4>
+                    <div class="code code-small">// Sintaxis: condición ? true : false
+let estado = completado ? "Listo" : "Pendiente";
+
+let precio = esMiembro ? 50 : 100;
+
+let mensaje = edad >= 18 ? 
+    "Adulto" : "Menor";</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: EJERCICIO 1 -->
+        <div class="slide exercise-slide">
+            <h2>📝 EJERCICIO 1: Condicionales</h2>
+            <p><span class="highlight">Archivo: ejercicio-1-condicionales.html</span></p>
+            <ol>
+                <li>Completar validación de edad con if/else</li>
+                <li>Crear sistema de login con operadores lógicos</li>
+                <li>Implementar sistema de calificaciones con switch</li>
+                <li>Usar operador ternario para mensajes</li>
+            </ol>
+            <p>🎯 <span class="highlight">Objetivo: Tu código toma decisiones inteligentes</span></p>
+            <p>⏰ <span class="highlight">15 minutos</span></p>
+            <p>💬 <span class="highlight">Comparte en chat cuando termines</span></p>
+        </div>
+
+        <!-- Slide 9: DEMO - Funciones -->
+        <div class="slide practice-slide">
+            <h2>🔧 DEMO: Funciones</h2>
+            <p><span class="highlight">Archivo: ejemplo-2-funciones.html</span></p>
+            <p>Las funciones <strong>organizan</strong> tu código y lo hacen <strong>reutilizable</strong></p>
+            <div class="code">// Sin función: código repetitivo ❌
+console.log(`¡Hola Ana!`);
+console.log(`¡Hola Luis!`);
+console.log(`¡Hola María!`);
+
+// Con función: código organizado ✅
+function saludar(nombre) {
+    return `¡Hola ${nombre}!`;
+}
+
+console.log(saludar("Ana"));
+console.log(saludar("Luis"));
+console.log(saludar("María"));</div>
+            <p>🎯 <span class="highlight">Una función = una responsabilidad específica</span></p>
+        </div>
+
+        <!-- Slide 10: Anatomía de una Función -->
+        <div class="slide">
+            <h2>🏗️ ANATOMÍA DE UNA FUNCIÓN</h2>
+            <div class="code">function calcularDescuento(precio, porcentaje) {
+    let descuento = precio * (porcentaje / 100);
+    let precioFinal = precio - descuento;
+    return precioFinal;
+}
+
+// Usar la función
+let precioOferta = calcularDescuento(100, 20); // 80</div>
+            <div class="info-box">
+                <ul>
+                    <li><strong>function:</strong> palabra clave para crear función</li>
+                    <li><strong>calcularDescuento:</strong> nombre descriptivo</li>
+                    <li><strong>(precio, porcentaje):</strong> parámetros de entrada</li>
+                    <li><strong>return:</strong> valor que devuelve la función</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11: Arrow Functions -->
+        <div class="slide">
+            <h2>🏹 ARROW FUNCTIONS: Sintaxis Moderna</h2>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h4>📝 Función tradicional:</h4>
+                    <div class="code code-small">function duplicar(numero) {
+    return numero * 2;
+}
+
+function saludar(nombre) {
+    return `¡Hola ${nombre}!`;
+}</div>
+                </div>
+                <div class="comparison-item">
+                    <h4>✨ Arrow function:</h4>
+                    <div class="code code-small">const duplicar = numero => numero * 2;
+
+const saludar = nombre => `¡Hola ${nombre}!`;
+
+// Con múltiples líneas
+const calcular = (a, b) => {
+    let suma = a + b;
+    return suma * 2;
+};</div>
+                </div>
+            </div>
+            <p>💡 <span class="highlight">Arrow functions: más cortas para funciones simples</span></p>
+        </div>
+
+        <!-- Slide 12: EJERCICIO 2 -->
+        <div class="slide exercise-slide">
+            <h2>📝 EJERCICIO 2: Funciones</h2>
+            <p><span class="highlight">Archivo: ejercicio-2-funciones.html</span></p>
+            <ol>
+                <li>Crear función de validación de email</li>
+                <li>Implementar calculadora de precios con descuentos</li>
+                <li>Crear función para generar mensajes personalizados</li>
+                <li>Convertir funciones tradicionales a arrow functions</li>
+            </ol>
+            <p>🎯 <span class="highlight">Objetivo: Código organizado y reutilizable</span></p>
+            <p>⏰ <span class="highlight">20 minutos</span></p>
+            <p>💬 <span class="highlight">Comparte tu función favorita en chat</span></p>
+        </div>
+
+        <!-- Slide 13: DEMO - Loops Avanzados -->
+        <div class="slide practice-slide">
+            <h2>🔄 DEMO: Loops Avanzados</h2>
+            <p><span class="highlight">Archivo: ejemplo-3-loops-avanzados.html</span></p>
+            <p>Nuevas formas de iterar: <strong>while</strong> y <strong>for...of</strong></p>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h4>🔄 While loop:</h4>
+                    <div class="code code-small">let contador = 0;
+
+while (contador < 5) {
+    console.log(contador);
+    contador++;
+}</div>
+                </div>
+                <div class="comparison-item">
+                    <h4>✨ For...of loop:</h4>
+                    <div class="code code-small">let frutas = ["🍎", "🍌", "🍊"];
+
+for (let fruta of frutas) {
+    console.log(fruta);
+}</div>
+                </div>
+            </div>
+            <p>🎯 <span class="highlight">Cuándo usar cada uno según el caso</span></p>
+        </div>
+
+        <!-- Slide 14: EJERCICIO 3 -->
+        <div class="slide exercise-slide">
+            <h2>📝 EJERCICIO 3: Loops Avanzados</h2>
+            <p><span class="highlight">Archivo: ejercicio-3-loops-avanzados.html</span></p>
+            <ol>
+                <li>Usar while para buscar elementos específicos</li>
+                <li>Implementar contador con while</li>
+                <li>Usar for...of para recorrer arrays de objetos</li>
+                <li>Comparar rendimiento de diferentes loops</li>
+            </ol>
+            <p>🎯 <span class="highlight">Objetivo: Dominar todas las formas de iteración</span></p>
+            <p>⏰ <span class="highlight">15 minutos</span></p>
+            <p>💬 <span class="highlight">Comparte qué loop prefieres y por qué</span></p>
+        </div>
+
+        <!-- Slide 15: DEMO - JSON -->
+        <div class="slide practice-slide">
+            <h2>📄 DEMO: JSON</h2>
+            <p><span class="highlight">Archivo: ejemplo-4-json.html</span></p>
+            <p>JSON es el <strong>formato universal</strong> para intercambiar datos</p>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h4>📦 Objeto JavaScript:</h4>
+                    <div class="code code-small">let usuario = {
+    nombre: "Ana",
+    edad: 25,
+    activo: true
+};
+
+console.log(typeof usuario);
+// "object"</div>
+                </div>
+                <div class="comparison-item">
+                    <h4>📋 Texto JSON:</h4>
+                    <div class="code code-small">let usuarioJSON = JSON.stringify(usuario);
+console.log(usuarioJSON);
+// '{"nombre":"Ana","edad":25,"activo":true}'
+
+console.log(typeof usuarioJSON);
+// "string"</div>
+                </div>
+            </div>
+            <p>🌐 <span class="highlight">JSON = formato que entienden todas las aplicaciones</span></p>
+        </div>
+
+        <!-- Slide 16: EJERCICIO 4 -->
+        <div class="slide exercise-slide">
+            <h2>📝 EJERCICIO 4: JSON</h2>
+            <p><span class="highlight">Archivo: ejercicio-4-json.html</span></p>
+            <ol>
+                <li>Convertir objetos a JSON con JSON.stringify()</li>
+                <li>Convertir JSON a objetos con JSON.parse()</li>
+                <li>Practicar el ciclo completo: objeto → JSON → objeto</li>
+                <li>Experimentar con formato legible (pretty print)</li>
+            </ol>
+            <p>🎯 <span class="highlight">Objetivo: Dominar conversiones de datos</span></p>
+            <p>⏰ <span class="highlight">15 minutos</span></p>
+            <p>💬 <span class="highlight">Comparte tu JSON más interesante</span></p>
+        </div>
+
+        <!-- Slide 17: DEMO - Callbacks -->
+        <div class="slide practice-slide">
+            <h2>🎯 DEMO: Callbacks</h2>
+            <p><span class="highlight">Archivo: ejemplo-5-callbacks.html</span></p>
+            <p>¡Llegó el momento! Métodos <strong>modernos</strong> de arrays</p>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h4>🏚️ Forma antigua (Clase 5):</h4>
+                    <div class="code code-small">let proyectos = ["Portfolio", "Blog"];
+
+for (let i = 0; i < proyectos.length; i++) {
+    console.log(proyectos[i]);
+}</div>
+                </div>
+                <div class="comparison-item">
+                    <h4>✨ Forma moderna (Clase 6):</h4>
+                    <div class="code code-small">let proyectos = ["Portfolio", "Blog"];
+
+proyectos.forEach(proyecto => {
+    console.log(proyecto);
+});</div>
+                </div>
+            </div>
+            <p>🎯 <span class="highlight">Callbacks = funciones que se pasan como parámetros</span></p>
+        </div>
+
+        <!-- Slide 18: Los Tres Mosqueteros -->
+        <div class="slide">
+            <h2>🎭 LOS TRES MOSQUETEROS de Arrays</h2>
+            <div class="code">let numeros = [1, 2, 3, 4, 5];
+
+// 🔄 forEach: Hacer algo con cada elemento
+numeros.forEach(num => console.log(num * 2));
+
+// 🔄 map: Transformar y crear nuevo array
+let dobles = numeros.map(num => num * 2);
+console.log(dobles); // [2, 4, 6, 8, 10]
+
+// 🔍 filter: Seleccionar elementos específicos
+let pares = numeros.filter(num => num % 2 === 0);
+console.log(pares); // [2, 4]</div>
+            <div class="info-box">
+                <ul>
+                    <li><strong>forEach:</strong> Ejecuta algo, NO devuelve nada</li>
+                    <li><strong>map:</strong> Transforma elementos, devuelve nuevo array</li>
+                    <li><strong>filter:</strong> Selecciona elementos, devuelve nuevo array</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 19: EJERCICIO 5 -->
+        <div class="slide exercise-slide">
+            <h2>📝 EJERCICIO 5: Callbacks</h2>
+            <p><span class="highlight">Archivo: ejercicio-5-callbacks.html</span></p>
+            <ol>
+                <li>Usar forEach para mostrar elementos con formato</li>
+                <li>Usar map para transformar arrays de datos</li>
+                <li>Usar filter para seleccionar elementos específicos</li>
+                <li>Combinar múltiples métodos en cadena</li>
+            </ol>
+            <p>🎯 <span class="highlight">Objetivo: Métodos modernos de arrays</span></p>
+            <p>⏰ <span class="highlight">20 minutos</span></p>
+            <p>🏆 <span class="highlight">¡Ya eres un desarrollador moderno!</span></p>
+        </div>
+
+        <!-- Slide 20: EJERCICIO INTEGRADOR (OPCIONAL) -->
+        <div class="slide practice-slide">
+            <h2>🚀 EJERCICIO INTEGRADOR (Opcional)</h2>
+            <p><span class="highlight">Archivo: ejercicio-integracion-opcional.html</span></p>
+            <p>¡Para los que quieren más desafío!</p>
+            <div class="info-box">
+                <h3>🎯 Combina TODOS los conceptos:</h3>
+                <ul>
+                    <li>Funciones con parámetros y return</li>
+                    <li>Condicionales dentro de funciones</li>
+                    <li>Loops avanzados para búsquedas</li>
+                    <li>JSON para persistir datos</li>
+                    <li>Callbacks para procesar arrays</li>
+                </ul>
+            </div>
+            <p>⏰ <span class="highlight">30 minutos</span></p>
+            <p>🏆 <span class="highlight">Solo si terminaste todos los ejercicios anteriores</span></p>
+        </div>
+
+        <!-- Slide 21: Aplicación al Proyecto -->
+        <div class="slide practice-slide">
+            <h2>🚀 APLICAR A TU PROYECTO PERSONAL</h2>
+            <p><span class="highlight">¡La parte más importante!</span></p>
+            <div class="two-column">
+                <div>
+                    <h3>✅ Por hacer:</h3>
+                    <ul class="check-list">
+                        <li>Completar TODOs de tarea</li>
+                        <li>Crear funciones específicas</li>
+                        <li>Usar callbacks en tus datos</li>
+                        <li>Generar archivo JSON</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🎯 Resultado:</h3>
+                    <ul class="check-list">
+                        <li>Código organizado en funciones</li>
+                        <li>Decisiones automáticas</li>
+                        <li>Arrays procesados con estilo</li>
+                        <li>Datos listos para DOM</li>
+                    </ul>
+                </div>
+            </div>
+            <p>⏰ <span class="highlight">30 minutos de trabajo individual</span></p>
+        </div>
+
+        <!-- Slide 22: Tarea para Casa -->
+        <div class="slide">
+            <h2>📝 TAREA PARA LA PRÓXIMA CLASE</h2>
+            <div class="info-box">
+                <h3>🎯 Objetivo: Funciones Básicas y JSON</h3>
+                <p>Transformar los datos de tu proyecto con funciones y crear un archivo JSON</p>
+            </div>
+            <div class="two-column">
+                <div>
+                    <h3>✅ Completar TODOs:</h3>
+                    <ul>
+                        <li>4 funciones universales</li>
+                        <li>2-3 funciones específicas</li>
+                        <li>Usar forEach, map, filter</li>
+                        <li>Crear archivo JSON</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🚀 Preparación Clase 7:</h3>
+                    <ul>
+                        <li>Funciones listas para DOM</li>
+                        <li>JSON preparado para fetch</li>
+                        <li>Código modular y organizado</li>
+                        <li>Base sólida para interactividad</li>
+                    </ul>
+                </div>
+            </div>
+            <p>📅 <span class="highlight">Fecha límite: Antes de la Clase 7 (DOM)</span></p>
+        </div>
+
+        <!-- Slide 23: Lo que viene -->
+        <div class="slide">
+            <h2>🔮 PREVIEW: CLASE 7 - DOM</h2>
+            <p>Con las funciones de esta clase, podrás hacer esto:</p>
+            <div class="code">// Vista previa de la próxima clase
+document.getElementById('nombre').textContent = perfil.nombre;
+
+document.getElementById('proyectos').innerHTML = 
+    generarHTMLProyectos(proyectos);
+
+document.getElementById('boton').addEventListener('click', 
+    () => mostrarProyectos(proyectos));
+
+// ¡Tu página cobrará vida!</div>
+            <div class="success-box">
+                <p><strong>🎯 Próxima clase:</strong> Conectar tu JavaScript con HTML para crear interactividad real</p>
+            </div>
+        </div>
+
+        <!-- Slide 24: Cierre -->
+        <div class="slide">
+            <div class="big-emoji">🎉</div>
+            <h1>¡FELICITACIONES!</h1>
+            <h2>Ya escribes JavaScript profesional</h2>
+            <div class="success-box">
+                <h3>🏆 Lo que lograste hoy:</h3>
+                <ul class="check-list">
+                    <li>Código que toma decisiones inteligentes</li>
+                    <li>Funciones organizadas y reutilizables</li>
+                    <li>Métodos modernos de arrays</li>
+                    <li>Datos en formato JSON universal</li>
+                    <li>Base sólida para crear interactividad</li>
+                </ul>
+            </div>
+            <p><span class="highlight">¡En la próxima clase conectaremos este código con HTML!</span></p>
+            <p>🚀 <span class="highlight">Tu proyecto está a punto de cobrar vida</span></p>
+        </div>
+
+        <!-- Navigation buttons -->
+        <button class="nav-button prev" onclick="changeSlide(-1)">‹</button>
+        <button class="nav-button next" onclick="changeSlide(1)">›</button>
+
+        <!-- Slide counter -->
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">24</span>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // Update total slides counter
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (n >= totalSlides) currentSlide = 0;
+            if (n < 0) currentSlide = totalSlides - 1;
+            
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    changeSlide(-1);
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                case ' ':
+                    changeSlide(1);
+                    break;
+                case 'Home':
+                    currentSlide = 0;
+                    showSlide(currentSlide);
+                    break;
+                case 'End':
+                    currentSlide = totalSlides - 1;
+                    showSlide(currentSlide);
+                    break;
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', function(event) {
+            startX = event.touches[0].clientX;
+            startY = event.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(event) {
+            let endX = event.changedTouches[0].clientX;
+            let endY = event.changedTouches[0].clientY;
+            
+            let diffX = startX - endX;
+            let diffY = startY - endY;
+            
+            // Horizontal swipe detection
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    changeSlide(1); // Swipe left = next slide
+                } else {
+                    changeSlide(-1); // Swipe right = previous slide
+                }
+            }
+        });
+
+        // Click navigation on slides
+        document.addEventListener('click', function(event) {
+            if (event.target.closest('.nav-button')) return;
+            
+            const slideRect = slides[currentSlide].getBoundingClientRect();
+            const clickX = event.clientX - slideRect.left;
+            const slideWidth = slideRect.width;
+            
+            // Click on right half = next slide
+            if (clickX > slideWidth / 2) {
+                changeSlide(1);
+            } else {
+                changeSlide(-1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+
+        // Auto-hide navigation on inactivity
+        let navTimeout;
+        function showNavigation() {
+            document.querySelector('.prev').style.opacity = '1';
+            document.querySelector('.next').style.opacity = '1';
+            document.querySelector('.slide-counter').style.opacity = '1';
+            
+            clearTimeout(navTimeout);
+            navTimeout = setTimeout(() => {
+                document.querySelector('.prev').style.opacity = '0.3';
+                document.querySelector('.next').style.opacity = '0.3';
+                document.querySelector('.slide-counter').style.opacity = '0.7';
+            }, 3000);
+        }
+
+        document.addEventListener('mousemove', showNavigation);
+        document.addEventListener('keydown', showNavigation);
+        showNavigation();
+    </script>
+</body>
+</html>
+                    
