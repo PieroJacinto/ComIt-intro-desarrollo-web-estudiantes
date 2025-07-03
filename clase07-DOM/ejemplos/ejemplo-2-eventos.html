@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 2: Eventos - Clase 7</title>
+    <link rel="stylesheet" href="./ejemplo-2-eventos.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>⚡ Eventos - Interactividad Real</h1>
+            <p>Aprende addEventListener para que los usuarios puedan interactuar con tu sitio</p>
+        </div>
+
+        <!-- INTRODUCCIÓN A EVENTOS -->
+        <div class="demo-section">
+            <h2>🎯 ¿Qué son los Eventos?</h2>
+            <p>Los <strong>eventos</strong> son acciones que hace el usuario: hacer click, escribir, mover el mouse, etc. 
+            JavaScript puede "escuchar" estos eventos y ejecutar funciones cuando ocurren.</p>
+            
+            <div class="info-box">
+                <h3>💡 De Clase 6 a Clase 7:</h3>
+                <ul>
+                    <li><strong>Clase 6:</strong> Tus funciones funcionaban solo en consola</li>
+                    <li><strong>Hoy:</strong> Tus funciones se ejecutan cuando el usuario hace algo</li>
+                </ul>
+                <p><strong>Ejemplo:</strong> Tu función <code>mostrarProyectos()</code> ahora se ejecutará cuando alguien haga click en un botón ¡No solo en la consola!</p>
+            </div>
+
+            <div class="code-block">// SINTAXIS BÁSICA DE EVENTOS
+const boton = document.querySelector('#mi-boton');
+
+boton.addEventListener('click', function() {
+    console.log('¡El usuario hizo click!');
+    // Aquí puedes ejecutar cualquier función que tengas
+});
+
+// CONECTAR CON TUS FUNCIONES EXISTENTES
+boton.addEventListener('click', mostrarProyectos);</div>
+        </div>
+
+        <!-- DEMO 1: CLICK BÁSICO -->
+        <div class="demo-section">
+            <h2>👆 Demo 1: Eventos de Click</h2>
+            <p>El evento más común es <code>click</code>. Cada vez que haces click, se ejecuta una función.</p>
+
+            <div class="event-demo" id="click-demo">
+                👆 ¡Haz click aquí! Verás la magia de los eventos
+            </div>
+
+            <div class="contador" id="contador">0</div>
+
+            <div class="code-block">// AGREGAR EVENTO DE CLICK
+const elemento = document.querySelector('#click-demo');
+let contador = 0;
+
+elemento.addEventListener('click', function() {
+    contador++;
+    document.querySelector('#contador').textContent = contador;
+    console.log(`Click número: ${contador}`);
+});</div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="activarClickDemo()">🎯 Activar Demo Click</button>
+                <button class="btn btn-secondary" onclick="resetearContador()">🔄 Resetear</button>
+            </div>
+        </div>
+
+        <!-- DEMO 2: EVENTOS DE MOUSE -->
+        <div class="demo-section">
+            <h2>🖱️ Demo 2: Eventos de Mouse</h2>
+            <p>Además de click, puedes detectar cuando el mouse entra, sale, se mueve, etc.</p>
+
+            <div class="color-box" id="mouse-demo" style="background: #667eea;">
+                🖱️ Pasa el mouse por aquí y observa los cambios
+            </div>
+
+            <div class="log-container" id="mouse-log">
+                <div class="log-entry">Mueve el mouse sobre la caja azul para ver eventos...</div>
+            </div>
+
+            <div class="code-block">// EVENTOS DE MOUSE
+elemento.addEventListener('mouseenter', function() {
+    console.log('Mouse entró al elemento');
+    elemento.style.backgroundColor = 'green';
+});
+
+elemento.addEventListener('mouseleave', function() {
+    console.log('Mouse salió del elemento');
+    elemento.style.backgroundColor = 'blue';
+});
+
+elemento.addEventListener('mousemove', function(event) {
+    console.log(`Mouse en posición: ${event.offsetX}, ${event.offsetY}`);
+});</div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="activarMouseDemo()">🖱️ Activar Demo Mouse</button>
+                <button class="btn btn-secondary" onclick="limpiarLog('mouse')">🧹 Limpiar log</button>
+            </div>
+        </div>
+
+        <!-- DEMO 3: EVENTOS DE TECLADO -->
+        <div class="demo-section">
+            <h2>⌨️ Demo 3: Eventos de Teclado</h2>
+            <p>Detecta cuando el usuario escribe, presiona teclas específicas, etc.</p>
+
+            <input type="text" class="input-demo" id="teclado-input" placeholder="Escribe algo aquí...">
+            
+            <div class="log-container" id="teclado-log">
+                <div class="log-entry">Escribe en el campo de arriba para ver eventos...</div>
+            </div>
+
+            <div class="code-block">// EVENTOS DE TECLADO
+input.addEventListener('keydown', function(event) {
+    console.log(`Tecla presionada: ${event.key}`);
+});
+
+input.addEventListener('input', function(event) {
+    console.log(`Contenido actual: ${event.target.value}`);
+});
+
+// DETECTAR TECLAS ESPECÍFICAS
+input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        console.log('¡Enter presionado!');
+    }
+});</div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="activarTecladoDemo()">⌨️ Activar Demo Teclado</button>
+                <button class="btn btn-secondary" onclick="limpiarLog('teclado')">🧹 Limpiar log</button>
+                <button class="btn btn-secondary" onclick="limpiarInput()">🗑️ Limpiar input</button>
+            </div>
+        </div>
+
+        <!-- DEMO 4: EJEMPLO PRÁCTICO -->
+        <div class="demo-section">
+            <h2>🚀 Demo 4: Ejemplo Práctico - Botones Interactivos</h2>
+            <p>Aplicaremos eventos a funciones como las que ya tienes en tu proyecto personal.</p>
+
+            <div class="demo-controls" style="justify-content: center; margin-bottom: 20px;">
+                <button class="btn" id="mostrar-proyectos-btn">📂 Mostrar Proyectos</button>
+                <button class="btn" id="agregar-proyecto-btn">➕ Agregar Proyecto</button>
+                <button class="btn" id="filtrar-btn">🔍 Filtrar Completados</button>
+                <button class="btn" id="limpiar-btn">🗑️ Limpiar</button>
+            </div>
+
+            <div id="resultado-proyectos" class="event-demo">
+                👆 Haz click en cualquier botón arriba para ver tus proyectos
+            </div>
+
+            <div class="code-block">// TUS DATOS (como en datos.js)
+const proyectos = [
+    { nombre: "Portfolio Personal", estado: "Completado", tecnologia: "HTML, CSS, JS" },
+    { nombre: "Tienda Online", estado: "En progreso", tecnologia: "React" },
+    { nombre: "Blog", estado: "Completado", tecnologia: "WordPress" }
+];
+
+// TUS FUNCIONES (como las de Clase 6)
+function mostrarProyectos() {
+    const container = document.querySelector('#resultado-proyectos');
+    container.innerHTML = '&lt;h4&gt;📂 Mis Proyectos:&lt;/h4&gt;';
+    proyectos.forEach(proyecto => {
+        container.innerHTML += `&lt;p&gt;${proyecto.nombre} - ${proyecto.estado}&lt;/p&gt;`;
+    });
+}
+
+// CONECTAR FUNCIÓN CON BOTÓN (¡esto es lo nuevo!)
+document.querySelector('#mostrar-proyectos-btn').addEventListener('click', mostrarProyectos);</div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="activarProyectosDemo()">🚀 Activar Demo Proyectos</button>
+                <button class="btn btn-secondary" onclick="resetearProyectos()">🔄 Resetear</button>
+            </div>
+        </div>
+
+        <!-- INFORMACIÓN IMPORTANTE -->
+        <div class="info-box">
+            <h3>🔑 Tipos de Eventos Más Comunes</h3>
+            <ul>
+                <li><strong>click</strong> - El usuario hace click</li>
+                <li><strong>mouseenter/mouseleave</strong> - Mouse entra/sale del elemento</li>
+                <li><strong>keydown/keyup</strong> - Tecla presionada/liberada</li>
+                <li><strong>input</strong> - Contenido de input cambia</li>
+                <li><strong>submit</strong> - Formulario se envía</li>
+                <li><strong>scroll</strong> - Usuario hace scroll</li>
+            </ul>
+        </div>
+
+        <div class="success-box">
+            <h3>🎯 ¡Interactividad Real Lograda!</h3>
+            <p>✅ Entiendes cómo funciona addEventListener<br>
+            ✅ Puedes detectar clicks, mouse y teclado<br>
+            ✅ Conectas eventos con tus funciones existentes<br>
+            ✅ Estás listo para crear navegación dinámica<br>
+            ✅ Próximo paso: Formularios y validación</p>
+        </div>
+    </div>
+
+    <script>
+        // VARIABLES GLOBALES
+        let clickContador = 0;
+        let mouseActivo = false;
+        let tecladoActivo = false;
+        let navegacionActiva = false;
+
+        // FUNCIÓN AUXILIAR PARA LOGS
+        function agregarLog(tipo, mensaje) {
+            const log = document.querySelector(`#${tipo}-log`);
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${tipo}`;
+            entry.textContent = `${new Date().toLocaleTimeString()}: ${mensaje}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        // DEMO 1: CLICK BÁSICO
+        function activarClickDemo() {
+            const elemento = document.querySelector('#click-demo');
+            const contadorElement = document.querySelector('#contador');
+            
+            // Remover eventos anteriores
+            elemento.replaceWith(elemento.cloneNode(true));
+            const nuevoElemento = document.querySelector('#click-demo');
+            
+            nuevoElemento.addEventListener('click', function() {
+                clickContador++;
+                contadorElement.textContent = clickContador;
+                nuevoElemento.classList.add('active');
+                nuevoElemento.innerHTML = `🎉 ¡Click ${clickContador}! Haz click de nuevo`;
+                
+                console.log(`✅ Click número: ${clickContador}`);
+                
+                // Quitar efecto después de un momento
+                setTimeout(() => {
+                    nuevoElemento.classList.remove('active');
+                }, 200);
+            });
+            
+            console.log('🎯 Demo de click activado');
+        }
+
+        function resetearContador() {
+            clickContador = 0;
+            document.querySelector('#contador').textContent = '0';
+            document.querySelector('#click-demo').innerHTML = '👆 ¡Haz click aquí! Verás la magia de los eventos';
+            console.log('🔄 Contador reseteado');
+        }
+
+        // DEMO 2: EVENTOS DE MOUSE
+        function activarMouseDemo() {
+            const elemento = document.querySelector('#mouse-demo');
+            
+            // Remover eventos anteriores
+            elemento.replaceWith(elemento.cloneNode(true));
+            const nuevoElemento = document.querySelector('#mouse-demo');
+            
+            nuevoElemento.addEventListener('mouseenter', function() {
+                nuevoElemento.style.background = '#48bb78';
+                nuevoElemento.innerHTML = '🟢 ¡Mouse detectado! Muévelo por aquí';
+                agregarLog('mouse', 'Mouse entró al elemento');
+            });
+            
+            nuevoElemento.addEventListener('mouseleave', function() {
+                nuevoElemento.style.background = '#667eea';
+                nuevoElemento.innerHTML = '🖱️ Mouse salió. Vuelve a pasar por aquí';
+                agregarLog('mouse', 'Mouse salió del elemento');
+            });
+            
+            nuevoElemento.addEventListener('mousemove', function(event) {
+                const x = Math.round(event.offsetX);
+                const y = Math.round(event.offsetY);
+                nuevoElemento.innerHTML = `📍 Posición: ${x}, ${y}`;
+                
+                // Solo logear cada 20px para no saturar
+                if (x % 20 === 0) {
+                    agregarLog('mouse', `Posición: (${x}, ${y})`);
+                }
+            });
+            
+            mouseActivo = true;
+            console.log('🖱️ Demo de mouse activado');
+        }
+
+        function limpiarLog(tipo) {
+            const log = document.querySelector(`#${tipo}-log`);
+            log.innerHTML = `<div class="log-entry">Log limpiado...</div>`;
+            console.log(`🧹 Log de ${tipo} limpiado`);
+        }
+
+        // DEMO 3: EVENTOS DE TECLADO - VERSIÓN ULTRA SIMPLE
+        let tecladoEventosActivos = false;
+        
+        function activarTecladoDemo() {
+            if (tecladoEventosActivos) {
+                agregarLog('keyboard', '⚠️ Demo ya está activo - ¡escribe en el input!');
+                return;
+            }
+            
+            const input = document.getElementById('teclado-input');
+            
+            // Verificar que el input existe
+            if (!input) {
+                console.error('Input no encontrado');
+                return;
+            }
+            
+            // Limpiar input
+            input.value = '';
+            
+            // Evento 1: Detectar teclas
+            input.addEventListener('keydown', function(e) {
+                const log = document.getElementById('teclado-log');
+                const entry = document.createElement('div');
+                entry.className = 'log-entry keyboard';
+                entry.textContent = `Tecla: "${e.key}"`;
+                log.appendChild(entry);
+                log.scrollTop = log.scrollHeight;
+                
+                if (e.key === 'Enter') {
+                    const entrySpecial = document.createElement('div');
+                    entrySpecial.className = 'log-entry keyboard';
+                    entrySpecial.textContent = '🎯 ¡ENTER detectado!';
+                    log.appendChild(entrySpecial);
+                }
+            });
+            
+            // Evento 2: Detectar cambios de texto
+            input.addEventListener('input', function(e) {
+                const log = document.getElementById('teclado-log');
+                const entry = document.createElement('div');
+                entry.className = 'log-entry keyboard';
+                entry.textContent = `Texto: "${e.target.value}" (${e.target.value.length} caracteres)`;
+                log.appendChild(entry);
+                log.scrollTop = log.scrollHeight;
+            });
+            
+            tecladoEventosActivos = true;
+            
+            // Mensaje inicial
+            const log = document.getElementById('teclado-log');
+            log.innerHTML = '';
+            const entry = document.createElement('div');
+            entry.className = 'log-entry keyboard';
+            entry.textContent = '✅ Demo activado - ¡escribe algo!';
+            log.appendChild(entry);
+            
+            // Enfocar input
+            input.focus();
+            
+            console.log('⌨️ Eventos de teclado activados exitosamente');
+        }
+
+        // DEMO 4: PROYECTOS INTERACTIVOS
+        function activarProyectosDemo() {
+            // Datos como los que tienen en su proyecto
+            const proyectos = [
+                { nombre: "Portfolio Personal", estado: "Completado", tecnologia: "HTML, CSS, JS" },
+                { nombre: "Tienda Online", estado: "En progreso", tecnologia: "React" },
+                { nombre: "Blog Personal", estado: "Completado", tecnologia: "WordPress" },
+                { nombre: "App Móvil", estado: "Planificado", tecnologia: "React Native" }
+            ];
+
+            // Funciones como las que ya tienen (Clase 6)
+            function mostrarProyectos() {
+                const container = document.querySelector('#resultado-proyectos');
+                container.innerHTML = '<h4>📂 Mis Proyectos:</h4>';
+                proyectos.forEach(proyecto => {
+                    container.innerHTML += `
+                        <div style="margin: 10px 0; padding: 10px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                            <strong>${proyecto.nombre}</strong><br>
+                            Estado: ${proyecto.estado} | Tecnología: ${proyecto.tecnologia}
+                        </div>
+                    `;
+                });
+                console.log('📂 Proyectos mostrados');
+            }
+
+            function agregarProyecto() {
+                const nuevoProyecto = {
+                    nombre: `Proyecto ${proyectos.length + 1}`,
+                    estado: "Nuevo",
+                    tecnologia: "JavaScript"
+                };
+                proyectos.push(nuevoProyecto);
+                mostrarProyectos(); // Refrescar lista
+                console.log('➕ Proyecto agregado:', nuevoProyecto);
+            }
+
+            function filtrarCompletados() {
+                const container = document.querySelector('#resultado-proyectos');
+                const completados = proyectos.filter(p => p.estado === "Completado");
+                container.innerHTML = '<h4>✅ Proyectos Completados:</h4>';
+                completados.forEach(proyecto => {
+                    container.innerHTML += `
+                        <div style="margin: 10px 0; padding: 10px; background: rgba(72, 187, 120, 0.1); border-radius: 8px; border-left: 4px solid #48bb78;">
+                            <strong>${proyecto.nombre}</strong><br>
+                            Tecnología: ${proyecto.tecnologia}
+                        </div>
+                    `;
+                });
+                console.log('🔍 Filtrados:', completados.length, 'proyectos completados');
+            }
+
+            function limpiarLista() {
+                const container = document.querySelector('#resultado-proyectos');
+                container.innerHTML = '🗑️ Lista limpiada. Presiona un botón para cargar proyectos.';
+                console.log('🗑️ Lista limpiada');
+            }
+
+            // CONECTAR FUNCIONES CON BOTONES (¡esto es lo nuevo!)
+            document.querySelector('#mostrar-proyectos-btn').addEventListener('click', mostrarProyectos);
+            document.querySelector('#agregar-proyecto-btn').addEventListener('click', agregarProyecto);
+            document.querySelector('#filtrar-btn').addEventListener('click', filtrarCompletados);
+            document.querySelector('#limpiar-btn').addEventListener('click', limpiarLista);
+
+            console.log('🚀 Demo de proyectos activado - botones conectados con funciones');
+        }
+
+        function resetearProyectos() {
+            const container = document.querySelector('#resultado-proyectos');
+            container.innerHTML = '👆 Haz click en cualquier botón arriba para ver tus proyectos';
+            console.log('🔄 Demo de proyectos reseteado');
+        }
+
+        function limpiarInput() {
+            const input = document.querySelector('#teclado-input');
+            input.value = '';
+            agregarLog('keyboard', '🗑️ Input limpiado');
+            input.focus();
+        }
+
+        // INICIALIZACIÓN
+        console.log('⚡ Eventos Demo cargado');
+        console.log('📚 Conceptos a demostrar: addEventListener, click, mouse, keyboard');
+        console.log('🔗 Próximo paso: Formularios y validación');
+        
+        // Mensaje para el profesor
+        console.log('\n👨‍🏫 NOTAS PARA EL PROFESOR:');
+        console.log('- Mostrar DevTools Console para ver los eventos en acción');
+        console.log('- Enfatizar la conexión con funciones de Clase 6');
+        console.log('- Demostrar que ahora sus funciones responden a usuarios reales');
+        console.log('- Preparar para formularios en el siguiente ejemplo');
+        console.log('- Animar a experimentar con diferentes tipos de eventos');
+    </script>
+</body>
+</html>

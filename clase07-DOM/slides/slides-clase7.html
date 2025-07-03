@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 7: DOM y Interactividad - ComuIT 2025</title>
+    <link rel="stylesheet" href="./slides-clase7.css">
+</head>
+<body>
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <div class="slide-container">
+        
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <div class="big-emoji">🎯</div>
+            <h1>CLASE 7</h1>
+            <h2>DOM y Interactividad</h2>
+            <p><span class="highlight">Conectamos JavaScript con HTML</span></p>
+            <p>✨ querySelector • addEventListener • import/export ✨</p>
+            <p>🚀 <strong>¡Finalmente interactividad real!</strong> 🚀</p>
+        </div>
+
+        <!-- Slide 2: Repaso clase anterior -->
+        <div class="slide">
+            <h2>📚 REPASO CLASE 6</h2>
+            <p><span class="highlight">Lo que ya dominamos:</span></p>
+            <div class="two-column">
+                <div>
+                    <h3>✅ Funciones:</h3>
+                    <ul class="check-list">
+                        <li>Declaración y parámetros</li>
+                        <li>Arrow functions</li>
+                        <li>Return de valores</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>✅ Métodos de arrays:</h3>
+                    <ul class="check-list">
+                        <li>forEach para iterar</li>
+                        <li>map para transformar</li>
+                        <li>filter para filtrar</li>
+                    </ul>
+                </div>
+            </div>
+            <p>🎯 <span class="highlight">¡Ahora conectamos todo con HTML!</span></p>
+        </div>
+
+        <!-- Slide 3: Problema actual -->
+        <div class="slide">
+            <h2>🤔 EL PROBLEMA ACTUAL</h2>
+            <p><span class="highlight">Tu JavaScript funciona... pero solo en la consola</span></p>
+            <div class="code">// Tus funciones están perfectas
+function mostrarProyectos() {
+    return "Lista de proyectos...";
+}
+
+console.log(mostrarProyectos()); // ✅ Funciona en consola
+// Pero... ¿cómo lo mostramos en la página? 🤷‍♀️</div>
+            <p>🎯 <span class="highlight">HOY: Conectamos JS con HTML</span></p>
+        </div>
+
+        <!-- Slide 4: Qué es el DOM -->
+        <div class="slide">
+            <h2>🌐 ¿QUÉ ES EL DOM?</h2>
+            <p><span class="highlight">Document Object Model</span></p>
+            <p>💡 Piénsalo como un puente:</p>
+            <ul>
+                <li><strong>HTML</strong> = La estructura de tu casa</li>
+                <li><strong>CSS</strong> = La decoración y colores</li>
+                <li><strong>JavaScript + DOM</strong> = Los interruptores que cambian todo</li>
+            </ul>
+            <p>🎯 <span class="highlight">¡Finalmente tus funciones cambiarán lo que se ve!</span></p>
+        </div>
+
+        <!-- Slide 5: querySelector -->
+        <div class="slide">
+            <h2>🔍 SELECCIONAR ELEMENTOS</h2>
+            <p><span class="highlight">querySelector: tu nueva herramienta favorita</span></p>
+            <div class="code">// Seleccionar por ID
+const boton = document.querySelector('#mi-boton');
+
+// Seleccionar por clase
+const lista = document.querySelector('.mi-lista');
+
+// Seleccionar por etiqueta
+const titulo = document.querySelector('h1');</div>
+            <p>💡 <span class="highlight">Como CSS: # para ID, . para clase</span></p>
+        </div>
+
+        <!-- Slide 6: Modificar contenido -->
+        <div class="slide">
+            <h2>✏️ CAMBIAR CONTENIDO</h2>
+            <p><span class="highlight">innerHTML: el poder de cambiar HTML</span></p>
+            <div class="code">// Cambiar HTML completo
+elemento.innerHTML = '<h3>¡Nuevo contenido!</h3>';
+
+// Con template strings (¡como en Clase 6!)
+const nombre = "Ana";
+elemento.innerHTML = `<p>Hola ${nombre}</p>`;
+
+// Obtener valor de input
+const texto = input.value;</div>
+            <p>🎯 <span class="highlight">¡Tus funciones ahora modifican la página!</span></p>
+        </div>
+
+        <!-- Slide 7: DEMO 1 -->
+        <div class="slide demo-slide">
+            <h2>👩‍💻 DEMO 1: DOM BÁSICO</h2>
+            <p><span class="highlight">Vamos a ver querySelector e innerHTML en acción</span></p>
+            <ol>
+                <li>Abrir <strong>ejemplos/ejemplo-1-dom-basico.html</strong></li>
+                <li>Seleccionar elementos</li>
+                <li>Cambiar contenido</li>
+                <li>Modificar estilos</li>
+                <li>Mostrar arrays con forEach</li>
+            </ol>
+            <p>🎯 <span class="highlight">¡JavaScript modificando HTML en tiempo real!</span></p>
+        </div>
+
+        <!-- Slide 8: EJERCICIO 1 -->
+        <div class="slide practice-slide">
+            <h2>💻 EJERCICIO 1: DOM BÁSICO</h2>
+            <p><span class="highlight">Tu turno de practicar querySelector e innerHTML</span></p>
+            <ol>
+                <li>Abrir <strong>ejercicios/ejercicio-1-dom-basico.html</strong></li>
+                <li>Completar TODOs para cambiar contenido</li>
+                <li>Modificar estilos desde JavaScript</li>
+                <li>Mostrar arrays usando forEach</li>
+            </ol>
+            <p>🎯 <span class="highlight">Objetivo: Conectar JS con HTML</span></p>
+            <p>⏰ <span class="highlight">15 minutos - Comparte en chat cuando termines</span></p>
+        </div>
+
+        <!-- Slide 9: addEventListener -->
+        <div class="slide">
+            <h2>🖱️ EVENTOS: REACCIONAR AL USUARIO</h2>
+            <p><span class="highlight">addEventListener: escuchar clicks, teclas, etc.</span></p>
+            <div class="code">// Escuchar click en botón
+boton.addEventListener('click', function() {
+    console.log('¡Botón clickeado!');
+});
+
+// Escuchar escritura en input
+input.addEventListener('keyup', function(event) {
+    const texto = event.target.value;
+    console.log('Escribiste:', texto);
+});</div>
+            <p>🎯 <span class="highlight">Tu página responde al usuario</span></p>
+        </div>
+
+        <!-- Slide 10: Tipos de eventos -->
+        <div class="slide">
+            <h2>🎭 TIPOS DE EVENTOS</h2>
+            <div class="two-column">
+                <div>
+                    <h3>🖱️ Mouse:</h3>
+                    <ul class="check-list">
+                        <li>click - Click del usuario</li>
+                        <li>mouseover - Mouse encima</li>
+                        <li>mouseout - Mouse sale</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>⌨️ Teclado:</h3>
+                    <ul class="check-list">
+                        <li>keyup - Al soltar tecla</li>
+                        <li>submit - Enviar formulario</li>
+                    </ul>
+                </div>
+            </div>
+            <p>💡 <span class="highlight">Cada evento tiene su momento perfecto</span></p>
+        </div>
+
+        <!-- Slide 11: DEMO 2 -->
+        <div class="slide demo-slide">
+            <h2>👩‍💻 DEMO 2: EVENTOS</h2>
+            <p><span class="highlight">Eventos en acción</span></p>
+            <ol>
+                <li>Abrir <strong>ejemplos/ejemplo-2-eventos.html</strong></li>
+                <li>Click en botones</li>
+                <li>Efectos de mouse</li>
+                <li>Eventos de teclado</li>
+                <li>Combinando eventos</li>
+            </ol>
+            <p>🎯 <span class="highlight">¡Tu página cobra vida!</span></p>
+        </div>
+
+        <!-- Slide 12: EJERCICIO 2 -->
+        <div class="slide practice-slide">
+            <h2>💻 EJERCICIO 2: EVENTOS</h2>
+            <p><span class="highlight">Practica addEventListener</span></p>
+            <ol>
+                <li>Abrir <strong>ejercicios/ejercicio-2-eventos.html</strong></li>
+                <li>Agregar eventos de click</li>
+                <li>Eventos de mouse (hover)</li>
+                <li>Eventos de teclado</li>
+            </ol>
+            <p>🎯 <span class="highlight">Objetivo: Página interactiva</span></p>
+            <p>⏰ <span class="highlight">20 minutos - Comparte en chat cuando termines</span></p>
+        </div>
+
+        <!-- Slide 13: Formularios -->
+        <div class="slide">
+            <h2>📝 FORMULARIOS CON JAVASCRIPT</h2>
+            <p><span class="highlight">Capturar datos sin recargar la página</span></p>
+            <div class="code">form.addEventListener('submit', function(event) {
+    event.preventDefault(); // ¡CRÍTICO!
+    
+    const nombre = document.querySelector('#nombre').value;
+    const email = document.querySelector('#email').value;
+    
+    console.log('Datos:', nombre, email);
+});</div>
+            <p>🚨 <span class="highlight">event.preventDefault() evita que se recargue la página</span></p>
+        </div>
+
+        <!-- Slide 14: DEMO 3 -->
+        <div class="slide demo-slide">
+            <h2>👩‍💻 DEMO 3: FORMULARIOS</h2>
+            <p><span class="highlight">Formularios sin recarga de página</span></p>
+            <ol>
+                <li>Abrir <strong>ejemplos/ejemplo-3-formularios.html</strong></li>
+                <li>Formulario básico</li>
+                <li>Validación simple</li>
+                <li>Mostrar datos capturados</li>
+                <li>event.preventDefault()</li>
+            </ol>
+            <p>🎯 <span class="highlight">¡Como las apps modernas!</span></p>
+        </div>
+
+        <!-- Slide 15: EJERCICIO 3 -->
+        <div class="slide practice-slide">
+            <h2>💻 EJERCICIO 3: FORMULARIOS</h2>
+            <p><span class="highlight">Formularios funcionales</span></p>
+            <ol>
+                <li>Abrir <strong>ejercicios/ejercicio-3-formularios.html</strong></li>
+                <li>Formulario de contacto</li>
+                <li>Validación básica</li>
+                <li>Búsqueda en tiempo real</li>
+            </ol>
+            <p>🎯 <span class="highlight">Objetivo: Formularios profesionales</span></p>
+            <p>⏰ <span class="highlight">25 minutos - Comparte en chat cuando termines</span></p>
+        </div>
+
+        <!-- Slide 16: Import/Export -->
+        <div class="slide">
+            <h2>📁 SEPARAR ARCHIVOS JAVASCRIPT</h2>
+            <p><span class="highlight">Organizar código como un profesional</span></p>
+            <div class="code">// datos.js
+const productos = ['Laptop', 'Mouse'];
+export { productos };
+
+// main.js
+import { productos } from './datos.js';
+console.log(productos);</div>
+            <p>🎯 <span class="highlight">Cada archivo tiene su responsabilidad</span></p>
+        </div>
+
+        <!-- Slide 17: type="module" -->
+        <div class="slide">
+            <h2>🔧 TYPE="MODULE"</h2>
+            <p><span class="highlight">Configuración necesaria para import/export</span></p>
+            <div class="code"><!-- HTML necesario -->
+<script type="module" src="main.js"></script>
+
+<!-- ⚠️ Requisito: Servidor local (Live Server) --></div>
+            <p>🚨 <span class="highlight">Sin type="module" no funciona import/export</span></p>
+        </div>
+
+        <!-- Slide 18: DEMO 4 -->
+        <div class="slide demo-slide">
+            <h2>👩‍💻 DEMO 4: IMPORT/EXPORT</h2>
+            <p><span class="highlight">Archivos organizados</span></p>
+            <ol>
+                <li>Abrir <strong>ejemplos/ejemplo-4-import-export.html</strong></li>
+                <li>Separar datos en archivo</li>
+                <li>Export e import básico</li>
+                <li>type="module"</li>
+                <li>Servidor local</li>
+            </ol>
+            <p>🎯 <span class="highlight">¡Código organizado profesionalmente!</span></p>
+        </div>
+
+        <!-- Slide 19: EJERCICIO 4 -->
+        <div class="slide practice-slide">
+            <h2>💻 EJERCICIO 4: IMPORT/EXPORT</h2>
+            <p><span class="highlight">Separar archivos JavaScript</span></p>
+            <ol>
+                <li>Abrir <strong>ejercicios/ejercicio-4-import-export.html</strong></li>
+                <li>Crear datos.js con export</li>
+                <li>Agregar import en script</li>
+                <li>Cambiar a type="module"</li>
+            </ol>
+            <p>🎯 <span class="highlight">Objetivo: Archivos organizados</span></p>
+            <p>⏰ <span class="highlight">15 minutos - Comparte en chat cuando termines</span></p>
+        </div>
+
+        <!-- Slide 20: Proyecto Cafetería -->
+        <div class="slide demo-slide">
+            <h2>☕ PROYECTO EJEMPLO: CAFETERÍA LUNA</h2>
+            <p><span class="highlight">Todo conectado en un proyecto real</span></p>
+            <div class="two-column">
+                <div>
+                    <h3>📁 Estructura:</h3>
+                    <ul class="check-list">
+                        <li>datos.js - Solo datos</li>
+                        <li>funciones.js - Solo funciones</li>
+                        <li>dom.js - Solo eventos</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🚀 Funcionalidades:</h3>
+                    <ul class="check-list">
+                        <li>Mostrar menú automático</li>
+                        <li>Búsqueda de productos</li>
+                        <li>Todo con import/export</li>
+                    </ul>
+                </div>
+            </div>
+            <p>🎯 <span class="highlight">¡El ejemplo perfecto para sus proyectos!</span></p>
+        </div>
+
+        <!-- Slide 21: Aplicación al proyecto -->
+        <div class="slide practice-slide">
+            <h2>🚀 APLICAR A TU PROYECTO PERSONAL</h2>
+            <p><span class="highlight">¡La parte más importante!</span></p>
+            <div class="two-column">
+                <div>
+                    <h3>✅ DOM Básico:</h3>
+                    <ul class="check-list">
+                        <li>querySelector funcionando</li>
+                        <li>innerHTML modificando contenido</li>
+                        <li>Datos mostrados dinámicamente</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>✅ Interactividad:</h3>
+                    <ul class="check-list">
+                        <li>Botones con eventos</li>
+                        <li>Búsqueda o filtros</li>
+                        <li>Archivos separados</li>
+                    </ul>
+                </div>
+            </div>
+            <p>⏰ <span class="highlight">Tiempo libre para aplicar conceptos</span></p>
+        </div>
+
+        <!-- Slide 22: Tarea -->
+        <div class="slide">
+            <h2>📝 TAREA PARA LA PRÓXIMA CLASE</h2>
+            <p><span class="highlight">Aplicar DOM a tu proyecto personal</span></p>
+            <div class="two-column">
+                <div>
+                    <h3>✅ Obligatorio:</h3>
+                    <ul class="check-list">
+                        <li>Mostrar contenido dinámicamente</li>
+                        <li>Archivos separados (datos/funciones/dom)</li>
+                        <li>Al menos 1 interacción</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>➕ Opcional:</h3>
+                    <ul class="check-list">
+                        <li>Búsqueda o filtros</li>
+                        <li>Formulario de contacto</li>
+                        <li>Efectos visuales</li>
+                    </ul>
+                </div>
+            </div>
+            <p>🎯 <span class="highlight">¡Mostraremos proyectos en la próxima clase!</span></p>
+        </div>
+
+        <!-- Slide 23: Recursos -->
+        <div class="slide">
+            <h2>📚 RECURSOS DISPONIBLES</h2>
+            <p>📁 En tu repositorio:</p>
+            <ul>
+                <li><strong>recursos/dom-cheatsheet.md</strong> - Referencia rápida</li>
+                <li><strong>recursos/eventos-cheatsheet.md</strong> - Tipos de eventos</li>
+                <li><strong>recursos/import-export-cheatsheet.md</strong> - Sintaxis</li>
+                <li><strong>recursos/troubleshooting.md</strong> - Problemas comunes</li>
+                <li><strong>tarea-proxima-clase/</strong> - Instrucciones detalladas</li>
+            </ul>
+            <p>🆘 <span class="highlight">Todo lo que necesitas para la tarea</span></p>
+        </div>
+
+        <!-- Slide 24: Próxima clase -->
+        <div class="slide">
+            <h2>🔮 PRÓXIMA CLASE: LOCAL STORAGE + PROYECTO FINAL</h2>
+            <p>Vamos a ver:</p>
+            <ul>
+                <li>💾 Local Storage (guardar datos entre sesiones)</li>
+                <li>🎯 Ejemplos para cada tipo de proyecto</li>
+                <li>✨ Tiempo para terminar proyecto final</li>
+                <li>🎤 Preparar presentación para Clase 9</li>
+            </ul>
+            <p>💡 Trae preparado:</p>
+            <ul>
+                <li>Tu proyecto con DOM funcionando</li>
+                <li>Ideas de qué datos quieres guardar</li>
+                <li>Lista de cosas por terminar</li>
+            </ul>
+            <p>🌐 <span class="highlight">APIs las vemos en el Curso 2 (Backend)</span></p>
+        </div>
+
+        <!-- Slide 25: Logros de hoy -->
+        <div class="slide">
+            <h2>🏆 ¡LOGROS DE HOY!</h2>
+            <p>Hoy lograste:</p>
+            <ul class="check-list">
+                <li>Conectar JavaScript con HTML usando DOM</li>
+                <li>Crear interactividad real con eventos</li>
+                <li>Manejar formularios profesionalmente</li>
+                <li>Organizar código en archivos separados</li>
+            </ul>
+            <p><span class="highlight">📈 Progreso del curso: 78% completado</span></p>
+            <p>🎯 Para la próxima:</p>
+            <ul>
+                <li>Aplicar DOM a tu proyecto personal</li>
+                <li>Experimentar con diferentes eventos</li>
+                <li>¡Mostrar tu proyecto interactivo!</li>
+            </ul>
+        </div>
+
+        <!-- Slide 26: Cierre -->
+        <div class="slide">
+            <div class="big-emoji">🎉</div>
+            <h2>¡EXCELENTE SÉPTIMA CLASE!</h2>
+            <p>Hoy diste el salto más importante:</p>
+            <p><span class="highlight">De funciones en consola a páginas interactivas</span></p>
+            <p>🚀 <strong>¡Tu proyecto ya tiene vida propia!</strong> 🚀</p>
+            <p>✨ La próxima clase completamos con APIs y storage ✨</p>
+            <p><span class="highlight">👏 ¡Felicitaciones por llegar tan lejos!</span></p>
+        </div>
+
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">26</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">◀ Anterior</button>
+        <button class="nav-btn" onclick="nextSlide()">Siguiente ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progress-bar');
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            updateProgress();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Navegación con click
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.nav-btn')) return;
+            if (e.clientX > window.innerWidth / 2) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+        });
+
+        // Navegación táctil
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            if (!startX || !startY) return;
+
+            let endX = e.changedTouches[0].clientX;
+            let endY = e.changedTouches[0].clientY;
+
+            let diffX = startX - endX;
+            let diffY = startY - endY;
+
+            // Solo si el swipe horizontal es mayor que el vertical
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                if (Math.abs(diffX) > 50) { // Mínimo 50px de swipe
+                    if (diffX > 0) {
+                        nextSlide(); // Swipe izquierda = siguiente
+                    } else {
+                        previousSlide(); // Swipe derecha = anterior
+                    }
+                }
+            }
+
+            startX = 0;
+            startY = 0;
+        });
+
+        // Inicializar
+        updateProgress();
+    </script>
+</body>
+</html>
+        

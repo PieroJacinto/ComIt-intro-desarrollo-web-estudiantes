@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 4: Separar Archivos JS - Clase 7</title>
+    <link rel="stylesheet" href="./ejemplo-4-import-export.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📁 Separar Archivos JavaScript</h1>
+            <p>Cómo poner tu JavaScript en archivos diferentes</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>🤔 ¿Por qué separar?</h2>
+            <p>En lugar de tener todo en un archivo gigante, puedes separar tu código:</p>
+            
+            <div class="file-structure">📂 ANTES (todo junto):
+mi-proyecto/
+├── index.html
+└── js/script.js  ← TODO aquí (500 líneas!)
+
+📂 DESPUÉS (separado):
+mi-proyecto/
+├── index.html
+├── js/datos.js      ← Solo datos (50 líneas)
+├── js/funciones.js  ← Solo funciones (100 líneas)
+└── js/main.js       ← Solo eventos (50 líneas)</div>
+        </div>
+
+        <div class="demo-section">
+            <h2>📄 Archivo 1: datos.js</h2>
+            <div class="code-block">// datos.js - Solo mis datos
+let frutas = ["manzana", "banana", "naranja"];
+let miNombre = "Ana";</div>
+
+            <h2>📄 Archivo 2: main.js</h2>
+            <div class="code-block">// main.js - Uso los datos del otro archivo
+function mostrarFrutas() {
+    let lista = document.querySelector('#lista');
+    lista.innerHTML = '';
+    
+    for (let i = 0; i < frutas.length; i++) {
+        lista.innerHTML += `&lt;li&gt;${frutas[i]}&lt;/li&gt;`;
+    }
+}
+
+document.querySelector('#btn-mostrar').addEventListener('click', mostrarFrutas);</div>
+
+            <h2>📄 HTML - Cargar ambos archivos</h2>
+            <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;button id="btn-mostrar"&gt;Mostrar Frutas&lt;/button&gt;
+    &lt;ul id="lista"&gt;&lt;/ul&gt;
+    
+    &lt;!-- Cargar archivos EN ORDEN --&gt;
+    &lt;script src="js/datos.js"&gt;&lt;/script&gt;
+    &lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🚀 Demo funcionando:</h2>
+            <button class="btn" id="btn-mostrar">Mostrar Frutas</button>
+            <ul id="lista" class="result-box"></ul>
+        </div>
+
+        <div class="demo-section">
+            <h2>⚠️ Importante:</h2>
+            <ul>
+                <li>📋 <strong>Orden importa:</strong> datos.js ANTES de main.js</li>
+                <li>🔗 <strong>Las variables se comparten</strong> entre archivos</li>
+                <li>🧹 <strong>Mantén cada archivo con un propósito</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- DEMOSTRACIÓN: archivos separados simulados -->
+    <script>
+        // SIMULA datos.js
+        let frutas = ["manzana", "banana", "naranja"];
+        let miNombre = "Ana";
+    </script>
+    
+    <script>
+        // SIMULA main.js  
+        function mostrarFrutas() {
+            let lista = document.querySelector('#lista');
+            lista.innerHTML = '';
+            
+            for (let i = 0; i < frutas.length; i++) {
+                lista.innerHTML += `<li>${frutas[i]}</li>`;
+            }
+        }
+
+        document.querySelector('#btn-mostrar').addEventListener('click', mostrarFrutas);
+    </script>
+</body>
+</html>

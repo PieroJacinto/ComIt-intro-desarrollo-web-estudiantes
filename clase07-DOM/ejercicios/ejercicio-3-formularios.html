@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3: Formularios - Clase 7</title>
+    <link rel="stylesheet" href="./ejercicio-3-formularios.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🎯 Ejercicio 3: Formularios</h1>
+            <p>Practica eventos submit, preventDefault y validación básica</p>
+        </div>
+
+        <!-- INSTRUCCIONES -->
+        <div class="instrucciones">
+            <h3>📋 INSTRUCCIONES</h3>
+            <p><strong>🎯 OBJETIVO:</strong> Completar los TODOs para hacer formularios funcionales con validación.</p>
+            <p><strong>⏰ TIEMPO:</strong> 25-30 minutos</p>
+            <p><strong>📝 CONCEPTOS:</strong> addEventListener('submit'), event.preventDefault(), validación básica</p>
+        </div>
+
+        <!-- PARTE 1: FORMULARIO DE CONTACTO -->
+        <div class="ejercicio">
+            <h2>📧 Parte 1: Formulario de Contacto</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Crear un formulario que capture datos y los muestre sin recargar la página.</p>
+            </div>
+
+            <div class="formulario">
+                <form id="form-contacto">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea id="mensaje" rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit">📧 Enviar Mensaje</button>
+                </form>
+            </div>
+
+            <div class="resultado" id="resultado-contacto">
+                Los datos del formulario aparecerán aquí
+            </div>
+
+            <div class="code-todo">// PARTE 1: Completar evento submit
+// TODO: Seleccionar '#form-contacto' con querySelector
+// TODO: Agregar addEventListener con 'submit'
+// TODO: En la función del evento:
+//       - Usar event.preventDefault()
+//       - Obtener valor de '#nombre'
+//       - Obtener valor de '#email'  
+//       - Obtener valor de '#mensaje'
+//       - Mostrar los datos en '#resultado-contacto' con template strings</div>
+        </div>
+
+        <!-- PARTE 2: FORMULARIO CON VALIDACIÓN -->
+        <div class="ejercicio">
+            <h2>✅ Parte 2: Formulario con Validación</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Agregar validación básica antes de procesar el formulario.</p>
+            </div>
+
+            <div class="formulario">
+                <form id="form-registro">
+                    <div class="form-group">
+                        <label for="usuario">Usuario:</label>
+                        <input type="text" id="usuario" required>
+                        <div id="error-usuario" class="error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edad">Edad:</label>
+                        <input type="number" id="edad" required>
+                        <div id="error-edad" class="error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad:</label>
+                        <select id="ciudad" required>
+                            <option value="">Selecciona tu ciudad</option>
+                            <option value="Buenos Aires">Buenos Aires</option>
+                            <option value="Córdoba">Córdoba</option>
+                            <option value="Rosario">Rosario</option>
+                            <option value="Mendoza">Mendoza</option>
+                        </select>
+                        <div id="error-ciudad" class="error"></div>
+                    </div>
+                    
+                    <button type="submit">✅ Registrarse</button>
+                </form>
+            </div>
+
+            <div class="resultado" id="resultado-registro">
+                El resultado del registro aparecerá aquí
+            </div>
+
+            <div class="code-todo">// PARTE 2: Formulario con validación
+// TODO: Seleccionar '#form-registro' con querySelector
+// TODO: Agregar addEventListener con 'submit'
+// TODO: En la función del evento:
+//       - Usar event.preventDefault()
+//       - Obtener valores de usuario, edad y ciudad
+//       - Limpiar errores anteriores (innerHTML = '')
+//       - Validar usuario: mínimo 3 caracteres
+//       - Validar edad: entre 13 y 100
+//       - Validar ciudad: no vacía
+//       - Si todo está bien, mostrar resultado exitoso</div>
+        </div>
+
+        <!-- PARTE 3: BÚSQUEDA EN TIEMPO REAL -->
+        <div class="ejercicio">
+            <h2>🔍 Parte 3: Búsqueda en Tiempo Real</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Combinar formularios con eventos de teclado para búsqueda instantánea.</p>
+            </div>
+
+            <div class="formulario">
+                <form id="form-busqueda">
+                    <div class="form-group">
+                        <label for="buscar">Buscar producto:</label>
+                        <input type="text" id="buscar" placeholder="Escribe para buscar...">
+                    </div>
+                </form>
+            </div>
+
+            <div class="resultado" id="resultado-busqueda">
+                Los resultados de búsqueda aparecerán aquí
+            </div>
+
+            <div class="code-todo">// PARTE 3: Búsqueda en tiempo real
+// TODO: Seleccionar '#buscar' con querySelector
+// TODO: Agregar addEventListener con 'keyup'
+// TODO: En la función del evento:
+//       - Obtener el texto del input
+//       - Crear array vacío para resultados
+//       - Usar forEach en productos para filtrar
+//       - Mostrar resultados en '#resultado-busqueda'</div>
+        </div>
+
+        <!-- VERIFICACIÓN -->
+        <div class="objetivo">
+            <h3>✅ VERIFICACIÓN</h3>
+            <p><strong>Cuando termines, deberías poder:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>✅ Enviar el formulario de contacto sin que se recargue la página</li>
+                <li>✅ Ver mensajes de error cuando los datos son incorrectos</li>
+                <li>✅ Completar exitosamente el registro cuando todo es válido</li>
+                <li>✅ Buscar productos en tiempo real mientras escribes</li>
+            </ul>
+            
+            <p><strong>💡 CONSEJOS:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>🚫 Siempre usar event.preventDefault() en formularios</li>
+                <li>📝 Usar .value para obtener datos de inputs</li>
+                <li>✅ Validar datos antes de procesarlos</li>
+                <li>🔍 Para búsqueda usar 'keyup', para formularios usar 'submit'</li>
+            </ul>
+        </div>
+    </div>
+    <script src="./ejercicio-3-formularios.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1: DOM Básico - Clase 7</title>
+    <link rel="stylesheet" href="./ejercicio-1-dom-basico.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🎯 Ejercicio 1: DOM Básico</h1>
+            <p>Practica querySelector, innerHTML y style</p>
+        </div>
+
+        <!-- INSTRUCCIONES -->
+        <div class="instrucciones">
+            <h3>📋 INSTRUCCIONES</h3>
+            <p><strong>🎯 OBJETIVO:</strong> Completar los TODOs para modificar elementos HTML usando JavaScript.</p>
+            <p><strong>⏰ TIEMPO:</strong> 15-20 minutos</p>
+            <p><strong>📝 CONCEPTOS:</strong> querySelector, innerHTML, textContent, style</p>
+        </div>
+
+        <!-- PARTE 1: SELECCIONAR Y CAMBIAR CONTENIDO -->
+        <div class="ejercicio">
+            <h2>📝 Parte 1: Cambiar Contenido</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Usar querySelector e innerHTML para cambiar el texto de los elementos.</p>
+            </div>
+
+            <!-- Elementos para modificar -->
+            <div id="titulo-principal" class="demo-element">
+                Título Original
+            </div>
+
+            <div class="mensaje-bienvenida" class="demo-element">
+                Mensaje de bienvenida original
+            </div>
+
+            <div class="resultado" id="resultado-parte1">
+                Aquí aparecerán los resultados de la Parte 1
+            </div>
+
+            <button class="btn" onclick="cambiarContenido()">🔄 Cambiar Contenido</button>
+
+            <div class="code-todo">// PARTE 1: Completar la función cambiarContenido
+function cambiarContenido() {
+    // TODO: Seleccionar elemento con id 'titulo-principal'
+    // y cambiar su innerHTML a "¡Nuevo Título!"
+    
+    // TODO: Seleccionar elemento con clase 'mensaje-bienvenida'
+    // y cambiar su textContent a "¡Bienvenido a la práctica de DOM!"
+    
+    // TODO: Seleccionar '#resultado-parte1' y mostrar:
+    // "✅ Contenido cambiado exitosamente"
+    
+    console.log('✅ Parte 1 completada');
+}</div>
+        </div>
+
+        <!-- PARTE 2: MODIFICAR ESTILOS -->
+        <div class="ejercicio">
+            <h2>🎨 Parte 2: Cambiar Estilos</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Usar la propiedad style para cambiar colores, tamaños y bordes.</p>
+            </div>
+
+            <div id="caja-demo" class="demo-element">
+                Esta caja cambiará de estilo
+            </div>
+
+            <div class="resultado" id="resultado-parte2">
+                Aquí aparecerán los resultados de la Parte 2
+            </div>
+
+            <button class="btn" onclick="cambiarEstilos()">🎨 Cambiar Estilos</button>
+            <button class="btn" onclick="resetearEstilos()">🔄 Resetear</button>
+
+            <div class="code-todo">// PARTE 2: Completar las funciones de estilos
+function cambiarEstilos() {
+    // TODO: Seleccionar '#caja-demo' y cambiar:
+    // - backgroundColor a '#48bb78' (verde)
+    // - color a 'white'
+    // - fontSize a '24px'
+    // - border a '3px solid #2d3748'
+    
+    // TODO: Seleccionar '#resultado-parte2' y mostrar:
+    // "🎨 Estilos aplicados correctamente"
+}
+
+function resetearEstilos() {
+    // TODO: Seleccionar '#caja-demo' y resetear:
+    // - backgroundColor a ''
+    // - color a ''
+    // - fontSize a ''
+    // - border a ''
+    
+    // TODO: Cambiar innerHTML de '#resultado-parte2' a:
+    // "🔄 Estilos reseteados"
+}</div>
+        </div>
+
+        <!-- PARTE 3: MOSTRAR DATOS -->
+        <div class="ejercicio">
+            <h2>📊 Parte 3: Mostrar Datos</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Usar arrays y forEach para mostrar listas de datos en HTML.</p>
+            </div>
+
+            <div class="resultado" id="lista-frutas">
+                Aquí aparecerá la lista de frutas
+            </div>
+
+            <div class="resultado" id="lista-personas">
+                Aquí aparecerá la lista de personas
+            </div>
+
+            <button class="btn" onclick="mostrarDatos()">📊 Mostrar Datos</button>
+
+            <div class="code-todo">// PARTE 3: Completar la función mostrarDatos
+const frutas = ["🍎 Manzana", "🍌 Banana", "🍊 Naranja", "🍇 Uvas"];
+const personas = [
+    { nombre: "Ana", edad: 25 },
+    { nombre: "Carlos", edad: 30 },
+    { nombre: "María", edad: 28 }
+];
+
+function mostrarDatos() {
+    // TODO: Mostrar frutas en '#lista-frutas'
+    // Crear una variable html = '<h4>🍎 Frutas:</h4>'
+    // Usar forEach para agregar cada fruta como <p>fruta</p>
+    // Cambiar innerHTML de '#lista-frutas' con el html completo
+    
+    // TODO: Mostrar personas en '#lista-personas'  
+    // Crear html = '<h4>👥 Personas:</h4>'
+    // Usar forEach para agregar cada persona como:
+    // <p>Nombre: ${persona.nombre}, Edad: ${persona.edad}</p>
+    // Cambiar innerHTML de '#lista-personas'
+    
+    console.log('📊 Datos mostrados correctamente');
+}</div>
+        </div>
+
+        <!-- VERIFICACIÓN -->
+        <div class="objetivo">
+            <h3>✅ VERIFICACIÓN</h3>
+            <p><strong>Cuando termines, deberías poder:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>✅ Cambiar el texto de elementos con querySelector e innerHTML</li>
+                <li>✅ Modificar estilos CSS desde JavaScript</li>
+                <li>✅ Mostrar arrays de datos en HTML con forEach</li>
+                <li>✅ Ver mensajes en consola sin errores</li>
+            </ul>
+            
+            <p><strong>💡 CONSEJO:</strong> Abre la consola (F12) para verificar que no hay errores.</p>
+        </div>
+    </div>
+    <script src="./ejercicio-1-dom-basico.js"></script>
+</body>
+</html>

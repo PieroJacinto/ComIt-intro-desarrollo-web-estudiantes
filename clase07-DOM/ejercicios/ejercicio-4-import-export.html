@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4: Import/Export - Clase 7</title>
+    <link rel="stylesheet" href="./ejercicio-4-import-export.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🎯 Ejercicio 4: Import/Export</h1>
+            <p>Practica import/export con datos ya creados</p>
+        </div>
+
+        <!-- INSTRUCCIONES -->
+        <div class="instrucciones">
+            <h3>📋 INSTRUCCIONES</h3>
+            <p><strong>🎯 OBJETIVO:</strong> Completar los TODOs para separar datos en un archivo y importarlos.</p>
+            <p><strong>⏰ TIEMPO:</strong> 15-20 minutos</p>
+            <p><strong>📝 CONCEPTOS:</strong> export, import, type="module"</p>
+            <p><strong>⚠️ IMPORTANTE:</strong> Necesitas servidor local (Live Server) para que funcione</p>
+        </div>
+
+        <!-- PARTE 1: CREAR ARCHIVO datos.js -->
+        <div class="ejercicio">
+            <h2>📄 Parte 1: Crear archivo datos.js</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Crear un archivo datos.js con información ya preparada y exportarla.</p>
+            </div>
+
+            <div class="archivo-completo">
+                <h4>✅ DATOS COMPLETOS - Copia exactamente esto en datos.js:</h4>
+                <div class="code-todo">// datos.js
+const animales = [
+    "🐶 Perro",
+    "🐱 Gato", 
+    "🐰 Conejo",
+    "🐻 Oso"
+];
+
+const persona = {
+    nombre: "Ana López",
+    edad: 28,
+    ciudad: "Buenos Aires"
+};
+
+// TODO: Agregar export de animales y persona</div>
+            </div>
+
+            <div class="code-todo">// PARTE 1: En datos.js
+// TODO: Copiar exactamente los datos de arriba
+// TODO: Al final del archivo, agregar la línea de export</div>
+        </div>
+
+        <!-- PARTE 2: IMPORTAR Y USAR -->
+        <div class="ejercicio">
+            <h2>📥 Parte 2: Importar datos en este archivo</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Importar los datos y usarlos en las funciones de abajo.</p>
+            </div>
+
+            <button id="btn-animales" class="btn">🐶 Mostrar Animales</button>
+            <button id="btn-persona" class="btn">👤 Mostrar Persona</button>
+
+            <div class="resultado" id="resultado">
+                Haz click en los botones para ver los datos importados
+            </div>
+
+            <div class="code-todo">// PARTE 2: En este archivo (al inicio del script)
+// TODO: Agregar línea de import de animales y persona desde datos.js</div>
+        </div>
+
+        <!-- PARTE 3: AGREGAR type="module" -->
+        <div class="ejercicio">
+            <h2>🔧 Parte 3: Cambiar el script a módulo</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Cambiar el script normal a type="module" para que funcione import/export.</p>
+            </div>
+
+            <div class="code-todo">// PARTE 3: En el HTML
+// TODO: Buscar la etiqueta &lt;script&gt; al final de este archivo
+// TODO: Agregar type="module" a la etiqueta script</div>
+        </div>
+
+        <!-- VERIFICACIÓN -->
+        <div class="objetivo">
+            <h3>✅ VERIFICACIÓN</h3>
+            <p><strong>Cuando termines, deberías poder:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>✅ Crear archivo datos.js con export al final</li>
+                <li>✅ Importar datos al inicio del script</li>
+                <li>✅ Cambiar script a type="module"</li>
+                <li>✅ Hacer click en botones y ver los datos</li>
+                <li>✅ No tener errores en consola (F12)</li>
+            </ul>
+            
+            <p><strong>💡 CONSEJOS:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>📁 Crear datos.js en la misma carpeta que este archivo</li>
+                <li>🚀 Usar Live Server (si abres directo no funciona)</li>
+                <li>📤 export { variable1, variable2 } al final de datos.js</li>
+                <li>📥 import { variable1, variable2 } from './datos.js' al inicio</li>
+                <li>🔧 type="module" en el script de HTML</li>
+            </ul>
+        </div>
+    </div>
+    <script src="./ejercicio-4-import-export.js"></script>
+</body>
+</html>

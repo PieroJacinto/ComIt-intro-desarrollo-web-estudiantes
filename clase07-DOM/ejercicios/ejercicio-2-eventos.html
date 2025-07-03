@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2: Eventos - Clase 7</title>
+    <link rel="stylesheet" href="./ejercicio-2-eventos.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🎯 Ejercicio 2: Eventos</h1>
+            <p>Practica addEventListener con diferentes tipos de eventos</p>
+        </div>
+
+        <!-- INSTRUCCIONES -->
+        <div class="instrucciones">
+            <h3>📋 INSTRUCCIONES</h3>
+            <p><strong>🎯 OBJETIVO:</strong> Completar los TODOs para agregar eventos a elementos HTML.</p>
+            <p><strong>⏰ TIEMPO:</strong> 20-25 minutos</p>
+            <p><strong>📝 CONCEPTOS:</strong> addEventListener, click, mouseover, mouseout, keyup</p>
+        </div>
+
+        <!-- PARTE 1: EVENTOS DE CLICK -->
+        <div class="ejercicio">
+            <h2>🖱️ Parte 1: Eventos de Click</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Agregar event listeners para responder a clicks en botones.</p>
+            </div>
+
+            <button id="btn-saludo" class="btn">👋 Botón Saludo</button>
+            <button id="btn-contador" class="btn">🔢 Contador</button>
+            <button id="btn-color" class="btn btn-especial">🎨 Cambiar Color</button>
+
+            <div class="resultado" id="resultado-clicks">
+                Haz click en cualquier botón arriba
+            </div>
+
+            <div class="code-todo">// PARTE 1: Completar eventos de click
+let contador = 0;
+
+// TODO: Seleccionar '#btn-saludo' con querySelector
+// TODO: Agregar addEventListener con 'click'
+// TODO: En la función, cambiar innerHTML de '#resultado-clicks' a:
+//       "👋 ¡Hola! Gracias por hacer click"
+
+// TODO: Seleccionar '#btn-contador' con querySelector
+// TODO: Agregar addEventListener con 'click'  
+// TODO: En la función:
+//       - Aumentar la variable contador: contador = contador + 1
+//       - Cambiar innerHTML de '#resultado-clicks' a: `🔢 Clicks: ${contador}`
+
+// TODO: Seleccionar '#btn-color' con querySelector
+// TODO: Agregar addEventListener con 'click'
+// TODO: En la función, cambiar style.backgroundColor de '#resultado-clicks' a '#48bb78'</div>
+        </div>
+
+        <!-- PARTE 2: EVENTOS DE MOUSE -->
+        <div class="ejercicio">
+            <h2>🖱️ Parte 2: Eventos de Mouse</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Usar mouseover y mouseout para crear efectos cuando el mouse entra y sale.</p>
+            </div>
+
+            <div id="caja-hover" class="caja-interactiva">
+                Pasa el mouse por encima de mí
+            </div>
+
+            <div class="resultado" id="resultado-mouse">
+                Los eventos de mouse aparecerán aquí
+            </div>
+
+            <div class="code-todo">// PARTE 2: Completar eventos de mouse
+// TODO: Seleccionar '#caja-hover' con querySelector
+// TODO: Agregar addEventListener con 'mouseover'
+// TODO: En la función cuando mouse entra:
+//       - Cambiar innerHTML de la caja a "🔥 ¡Mouse encima!"
+//       - Cambiar style.backgroundColor de la caja a '#48bb78'
+//       - Cambiar innerHTML de '#resultado-mouse' a "➡️ Mouse entró en la caja"
+
+// TODO: Al mismo elemento '#caja-hover'
+// TODO: Agregar addEventListener con 'mouseout'  
+// TODO: En la función cuando mouse sale:
+//       - Cambiar innerHTML de la caja a "Pasa el mouse por encima de mí"
+//       - Cambiar style.backgroundColor de la caja a '#fef5e7'
+//       - Cambiar innerHTML de '#resultado-mouse' a "⬅️ Mouse salió de la caja"</div>
+        </div>
+
+        <!-- PARTE 3: EVENTOS DE TECLADO -->
+        <div class="ejercicio">
+            <h2>⌨️ Parte 3: Eventos de Teclado</h2>
+            
+            <div class="objetivo">
+                <h3>🎯 OBJETIVO:</h3>
+                <p>Escuchar eventos keyup para responder a lo que escribe el usuario.</p>
+            </div>
+
+            <input type="text" id="input-texto" class="input-demo" placeholder="Escribe algo aquí...">
+            
+            <div class="resultado" id="resultado-teclado">
+                Información del teclado aparecerá aquí
+            </div>
+
+            <div class="code-todo">// PARTE 3: Completar eventos de teclado
+// TODO: Seleccionar '#input-texto' con querySelector
+// TODO: Agregar addEventListener con 'keyup'
+// TODO: En la función del evento:
+//       - Crear variable: const texto = event.target.value
+//       - Seleccionar '#resultado-teclado'
+//       - Cambiar su innerHTML a: `✏️ Escribiste: ${texto}`
+//       
+// EXTRA: Si quieres mostrar también la longitud:
+//       - Agregar: `<br>📏 Longitud: ${texto.length} caracteres`</div>
+        </div>
+
+        <!-- VERIFICACIÓN -->
+        <div class="objetivo">
+            <h3>✅ VERIFICACIÓN</h3>
+            <p><strong>Cuando termines, deberías poder:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>✅ Hacer click en "Botón Saludo" y ver mensaje de saludo</li>
+                <li>✅ Hacer click en "Contador" y ver números que aumentan</li>
+                <li>✅ Hacer click en "Cambiar Color" y ver el fondo verde</li>
+                <li>✅ Pasar mouse sobre la caja y ver que cambia texto y color</li>
+                <li>✅ Escribir en el input y ver el texto en tiempo real</li>
+            </ul>
+            
+            <p><strong>💡 CONSEJOS:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>🔍 Usar querySelector('#id') para seleccionar por ID</li>
+                <li>📝 Usar addEventListener('evento', function() { ... })</li>
+                <li>⌨️ Usar event.target.value para obtener texto del input</li>
+                <li>🐛 Abrir consola (F12) para ver errores</li>
+            </ul>
+        </div>
+    </div>
+    <script src="./ejercicio-2-eventos.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafetería Luna - Proyecto Ejemplo Clase 7</title>
+    <link rel="stylesheet" href="./proyecto-cafeteria.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🌙 Proyecto Ejemplo Clase 7</h1>
+            <p>DOM + Import/Export + Template Strings</p>
+        </div>
+
+        <!-- INFORMACIÓN DE LA CAFETERÍA (se llena automáticamente) -->
+        <div class="section">
+            <div id="info-cafeteria">
+                <!-- Se llena con mostrarInfoCafeteria() al cargar la página -->
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE BÚSQUEDA -->
+        <div class="section">
+            <h3>🔍 Buscar Productos</h3>
+            <form id="form-buscar" class="search-form">
+                <input 
+                    type="text" 
+                    id="input-buscar" 
+                    placeholder="Escribe el nombre del producto..."
+                    required
+                >
+                <button type="submit">Buscar</button>
+            </form>
+            
+            <!-- Aquí aparecen los resultados de búsqueda -->
+            <div id="resultado-busqueda">
+                <p>👆 Usa el formulario arriba para buscar productos</p>
+            </div>
+        </div>
+
+        <!-- MENÚ COMPLETO (se llena automáticamente) -->
+        <div class="section">
+            <div id="menu-container">
+                <!-- Se llena con mostrarMenuCompleto() al cargar la página -->
+            </div>
+        </div>      
+    </div>
+
+    <!-- IMPORTANTE: type="module" para usar import/export -->
+    <script type="module" src="js/dom.js"></script>
+</body>
+</html>

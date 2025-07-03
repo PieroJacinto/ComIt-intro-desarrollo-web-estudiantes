@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 1: DOM Básico - Clase 7</title>
+    <link rel="stylesheet" href="./ejemplo-1-dom-basico.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🎯 DOM Básico - Seleccionar y Modificar</h1>
+            <p>Aprende a conectar JavaScript con HTML usando querySelector, innerHTML y style</p>
+        </div>
+
+        <!-- INTRODUCCIÓN AL DOM -->
+        <div class="demo-section">
+            <h2>🌐 ¿Qué es el DOM?</h2>
+            <p>El <strong>DOM (Document Object Model)</strong> es la representación de tu HTML que JavaScript puede leer y modificar.</p>
+            
+            <div class="info-box">
+                <h3>💡 Piénsalo así:</h3>
+                <ul>
+                    <li><strong>HTML</strong> = La estructura de tu casa</li>
+                    <li><strong>CSS</strong> = La decoración y colores</li>
+                    <li><strong>JavaScript + DOM</strong> = Los interruptores que cambian las luces, abren puertas, etc.</li>
+                </ul>
+                <p><strong>¡Finalmente vamos a hacer que nuestras funciones cambien lo que se ve en pantalla!</strong></p>
+            </div>
+
+            <div class="code-block">// 🔍 SELECCIONAR elementos
+const elemento = document.querySelector('#mi-elemento');
+const lista = document.querySelector('.mi-lista');
+
+// ✏️ MODIFICAR contenido
+elemento.innerHTML = '¡Nuevo contenido!';
+elemento.textContent = 'Solo texto sin HTML';
+
+// 🎨 MODIFICAR estilos
+elemento.style.color = 'blue';
+elemento.style.backgroundColor = 'yellow';</div>
+        </div>
+
+        <!-- DEMO 1: QUERYSELECTOR -->
+        <div class="demo-section">
+            <h2>🔍 Demo 1: Seleccionar Elementos</h2>
+            <p>Usa <code>document.querySelector()</code> para encontrar elementos en tu HTML.</p>
+
+            <!-- Elementos para la demo -->
+            <div id="elemento-demo" class="demo-target">
+                👋 ¡Hola! Soy un elemento con ID "elemento-demo"
+            </div>
+
+            <div class="texto-demo demo-target">
+                🎯 Soy un elemento con clase "texto-demo"
+            </div>
+
+            <div class="code-block">// SELECCIONAR POR ID (más específico)
+const porId = document.querySelector('#elemento-demo');
+
+// SELECCIONAR POR CLASE 
+const porClase = document.querySelector('.texto-demo');
+
+// SELECCIONAR POR ETIQUETA
+const primerDiv = document.querySelector('div');</div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="demoSeleccionar()">🔍 Probar Selecciones</button>
+                <button class="btn" onclick="resetearElementos()">🔄 Resetear</button>
+            </div>
+        </div>
+
+        <!-- DEMO 2: INNER HTML -->
+        <div class="demo-section">
+            <h2>✏️ Demo 2: Modificar Contenido</h2>
+            <p>Cambia el contenido de los elementos con <code>innerHTML</code> y <code>textContent</code>.</p>
+
+            <div id="contenido-demo" class="demo-target">
+                📝 Contenido original que vamos a cambiar
+            </div>
+
+            <div class="code-block">// CAMBIAR CONTENIDO CON HTML
+elemento.innerHTML = '&lt;strong&gt;Nuevo texto en negrita&lt;/strong&gt;';
+
+// CAMBIAR SOLO TEXTO (más seguro)
+elemento.textContent = 'Solo texto, sin HTML';
+
+// AGREGAR contenido al final
+elemento.innerHTML += '&lt;br&gt;Texto adicional';</div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="cambiarInnerHTML()">✏️ Cambiar con innerHTML</button>
+                <button class="btn" onclick="cambiarTextContent()">📝 Cambiar con textContent</button>
+                <button class="btn" onclick="agregarContenido()">➕ Agregar contenido</button>
+            </div>
+        </div>
+
+        <!-- DEMO 3: ESTILOS -->
+        <div class="demo-section">
+            <h2>🎨 Demo 3: Modificar Estilos</h2>
+            <p>Cambia la apariencia de los elementos modificando sus estilos CSS desde JavaScript.</p>
+
+            <div id="estilo-demo" class="demo-target">
+                🎨 ¡Cambia mis estilos dinámicamente!
+            </div>
+
+            <div class="code-block">// CAMBIAR ESTILOS INDIVIDUALES
+elemento.style.color = 'red';
+elemento.style.backgroundColor = 'yellow';
+elemento.style.fontSize = '24px';
+elemento.style.border = '3px solid blue';
+
+// NOTA: CSS usa kebab-case pero JavaScript usa camelCase
+// CSS: background-color → JS: backgroundColor
+// CSS: font-size → JS: fontSize</div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="cambiarColores()">🌈 Cambiar colores</button>
+                <button class="btn" onclick="cambiarTamaño()">📏 Cambiar tamaño</button>
+                <button class="btn" onclick="cambiarBorde()">🔲 Cambiar borde</button>
+                <button class="btn" onclick="resetearEstilos()">🔄 Resetear estilos</button>
+            </div>
+        </div>
+
+        <!-- DEMO 4: EJEMPLO PRÁCTICO -->
+        <div class="demo-section">
+            <h2>🚀 Demo 4: Ejemplo Práctico - Lista de Proyectos</h2>
+            <p>Simularemos cómo mostrar tus proyectos dinámicamente, como lo harás en tu proyecto personal.</p>
+
+            <div class="demo-list" id="lista-proyectos">
+                <h4>📂 Mis Proyectos:</h4>
+                <ul id="proyectos-container">
+                    <li>Presiona el botón para cargar proyectos...</li>
+                </ul>
+            </div>
+
+            <div class="code-block">// DATOS (como los que tienes en tu datos.js)
+const proyectos = [
+    { nombre: "Mi Portfolio", tecnologia: "HTML, CSS, JS", estado: "Completado" },
+    { nombre: "Tienda Online", tecnologia: "React, Node.js", estado: "En progreso" },
+    { nombre: "Blog Personal", tecnologia: "WordPress", estado: "Planificado" }
+];
+
+// FUNCIÓN PARA MOSTRAR PROYECTOS
+function mostrarProyectos() {
+    const container = document.querySelector('#proyectos-container');
+    container.innerHTML = ''; // Limpiar contenido anterior
+    
+    proyectos.forEach(proyecto => {
+        container.innerHTML += `
+            &lt;li&gt;
+                &lt;strong&gt;${proyecto.nombre}&lt;/strong&gt;&lt;br&gt;
+                Tecnología: ${proyecto.tecnologia}&lt;br&gt;
+                Estado: ${proyecto.estado}
+            &lt;/li&gt;
+        `;
+    });
+}</div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="mostrarProyectos()">📂 Mostrar mis proyectos</button>
+                <button class="btn" onclick="agregarProyecto()">➕ Agregar proyecto</button>
+                <button class="btn" onclick="limpiarProyectos()">🗑️ Limpiar lista</button>
+            </div>
+        </div>
+
+        <!-- INFORMACIÓN IMPORTANTE -->
+        <div class="info-box">
+            <h3>🔑 Conceptos Clave del DOM</h3>
+            <ul>
+                <li><strong>document.querySelector()</strong> - Selecciona el primer elemento que coincida</li>
+                <li><strong>innerHTML</strong> - Cambia el contenido HTML interno</li>
+                <li><strong>textContent</strong> - Cambia solo el texto (más seguro)</li>
+                <li><strong>style</strong> - Modifica estilos CSS individuales</li>
+                <li><strong>CSS → JavaScript:</strong> background-color → backgroundColor</li>
+            </ul>
+        </div>
+
+        <div class="success-box">
+            <h3>🎯 ¡Conexión JavaScript → HTML lograda!</h3>
+            <p>✅ Ahora tus funciones pueden cambiar lo que se ve en pantalla<br>
+            ✅ Entiendes cómo seleccionar elementos específicos<br>
+            ✅ Puedes modificar contenido y estilos dinámicamente<br>
+            ✅ Estás listo para agregar interactividad con eventos</p>
+        </div>
+    </div>
+
+    <script>
+        // DATOS DE EJEMPLO (similar a lo que tienen en su datos.js)
+        const proyectos = [
+            { nombre: "Mi Portfolio", tecnologia: "HTML, CSS, JS", estado: "Completado" },
+            { nombre: "Tienda Online", tecnologia: "React, Node.js", estado: "En progreso" },
+            { nombre: "Blog Personal", tecnologia: "WordPress", estado: "Planificado" }
+        ];
+
+        // DEMO 1: Seleccionar elementos
+        function demoSeleccionar() {
+            // Seleccionar por ID
+            const porId = document.querySelector('#elemento-demo');
+            porId.style.backgroundColor = '#48bb78';
+            porId.innerHTML = '✅ ¡Seleccionado por ID!';
+            
+            // Seleccionar por clase
+            const porClase = document.querySelector('.texto-demo');
+            porClase.style.backgroundColor = '#667eea';
+            porClase.style.color = 'white';
+            porClase.innerHTML = '🎯 ¡Seleccionado por clase!';
+            
+            console.log('✅ Elementos seleccionados correctamente');
+            console.log('Por ID:', porId);
+            console.log('Por clase:', porClase);
+        }
+
+        function resetearElementos() {
+            const porId = document.querySelector('#elemento-demo');
+            const porClase = document.querySelector('.texto-demo');
+            
+            porId.style.backgroundColor = '';
+            porId.style.color = '';
+            porId.innerHTML = '👋 ¡Hola! Soy un elemento con ID "elemento-demo"';
+            
+            porClase.style.backgroundColor = '';
+            porClase.style.color = '';
+            porClase.innerHTML = '🎯 Soy un elemento con clase "texto-demo"';
+            
+            console.log('🔄 Elementos reseteados');
+        }
+
+        // DEMO 2: Modificar contenido
+        function cambiarInnerHTML() {
+            const elemento = document.querySelector('#contenido-demo');
+            elemento.innerHTML = '<strong>💪 ¡Nuevo contenido en negrita!</strong>';
+            elemento.classList.add('modified');
+            console.log('✅ Contenido cambiado con innerHTML');
+        }
+
+        function cambiarTextContent() {
+            const elemento = document.querySelector('#contenido-demo');
+            elemento.textContent = '📝 Solo texto sin HTML (más seguro)';
+            elemento.classList.add('modified');
+            console.log('✅ Contenido cambiado con textContent');
+        }
+
+        function agregarContenido() {
+            const elemento = document.querySelector('#contenido-demo');
+            elemento.innerHTML += '<br>➕ Contenido adicional agregado';
+            elemento.classList.add('modified');
+            console.log('✅ Contenido agregado al final');
+        }
+
+        // DEMO 3: Modificar estilos
+        function cambiarColores() {
+            const elemento = document.querySelector('#estilo-demo');
+            elemento.style.color = 'white';
+            elemento.style.backgroundColor = '#667eea';
+            elemento.innerHTML = '🌈 ¡Colores cambiados!';
+            console.log('✅ Colores modificados');
+        }
+
+        function cambiarTamaño() {
+            const elemento = document.querySelector('#estilo-demo');
+            elemento.style.fontSize = '24px';
+            elemento.style.fontWeight = 'bold';
+            elemento.innerHTML = '📏 ¡Tamaño aumentado!';
+            console.log('✅ Tamaño modificado');
+        }
+
+        function cambiarBorde() {
+            const elemento = document.querySelector('#estilo-demo');
+            elemento.style.border = '4px solid #48bb78';
+            elemento.style.borderRadius = '15px';
+            elemento.innerHTML = '🔲 ¡Borde agregado!';
+            console.log('✅ Borde modificado');
+        }
+
+        function resetearEstilos() {
+            const elemento = document.querySelector('#estilo-demo');
+            elemento.style = '';
+            elemento.classList.remove('modified');
+            elemento.innerHTML = '🎨 ¡Cambia mis estilos dinámicamente!';
+            console.log('🔄 Estilos reseteados');
+        }
+
+        // DEMO 4: Ejemplo práctico
+        function mostrarProyectos() {
+            const container = document.querySelector('#proyectos-container');
+            container.innerHTML = ''; // Limpiar contenido anterior
+            
+            // Usar forEach (que ya conocen de Clase 6)
+            proyectos.forEach(proyecto => {
+                container.innerHTML += `
+                    <li>
+                        <strong>${proyecto.nombre}</strong><br>
+                        Tecnología: ${proyecto.tecnologia}<br>
+                        Estado: <span style="color: ${proyecto.estado === 'Completado' ? '#48bb78' : '#667eea'}">${proyecto.estado}</span>
+                    </li>
+                `;
+            });
+            
+            console.log('✅ Proyectos mostrados dinámicamente');
+            console.log('📊 Total de proyectos:', proyectos.length);
+        }
+
+        function agregarProyecto() {
+            const nuevoProyecto = {
+                nombre: `Proyecto ${proyectos.length + 1}`,
+                tecnologia: "JavaScript, CSS",
+                estado: "Nuevo"
+            };
+            
+            proyectos.push(nuevoProyecto);
+            mostrarProyectos(); // Refrescar la lista
+            
+            console.log('✅ Nuevo proyecto agregado:', nuevoProyecto);
+        }
+
+        function limpiarProyectos() {
+            const container = document.querySelector('#proyectos-container');
+            container.innerHTML = '<li style="color: #718096;">Lista limpia. Presiona "Mostrar proyectos" para cargar de nuevo.</li>';
+            console.log('🗑️ Lista de proyectos limpiada');
+        }
+
+        // INICIALIZACIÓN
+        console.log('🎯 DOM Básico cargado');
+        console.log('📚 Conceptos a demostrar: querySelector, innerHTML, textContent, style');
+        console.log('🔗 Próximo paso: Eventos para interactividad');
+        
+        // Mensaje para el profesor
+        console.log('\n👨‍🏫 NOTAS PARA EL PROFESOR:');
+        console.log('- Enfatizar la diferencia entre innerHTML y textContent');
+        console.log('- Mostrar DevTools para ver elementos seleccionados');
+        console.log('- Explicar la conversión CSS → JavaScript (kebab-case → camelCase)');
+        console.log('- Conectar con las funciones que ya tienen en datos.js');
+    </script>
+</body>
+</html>

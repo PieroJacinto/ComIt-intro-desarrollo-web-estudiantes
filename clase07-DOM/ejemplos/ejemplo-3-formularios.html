@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 3: Formularios - Clase 7</title>
+    <link rel="stylesheet" href="./ejemplo-3-formularios.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Formularios Básicos</h1>
+            <p>Cómo obtener datos del usuario usando solo lo que ya sabemos</p>
+        </div>
+
+        <!-- INTRODUCCIÓN SIMPLE -->
+        <div class="demo-section">
+            <h2>📋 ¿Qué son los formularios?</h2>
+            <p>Los formularios permiten que el usuario te envíe información: su nombre, email, mensajes, etc.</p>
+            
+            <div class="info-box">
+                <h3>💡 En tu proyecto necesitarás:</h3>
+                <p>• Un formulario de contacto para que te escriban<br>
+                • Capturar el nombre y email del visitante<br>
+                • Verificar que completó todos los campos</p>
+            </div>
+        </div>
+
+        <!-- PROBLEMA SIN JAVASCRIPT -->
+        <div class="demo-section">
+            <h2>❌ El Problema Sin JavaScript</h2>
+            <p>Si tienes un formulario normal en HTML, cuando lo envías la página se recarga y no puedes controlar qué pasa.</p>
+
+            <div class="code-block">&lt;!-- Formulario HTML normal --&gt;
+&lt;form&gt;
+    &lt;input type="text" placeholder="Tu nombre"&gt;
+    &lt;input type="email" placeholder="Tu email"&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Problema: Al hacer click en "Enviar" la página se recarga! --&gt;</div>
+
+            <div class="warning-box">
+                <h3>🚨 Problema</h3>
+                <p>Sin JavaScript no puedes obtener lo que escribió el usuario ni validar si está correcto.</p>
+            </div>
+        </div>
+
+        <!-- SOLUCIÓN CON JAVASCRIPT -->
+        <div class="demo-section">
+            <h2>✅ La Solución: JavaScript + querySelector</h2>
+            <p>Usamos <strong>solo lo que ya sabemos</strong> de las clases anteriores.</p>
+
+            <div class="code-block">&lt;!-- HTML: agregar IDs para seleccionar --&gt;
+&lt;form id="mi-formulario"&gt;
+    &lt;input type="text" id="nombre" placeholder="Tu nombre"&gt;
+    &lt;input type="email" id="email" placeholder="Tu email"&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;div id="resultado"&gt;&lt;/div&gt;</div>
+
+            <div class="code-block">// JavaScript: usar querySelector (ya lo conocemos)
+const form = document.querySelector('#mi-formulario');
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Evitar que se recargue la página
+    
+    // Obtener lo que escribió (usando .value)
+    const nombre = document.querySelector('#nombre').value;
+    const email = document.querySelector('#email').value;
+    
+    // Mostrar en consola
+    console.log('Nombre:', nombre);
+    console.log('Email:', email);
+});</div>
+
+            <div class="info-box">
+                <h3>🔑 Conceptos que ya conocemos:</h3>
+                <p>• <strong>querySelector</strong> - Para seleccionar elementos<br>
+                • <strong>addEventListener</strong> - Para escuchar eventos<br>
+                • <strong>.value</strong> - Para obtener contenido de input<br>
+                • <strong>console.log</strong> - Para ver resultados</p>
+            </div>
+        </div>
+
+        <!-- NUEVO: EVENT.PREVENTDEFAULT -->
+        <div class="demo-section">
+            <h2>🆕 Nuevo: event.preventDefault()</h2>
+            <p>Esta línea evita que el formulario se envíe normalmente (y recargue la página).</p>
+
+            <div class="code-block">form.addEventListener('submit', function(event) {
+    event.preventDefault(); // ← ¡NUEVA! Evita recarga
+    
+    // Ahora podemos procesar los datos sin que se recargue
+    const nombre = document.querySelector('#nombre').value;
+    console.log('Nombre capturado:', nombre);
+});</div>
+
+            <div class="warning-box">
+                <h3>⚠️ MUY IMPORTANTE</h3>
+                <p>Siempre incluye <code>event.preventDefault()</code> o la página se recargará y perderás todo.</p>
+            </div>
+        </div>
+
+        <!-- VALIDACIÓN SIMPLE -->
+        <div class="demo-section">
+            <h2>✅ Validación Simple</h2>
+            <p>Verificar que el usuario completó los campos usando <strong>if</strong> (ya lo conocemos de Clase 6).</p>
+
+            <div class="code-block">form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const nombre = document.querySelector('#nombre').value;
+    const email = document.querySelector('#email').value;
+    
+    // Validar usando if (ya conocemos esto)
+    if (nombre === '') {
+        alert('Por favor escribe tu nombre');
+        return; // Detener si hay error
+    }
+    
+    if (email === '') {
+        alert('Por favor escribe tu email');
+        return;
+    }
+    
+    // Si llegamos aquí, todo está bien
+    console.log('✅ Formulario válido');
+    console.log('Nombre:', nombre);
+    console.log('Email:', email);
+});</div>
+        </div>
+
+        <!-- MOSTRAR RESULTADO -->
+        <div class="demo-section">
+            <h2>📤 Mostrar Resultado al Usuario</h2>
+            <p>Usar <strong>innerHTML</strong> (ya lo conocemos) para mostrar confirmación.</p>
+
+            <div class="code-block">form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const nombre = document.querySelector('#nombre').value;
+    const email = document.querySelector('#email').value;
+    
+    // Validar
+    if (nombre === '' || email === '') {
+        alert('Completa todos los campos');
+        return;
+    }
+    
+    // Mostrar resultado usando innerHTML (ya conocemos)
+    const resultado = document.querySelector('#resultado');
+    resultado.innerHTML = `
+        &lt;h3&gt;✅ ¡Mensaje enviado!&lt;/h3&gt;
+        &lt;p&gt;Gracias ${nombre}&lt;/p&gt;
+        &lt;p&gt;Te responderemos a: ${email}&lt;/p&gt;
+    `;
+    
+    // Limpiar formulario
+    document.querySelector('#nombre').value = '';
+    document.querySelector('#email').value = '';
+});</div>
+        </div>
+
+        <!-- CÓDIGO COMPLETO SIMPLE -->
+        <div class="demo-section">
+            <h2>📋 Código Completo (Solo lo que ya sabemos)</h2>
+            
+            <div class="code-block">&lt;!-- HTML --&gt;
+&lt;form id="contacto"&gt;
+    &lt;input type="text" id="nombre" placeholder="Tu nombre"&gt;
+    &lt;input type="email" id="email" placeholder="Tu email"&gt;
+    &lt;textarea id="mensaje" placeholder="Tu mensaje"&gt;&lt;/textarea&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+&lt;div id="respuesta"&gt;&lt;/div&gt;</div>
+
+            <div class="code-block">// JavaScript (usando solo lo que ya sabemos)
+const form = document.querySelector('#contacto');
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Nueva: evitar recarga
+    
+    // Obtener datos (ya sabemos)
+    const nombre = document.querySelector('#nombre').value;
+    const email = document.querySelector('#email').value;
+    const mensaje = document.querySelector('#mensaje').value;
+    
+    // Validar con if (ya sabemos)
+    if (nombre === '' || email === '' || mensaje === '') {
+        alert('Completa todos los campos');
+        return;
+    }
+    
+    // Mostrar resultado con innerHTML (ya sabemos)
+    const respuesta = document.querySelector('#respuesta');
+    respuesta.innerHTML = `
+        &lt;div style="background: lightgreen; padding: 15px;"&gt;
+            &lt;h3&gt;✅ ¡Enviado!&lt;/h3&gt;
+            &lt;p&gt;Nombre: ${nombre}&lt;/p&gt;
+            &lt;p&gt;Email: ${email}&lt;/p&gt;
+        &lt;/div&gt;
+    `;
+    
+    // Limpiar (ya sabemos)
+    document.querySelector('#nombre').value = '';
+    document.querySelector('#email').value = '';
+    document.querySelector('#mensaje').value = '';
+});</div>
+        </div>
+
+        <!-- RESUMEN -->
+        <div class="success-box">
+            <h3>🎯 Lo que aprendiste</h3>
+            <p>✅ <strong>event.preventDefault()</strong> - Evitar recarga de página<br>
+            ✅ <strong>.value</strong> - Obtener lo que escribió el usuario<br>
+            ✅ <strong>Validación con if</strong> - Verificar campos completos<br>
+            ✅ <strong>innerHTML</strong> - Mostrar confirmación<br>
+            ✅ Todo lo demás ya lo sabías de clases anteriores</p>
+        </div>
+
+        <div class="info-box">
+            <h3>📝 Para tu proyecto</h3>
+            <p>Copia el código completo de arriba y modifícalo para tu formulario de contacto. Solo necesitas cambiar los textos y estilos.</p>
+        </div>
+    </div>
+</body>
+</html>
