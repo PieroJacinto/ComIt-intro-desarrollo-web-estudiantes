@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 2: Portfolio Storage SÚPER SIMPLE - Clase 8</title>
+    <link rel="stylesheet" href="./ejemplo2-storage.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💼 2 Ejemplos SÚPER SIMPLES</h1>
+            <p>Local Storage explicado paso a paso</p>
+        </div>
+
+        <!-- EJEMPLO 1: TEMA OSCURO/CLARO EN TODAS LAS PÁGINAS -->
+        <div class="demo">
+            <h2>🌙 Ejemplo 1: Tema Oscuro/Claro en TODAS las Páginas</h2>
+            
+            <div class="explicacion">
+                <h3>🎯 ¿Para qué sirve?</h3>
+                <p>El usuario elige tema oscuro en <strong>index.html</strong> → va a <strong>proyectos.html</strong> → sigue oscuro</p>
+                <p><strong>Recuerda:</strong> Tienes 4 páginas (index.html, sobre-mi.html, proyectos.html, contacto.html)</p>
+                <p><strong>Local Storage funciona en TODAS las páginas del mismo sitio</strong> ✨</p>
+            </div>
+
+            <!-- BOTÓN QUE EJECUTA LA FUNCIÓN -->
+            <button class="btn" onclick="cambiarTema()">🌙 Cambiar Tema</button>
+            <button class="btn" onclick="verQueEstaGuardado()">👀 Ver qué está guardado</button>
+            
+            <div id="resultado-tema" class="resultado">Prueba cambiar el tema...</div>
+
+            <!-- EXPLICACIÓN IMPORTANTE -->
+            <div class="paso">
+                <h4>🔑 CLAVE: El mismo código en TODAS las páginas</h4>
+                <p><strong>¿Qué debes hacer?</strong></p>
+                <ol style="margin-left: 20px;">
+                    <li>✅ <strong>CSS del tema oscuro</strong> → en styles.css (se aplica a todas las páginas)</li>
+                    <li>✅ <strong>Botón cambiar tema</strong> → en index.html, sobre-mi.html, proyectos.html, contacto.html</li>
+                    <li>✅ <strong>Función cambiarTema()</strong> → en tu archivo JavaScript principal</li>
+                    <li>✅ <strong>window.addEventListener('load')</strong> → carga automática en todas las páginas</li>
+                </ol>
+            </div>
+
+            <!-- EXPLICACIÓN PARA CADA TIPO DE PROYECTO -->
+            <div class="paso">
+                <h4>📁 IMPORTANTE: Diferentes tipos de proyectos</h4>
+                <p><strong>Cada estudiante tiene un proyecto diferente:</strong></p>
+                
+                <div class="proyecto-tipo" style="background: #e8f4fd; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <h5>💼 PORTFOLIO PERSONAL:</h5>
+                    <ul style="margin-left: 20px;">
+                        <li>📄 index.html (inicio)</li>
+                        <li>📄 sobre-mi.html</li>
+                        <li>📄 proyectos.html</li>
+                        <li>📄 contacto.html</li>
+                    </ul>
+                </div>
+                
+                <div class="proyecto-tipo" style="background: #fff8dc; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <h5>📝 BLOG PERSONAL:</h5>
+                    <ul style="margin-left: 20px;">
+                        <li>📄 index.html (inicio)</li>
+                        <li>📄 articulos.html</li>
+                        <li>📄 sobre-mi.html</li>
+                        <li>📄 contacto.html</li>
+                    </ul>
+                </div>
+                
+                <div class="proyecto-tipo" style="background: #f0fff0; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <h5>🍽️ RESTAURANTE:</h5>
+                    <ul style="margin-left: 20px;">
+                        <li>📄 index.html (inicio)</li>
+                        <li>📄 menu.html</li>
+                        <li>📄 sobre-nosotros.html</li>
+                        <li>📄 reservas.html</li>
+                    </ul>
+                </div>
+                
+                <div class="proyecto-tipo" style="background: #fef5e7; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <h5>💼 SERVICIOS:</h5>
+                    <ul style="margin-left: 20px;">
+                        <li>📄 index.html (inicio)</li>
+                        <li>📄 servicios.html</li>
+                        <li>📄 sobre-nosotros.html</li>
+                        <li>📄 contacto.html</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- EXPLICACIÓN CÓDIGO PARA TODAS LAS PÁGINAS -->
+            <div class="paso">
+                <h4>🔑 SÍ, debes agregar el código a TODAS tus páginas</h4>
+                <p><strong>Lo que necesitas en CADA página HTML:</strong></p>
+                
+                <div class="codigo">/* EN CADA UNA DE TUS 4 PÁGINAS HTML: */
+
+&lt;!-- 1. Link al CSS (ya lo tienes) --&gt;
+&lt;link rel="stylesheet" href="css/styles.css"&gt;
+
+&lt;!-- 2. Botón para cambiar tema (en la navegación) --&gt;
+&lt;nav&gt;
+    &lt;a href="index.html"&gt;Inicio&lt;/a&gt;
+    &lt;a href="tu-segunda-pagina.html"&gt;Tu Segunda Página&lt;/a&gt;
+    &lt;a href="tu-tercera-pagina.html"&gt;Tu Tercera Página&lt;/a&gt;
+    &lt;a href="contacto.html"&gt;Contacto&lt;/a&gt;
+    &lt;button onclick="cambiarTema()"&gt;🌙&lt;/button&gt;
+&lt;/nav&gt;
+
+&lt;!-- 3. Script al final (antes de &lt;/body&gt;) --&gt;
+&lt;script src="js/main.js"&gt;&lt;/script&gt;</div>
+            </div>
+
+            <!-- EXPLICACIÓN DEL ARCHIVO JAVASCRIPT -->
+            <div class="js-ejemplo">
+                <h4>⚡ Tu archivo js/main.js (UNA SOLA VEZ):</h4>
+                <div class="codigo">// js/main.js - Se usa en TODAS las páginas
+
+function cambiarTema() {
+    const tieneOscuro = document.body.classList.contains('oscuro');
+    
+    if (tieneOscuro) {
+        document.body.classList.remove('oscuro');
+    } else {
+        document.body.classList.add('oscuro');
+    }
+    
+    const esOscuroAhora = document.body.classList.contains('oscuro');
+    localStorage.setItem('tema-oscuro', esOscuroAhora);
+}
+
+// ¡IMPORTANTE! Esto debe ejecutarse en CADA página
+window.addEventListener('load', function() {
+    const temaOscuro = localStorage.getItem('tema-oscuro');
+    if (temaOscuro === 'true') {
+        document.body.classList.add('oscuro');
+    }
+});</div>
+                <p><strong>📍 Importante:</strong> Escribes este archivo UNA vez, pero lo incluyes en todas las páginas con <code>&lt;script src="js/main.js"&gt;</code></p>
+            </div>
+
+            <!-- EJEMPLO PASO A PASO NAVEGACIÓN -->
+            <div class="paso">
+                <h4>🚀 Ejemplo: Usuario navega en un PORTFOLIO</h4>
+                <ol style="margin-left: 20px;">
+                    <li><strong>index.html:</strong> Usuario cambia a tema oscuro → Local Storage guarda "true"</li>
+                    <li><strong>Usuario hace clic:</strong> "Proyectos" → va a proyectos.html</li>
+                    <li><strong>proyectos.html se carga:</strong>
+                        <ul style="margin-left: 20px;">
+                            <li>✅ CSS se carga (tiene estilos para .oscuro)</li>
+                            <li>✅ main.js se carga (tiene función cambiarTema)</li>
+                            <li>✅ window.addEventListener('load') se ejecuta</li>
+                            <li>✅ Lee Local Storage → encuentra "true"</li>
+                            <li>✅ Agrega clase "oscuro" al body</li>
+                        </ul>
+                    </li>
+                    <li><strong>Resultado:</strong> proyectos.html se ve en tema oscuro ✨</li>
+                    <li><strong>Navegación a contacto.html:</strong> Mismo proceso → sigue oscuro</li>
+                </ol>
+            </div>
+
+            <!-- EJEMPLO PASO A PASO NAVEGACIÓN BLOG -->
+            <div class="paso">
+                <h4>📝 Ejemplo: Usuario navega en un BLOG</h4>
+                <ol style="margin-left: 20px;">
+                    <li><strong>index.html:</strong> Usuario cambia a tema oscuro → Local Storage guarda "true"</li>
+                    <li><strong>Usuario hace clic:</strong> "Artículos" → va a articulos.html</li>
+                    <li><strong>articulos.html se carga:</strong>
+                        <ul style="margin-left: 20px;">
+                            <li>✅ Incluye mismo CSS y main.js</li>
+                            <li>✅ window.addEventListener('load') se ejecuta</li>
+                            <li>✅ Lee Local Storage → aplica tema oscuro</li>
+                        </ul>
+                    </li>
+                    <li><strong>Resultado:</strong> Todos los artículos se ven en tema oscuro ✨</li>
+                </ol>
+            </div>
+
+            <!-- CHECKLIST PARA CADA ESTUDIANTE -->
+            <div class="paso">
+                <h4>✅ CHECKLIST para TU proyecto (cualquiera que sea):</h4>
+                <ol style="margin-left: 20px;">
+                    <li>□ <strong>CSS:</strong> Agregar estilos <code>body.oscuro</code> en styles.css</li>
+                    <li>□ <strong>JavaScript:</strong> Crear js/main.js con las funciones</li>
+                    <li>□ <strong>HTML Página 1:</strong> Botón tema + script src="js/main.js"</li>
+                    <li>□ <strong>HTML Página 2:</strong> Botón tema + script src="js/main.js"</li>
+                    <li>□ <strong>HTML Página 3:</strong> Botón tema + script src="js/main.js"</li>
+                    <li>□ <strong>HTML Página 4:</strong> Botón tema + script src="js/main.js"</li>
+                    <li>□ <strong>Prueba:</strong> Cambiar tema en página 1 → navegar → debe persistir</li>
+                </ol>
+                <p><strong>🎯 Resultado:</strong> Tema oscuro/claro funciona en todo tu sitio</p>
+            </div>
+
+            <!-- EXPLICACIÓN CSS -->
+            <div class="css-ejemplo">
+                <h4>🎨 CSS (en styles.css - se aplica a todas las páginas):</h4>
+                <div class="codigo">/* TEMA CLARO (normal) */
+body {
+    background: white;
+    color: black;
+}
+
+nav {
+    background: #f0f0f0;
+}
+
+.project-card {
+    background: white;
+    color: black;
+}
+
+/* TEMA OSCURO (cuando body tiene clase "oscuro") */
+body.oscuro {
+    background: #1a1a1a;
+    color: white;
+}
+
+body.oscuro nav {
+    background: #2d2d2d;
+}
+
+body.oscuro .project-card {
+    background: #404040;
+    color: white;
+}</div>
+                <p><strong>🔑 Clave:</strong> Como todas las páginas usan el mismo CSS, el tema se aplica automáticamente</p>
+            </div>
+
+            <!-- EXPLICACIÓN JAVASCRIPT -->
+            <div class="js-ejemplo">
+                <h4>⚡ JavaScript (una sola vez en tu archivo principal):</h4>
+                <div class="codigo">function cambiarTema() {
+    // PASO 1: Ver si body tiene clase "oscuro"
+    const tieneOscuro = document.body.classList.contains('oscuro');
+    
+    // PASO 2: Cambiar al contrario
+    if (tieneOscuro) {
+        document.body.classList.remove('oscuro');  // Quitar → claro
+    } else {
+        document.body.classList.add('oscuro');     // Agregar → oscuro
+    }
+    
+    // PASO 3: Ver qué quedó
+    const esOscuroAhora = document.body.classList.contains('oscuro');
+    
+    // PASO 4: GUARDAR en Local Storage
+    localStorage.setItem('tema-oscuro', esOscuroAhora);
+}
+
+// ESTO SE EJECUTA EN CADA PÁGINA AL CARGARLA
+window.addEventListener('load', function() {
+    // Recuperar tema y aplicarlo automáticamente
+    const temaOscuro = localStorage.getItem('tema-oscuro');
+    if (temaOscuro === 'true') {
+        document.body.classList.add('oscuro');
+    }
+});</div>
+            </div>
+
+            <!-- EJEMPLO PASO A PASO -->
+            <div class="paso">
+                <h4>🚀 ¿Cómo funciona entre páginas?</h4>
+                <ol style="margin-left: 20px;">
+                    <li><strong>Usuario en index.html:</strong> Presiona botón tema → se pone oscuro</li>
+                    <li><strong>JavaScript:</strong> Guarda "tema-oscuro: true" en Local Storage</li>
+                    <li><strong>Usuario navega:</strong> Hace clic en "proyectos.html"</li>
+                    <li><strong>proyectos.html se carga:</strong> window.addEventListener('load') se ejecuta</li>
+                    <li><strong>JavaScript:</strong> Lee Local Storage → encuentra "tema-oscuro: true"</li>
+                    <li><strong>JavaScript:</strong> Agrega clase "oscuro" al body</li>
+                    <li><strong>CSS:</strong> Aplica estilos oscuros automáticamente</li>
+                    <li><strong>Usuario:</strong> Ve proyectos.html en tema oscuro ✨</li>
+                </ol>
+            </div>
+
+            <div class="paso">
+                <h4>💡 Simulación: Navegación entre páginas</h4>
+                <p><strong>Prueba esto:</strong></p>
+                <ol style="margin-left: 20px;">
+                    <li>Cambia a tema oscuro aquí</li>
+                    <li>Imagina que navegas a "proyectos.html"</li>
+                    <li>La nueva página ejecuta window.addEventListener('load')</li>
+                    <li>Lee Local Storage y aplica tema oscuro automáticamente</li>
+                </ol>
+                <p><strong>Resultado:</strong> Todas las páginas mantienen el mismo tema</p>
+            </div>
+        </div>
+
+        <!-- EJEMPLO 2: FORMULARIO DE CONTACTO -->
+        <div class="demo">
+            <h2>📝 Ejemplo 2: Guardar Formulario de Contacto</h2>
+            
+            <div class="explicacion">
+                <h3>🎯 ¿Para qué sirve?</h3>
+                <p>Usuario empieza a escribir formulario, se va, vuelve → <strong>sigue lo que escribió</strong></p>
+                <p><strong>Funciona en:</strong> Contacto, comentarios, reservas, cotizaciones</p>
+            </div>
+
+            <!-- FORMULARIO REAL -->
+            <input type="text" id="nombre" placeholder="Tu nombre">
+            <input type="email" id="email" placeholder="Tu email">
+            <textarea id="mensaje" rows="3" placeholder="Tu mensaje"></textarea>
+            
+            <button class="btn" onclick="guardarFormulario()">💾 Guardar</button>
+            <button class="btn" onclick="limpiarFormulario()">🗑️ Limpiar</button>
+            <button class="btn" onclick="simularRecarga()">🔄 Simular recarga</button>
+            
+            <div id="resultado-form" class="resultado">Escribe algo y presiona "Guardar"...</div>
+
+            <!-- EXPLICACIÓN HTML -->
+            <div class="html-ejemplo">
+                <h4>📄 HTML (necesitas estos inputs):</h4>
+                <div class="codigo">&lt;input type="text" id="nombre" placeholder="Tu nombre"&gt;
+&lt;input type="email" id="email" placeholder="Tu email"&gt;
+&lt;textarea id="mensaje" placeholder="Tu mensaje"&gt;&lt;/textarea&gt;
+
+&lt;button onclick="guardarFormulario()"&gt;Guardar&lt;/button&gt;</div>
+                <p><strong>¡IMPORTANTE!</strong> Cada input debe tener <code>id</code> único</p>
+                <p><strong>¿Por qué?</strong> JavaScript usa el <code>id</code> para encontrar cada campo</p>
+            </div>
+
+            <!-- EXPLICACIÓN JAVASCRIPT GUARDAR -->
+            <div class="js-ejemplo">
+                <h4>⚡ JavaScript para GUARDAR:</h4>
+                <div class="codigo">function guardarFormulario() {
+    // PASO 1: Leer lo que escribió el usuario
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const mensaje = document.getElementById('mensaje').value;
+    
+    // PASO 2: Crear objeto con todos los datos
+    const datos = {
+        nombre: nombre,
+        email: email,
+        mensaje: mensaje
+    };
+    
+    // PASO 3: Convertir objeto a texto JSON
+    const datosJSON = JSON.stringify(datos);
+    
+    // PASO 4: GUARDAR en Local Storage
+    localStorage.setItem('formulario-contacto', datosJSON);
+}</div>
+            </div>
+
+            <!-- EXPLICACIÓN JAVASCRIPT CARGAR -->
+            <div class="js-ejemplo">
+                <h4>⚡ JavaScript para CARGAR:</h4>
+                <div class="codigo">function cargarFormulario() {
+    // PASO 1: Recuperar texto JSON de Local Storage
+    const datosJSON = localStorage.getItem('formulario-contacto');
+    
+    // PASO 2: Si hay datos guardados
+    if (datosJSON) {
+        // PASO 3: Convertir texto JSON a objeto
+        const datos = JSON.parse(datosJSON);
+        
+        // PASO 4: Llenar cada campo del formulario
+        document.getElementById('nombre').value = datos.nombre || '';
+        document.getElementById('email').value = datos.email || '';
+        document.getElementById('mensaje').value = datos.mensaje || '';
+    }
+}</div>
+            </div>
+
+            <!-- PASOS DETALLADOS -->
+            <div class="paso">
+                <h4>💾 ¿Qué pasa cuando presionas "Guardar"?</h4>
+                <ol style="margin-left: 20px;">
+                    <li><strong>JavaScript:</strong> Lee lo que escribiste en cada input</li>
+                    <li><strong>JavaScript:</strong> Crea un objeto con nombre, email, mensaje</li>
+                    <li><strong>JavaScript:</strong> Convierte el objeto a texto JSON</li>
+                    <li><strong>Local Storage:</strong> Guarda el texto JSON</li>
+                </ol>
+            </div>
+
+            <div class="paso">
+                <h4>📄 ¿Qué pasa cuando cargas la página?</h4>
+                <ol style="margin-left: 20px;">
+                    <li><strong>JavaScript:</strong> Busca datos en Local Storage</li>
+                    <li><strong>JavaScript:</strong> Si encuentra datos, los convierte de JSON a objeto</li>
+                    <li><strong>JavaScript:</strong> Llena automáticamente cada campo</li>
+                    <li><strong>Usuario:</strong> Ve el formulario como lo dejó</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- EJEMPLO 3: CARGAR AUTOMÁTICAMENTE -->
+        <div class="demo">
+            <h2>🔄 Ejemplo 3: Cargar TODO al Abrir la Página</h2>
+            
+            <div class="explicacion">
+                <h3>🎯 La clave del éxito:</h3>
+                <p>Cuando el usuario abre tu sitio, <strong>automáticamente</strong> se cargan tema y formulario.</p>
+            </div>
+            
+            <button class="btn" onclick="cargarTodoManual()">🔄 Ver carga manual</button>
+            <button class="btn" onclick="location.reload()">🌐 Recargar página (carga automática)</button>
+            
+            <div id="resultado-carga" class="resultado">Al cargar la página, todo se recupera automáticamente...</div>
+
+            <!-- EXPLICACIÓN JAVASCRIPT AUTOMÁTICO -->
+            <div class="js-ejemplo">
+                <h4>⚡ JavaScript que se ejecuta AUTOMÁTICAMENTE:</h4>
+                <div class="codigo">// Esto se ejecuta cuando se abre la página
+window.addEventListener('load', function() {
+    
+    // 1. Cargar tema guardado
+    const temaOscuro = localStorage.getItem('tema-oscuro');
+    if (temaOscuro === 'true') {
+        document.body.classList.add('oscuro');
+    }
+    
+    // 2. Cargar formulario guardado
+    cargarFormulario();
+    
+    console.log('✅ Todo cargado automáticamente');
+});</div>
+                <p><strong>¿Dónde va?</strong> Al final de tu JavaScript</p>
+                <p><strong>¿Cuándo funciona?</strong> Automáticamente cuando se abre la página</p>
+            </div>
+
+            <div class="paso">
+                <h4>🚀 ¿Cómo funciona la carga automática?</h4>
+                <ol style="margin-left: 20px;">
+                    <li><strong>Usuario:</strong> Abre tu sitio web</li>
+                    <li><strong>HTML/CSS:</strong> Se cargan normalmente</li>
+                    <li><strong>JavaScript:</strong> window.addEventListener('load') se ejecuta</li>
+                    <li><strong>Local Storage:</strong> Se buscan datos guardados</li>
+                    <li><strong>JavaScript:</strong> Aplica tema y llena formulario</li>
+                    <li><strong>Usuario:</strong> Ve todo como lo dejó ✨</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- RESUMEN FINAL -->
+        <div class="demo" style="border-left-color: #27ae60; background: #f0fff0;">
+            <h2>🎯 RESUMEN COMPLETO</h2>
+            
+            <div class="explicacion">
+                <h3>🔑 Solo necesitas estas 3 funciones:</h3>
+                <div class="codigo">// GUARDAR
+localStorage.setItem('clave', 'valor');
+
+// RECUPERAR
+const valor = localStorage.getItem('clave');
+
+// BORRAR
+localStorage.removeItem('clave');</div>
+            </div>
+
+            <div class="explicacion">
+                <h3>📄 Para objetos (formularios):</h3>
+                <div class="codigo">// GUARDAR objeto
+const datos = {nombre: 'Ana', email: 'ana@email.com'};
+localStorage.setItem('mis-datos', JSON.stringify(datos));
+
+// RECUPERAR objeto
+const datosJSON = localStorage.getItem('mis-datos');
+const datos = JSON.parse(datosJSON);</div>
+            </div>
+
+            <div class="paso">
+                <h4>📋 Lista de tareas para TU proyecto:</h4>
+                <ol style="margin-left: 20px;">
+                    <li>✅ <strong>Copia el CSS</strong> del tema oscuro</li>
+                    <li>✅ <strong>Agrega botón</strong> con onclick="cambiarTema()"</li>
+                    <li>✅ <strong>Copia las funciones</strong> JavaScript</li>
+                    <li>✅ <strong>Agrega IDs</strong> a tus inputs de formulario</li>
+                    <li>✅ <strong>Copia el addEventListener('load')</strong> al final</li>
+                    <li>✅ <strong>Prueba:</strong> Cambiar tema, escribir formulario, recargar página</li>
+                </ol>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 1.1rem; color: #27ae60; text-align: center;">
+                <strong>🎉 ¡Con esto tu proyecto se ve profesional!</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // =========================================
+        // EJEMPLO 1: TEMA OSCURO/CLARO
+        // =========================================
+        
+        function cambiarTema() {
+            console.log('🔄 Función cambiarTema() ejecutada');
+            
+            // PASO 1: Ver si body tiene clase "oscuro"
+            const tieneOscuro = document.body.classList.contains('oscuro');
+            console.log('1. ¿Body tiene clase oscuro?', tieneOscuro);
+            
+            // PASO 2: Cambiar al contrario
+            if (tieneOscuro) {
+                document.body.classList.remove('oscuro');  // Quitar → claro
+                console.log('2. Clase "oscuro" QUITADA → Tema CLARO');
+            } else {
+                document.body.classList.add('oscuro');     // Agregar → oscuro
+                console.log('2. Clase "oscuro" AGREGADA → Tema OSCURO');
+            }
+            
+            // PASO 3: Ver qué quedó activo
+            const esOscuroAhora = document.body.classList.contains('oscuro');
+            console.log('3. ¿Es oscuro ahora?', esOscuroAhora);
+            
+            // PASO 4: GUARDAR en Local Storage
+            localStorage.setItem('tema-oscuro', esOscuroAhora);
+            console.log('4. Guardado en Local Storage:', esOscuroAhora);
+            
+            // PASO 5: Mostrar resultado
+            document.getElementById('resultado-tema').innerHTML = 
+                `✅ Tema cambiado a: ${esOscuroAhora ? 'Oscuro 🌙' : 'Claro ☀️'}\n` +
+                `💾 Guardado en Local Storage: "${esOscuroAhora}"`;
+        }
+
+        function verQueEstaGuardado() {
+            const temaGuardado = localStorage.getItem('tema-oscuro');
+            const temaActual = document.body.classList.contains('oscuro');
+            
+            document.getElementById('resultado-tema').innerHTML = 
+                `🔍 En Local Storage: "${temaGuardado}"\n` +
+                `🎨 Visual actual: ${temaActual ? 'Oscuro' : 'Claro'}\n` +
+                `${temaGuardado === String(temaActual) ? '✅ Coinciden' : '❌ No coinciden'}`;
+        }
+
+        // =========================================
+        // EJEMPLO 2: FORMULARIO DE CONTACTO
+        // =========================================
+        
+        function guardarFormulario() {
+            console.log('💾 Función guardarFormulario() ejecutada');
+            
+            // PASO 1: Leer lo que escribió el usuario
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const mensaje = document.getElementById('mensaje').value;
+            console.log('1. Datos leídos:', {nombre, email, mensaje});
+            
+            // PASO 2: Crear objeto con todos los datos
+            const datos = {
+                nombre: nombre,
+                email: email,
+                mensaje: mensaje,
+                fechaGuardado: new Date().toLocaleString()
+            };
+            console.log('2. Objeto creado:', datos);
+            
+            // PASO 3: Convertir objeto a texto JSON
+            const datosJSON = JSON.stringify(datos);
+            console.log('3. Convertido a JSON:', datosJSON);
+            
+            // PASO 4: GUARDAR en Local Storage
+            localStorage.setItem('formulario-contacto', datosJSON);
+            console.log('4. Guardado en Local Storage');
+            
+            // PASO 5: Confirmar al usuario
+            document.getElementById('resultado-form').innerHTML = 
+                `✅ Formulario guardado exitosamente\n` +
+                `📝 Nombre: "${nombre}"\n` +
+                `📧 Email: "${email}"\n` +
+                `💬 Mensaje: ${mensaje.length} caracteres\n` +
+                `🕒 Guardado: ${datos.fechaGuardado}`;
+        }
+
+        function cargarFormulario() {
+            console.log('📄 Función cargarFormulario() ejecutada');
+            
+            // PASO 1: Recuperar texto JSON de Local Storage
+            const datosJSON = localStorage.getItem('formulario-contacto');
+            console.log('1. Datos recuperados:', datosJSON);
+            
+            // PASO 2: Si hay datos guardados
+            if (datosJSON) {
+                // PASO 3: Convertir texto JSON a objeto
+                const datos = JSON.parse(datosJSON);
+                console.log('3. Convertido a objeto:', datos);
+                
+                // PASO 4: Llenar cada campo del formulario
+                document.getElementById('nombre').value = datos.nombre || '';
+                document.getElementById('email').value = datos.email || '';
+                document.getElementById('mensaje').value = datos.mensaje || '';
+                console.log('4. Formulario rellenado');
+                
+                // PASO 5: Confirmar carga
+                document.getElementById('resultado-form').innerHTML = 
+                    `📄 Formulario cargado del ${datos.fechaGuardado}\n` +
+                    `✅ Campos rellenados automáticamente`;
+            } else {
+                console.log('No hay datos guardados');
+                document.getElementById('resultado-form').innerHTML = 
+                    `❌ No hay formulario guardado anteriormente`;
+            }
+        }
+
+        function limpiarFormulario() {
+            console.log('🗑️ Función limpiarFormulario() ejecutada');
+            
+            // Limpiar campos
+            document.getElementById('nombre').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('mensaje').value = '';
+            
+            // Borrar de Local Storage
+            localStorage.removeItem('formulario-contacto');
+            
+            document.getElementById('resultado-form').innerHTML = '🗑️ Formulario y datos limpiados';
+        }
+
+        function simularRecarga() {
+            document.getElementById('resultado-form').innerHTML = '🔄 Simulando recarga de página...';
+            
+            // Simular recarga cargando el formulario después de 1 segundo
+            setTimeout(function() {
+                cargarFormulario();
+            }, 1000);
+        }
+
+        // =========================================
+        // EJEMPLO 3: CARGAR TODO AUTOMÁTICAMENTE
+        // =========================================
+        
+        function cargarTodoManual() {
+            let mensaje = 'CARGANDO MANUALMENTE:\n\n';
+            
+            // 1. Cargar tema
+            const temaOscuro = localStorage.getItem('tema-oscuro');
+            if (temaOscuro === 'true') {
+                document.body.classList.add('oscuro');
+                mensaje += '🌙 Tema oscuro aplicado\n';
+            } else {
+                document.body.classList.remove('oscuro');
+                mensaje += '☀️ Tema claro aplicado\n';
+            }
+            
+            // 2. Cargar formulario
+            cargarFormulario();
+            mensaje += '📝 Formulario cargado\n\n';
+            
+            mensaje += '✅ ¡Todo cargado manualmente!';
+            
+            document.getElementById('resultado-carga').innerHTML = mensaje;
+        }
+
+        // =========================================
+        // CARGA AUTOMÁTICA REAL
+        // =========================================
+        
+        // Esto se ejecuta AUTOMÁTICAMENTE cuando se abre la página
+        window.addEventListener('load', function() {
+            console.log('🚀 Página cargada - ejecutando carga automática...');
+            
+            // 1. Cargar tema guardado
+            const temaOscuro = localStorage.getItem('tema-oscuro');
+            if (temaOscuro === 'true') {
+                document.body.classList.add('oscuro');
+                console.log('🌙 Tema oscuro cargado automáticamente');
+            } else {
+                console.log('☀️ Tema claro cargado automáticamente');
+            }
+            
+            // 2. Cargar formulario guardado
+            cargarFormulario();
+            
+            // 3. Mostrar que se cargó todo
+            document.getElementById('resultado-carga').innerHTML = 
+                'Al cargar la página se ejecutó automáticamente:\n' +
+                '✅ Carga de tema guardado\n' +
+                '✅ Carga de formulario guardado\n' +
+                '🎉 Todo funciona automáticamente';
+            
+            console.log('✅ Carga automática completada');
+        });
+    </script>
+</body>
+</html>

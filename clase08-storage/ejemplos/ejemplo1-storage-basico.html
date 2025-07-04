@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 1: Local Storage Básico - Clase 8</title>
+    <link rel="stylesheet" href="./ejemplo1-storage-basico.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>💾 Local Storage Básico</h1>
+            <p>Aprende a guardar y recuperar datos en el navegador</p>
+        </div>
+
+        <!-- INTRODUCCIÓN AL LOCAL STORAGE -->
+        <div class="demo-section">
+            <h2>🎯 ¿Qué es Local Storage?</h2>
+            <p>Local Storage es como la <strong>memoria de tu navegador</strong> que puede recordar información entre sesiones.</p>
+            
+            <div class="info-box">
+                <h3>💡 Piénsalo así:</h3>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Como tu celular</strong> → Guarda contactos, fotos, configuraciones</li>
+                    <li><strong>Como una libreta</strong> → Escribes información y queda guardada</li>
+                    <li><strong>Como tu configuración de apps</strong> → Recuerda tema, idioma, preferencias</li>
+                </ul>
+                <p><strong>¡Local Storage hace lo mismo con tu sitio web!</strong></p>
+            </div>
+
+            <div class="code-block">// 💾 GUARDAR datos
+localStorage.setItem('nombre', 'Ana');
+localStorage.setItem('tema', 'oscuro');
+
+// 📱 RECUPERAR datos
+const nombre = localStorage.getItem('nombre');
+const tema = localStorage.getItem('tema');
+
+// 🗑️ BORRAR datos
+localStorage.removeItem('nombre');
+localStorage.clear(); // Borra todo</div>
+        </div>
+
+        <!-- DEMO 1: GUARDAR Y RECUPERAR TEXTO -->
+        <div class="demo-section">
+            <h2>📝 Demo 1: Guardar y Recuperar Texto</h2>
+            <p>Guarda tu nombre y verás que se mantiene <strong>aunque recargues la página</strong>.</p>
+
+            <div class="two-column">
+                <div>
+                    <h4>Guardar datos:</h4>
+                    <input type="text" id="input-nombre" class="demo-input" placeholder="Escribe tu nombre...">
+                    <input type="text" id="input-email" class="demo-input" placeholder="Escribe tu email...">
+                </div>
+                <div>
+                    <h4>Datos guardados:</h4>
+                    <div id="resultado-texto" class="demo-result">
+                        Presiona "Guardar" para ver los datos aquí...
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="guardarTexto()">💾 Guardar</button>
+                <button class="btn" onclick="recuperarTexto()">📱 Recuperar</button>
+                <button class="btn" onclick="borrarTexto()">🗑️ Borrar</button>
+                <button class="btn" onclick="recargarPagina()">🔄 Recargar página</button>
+            </div>
+
+            <div class="code-block">function guardarTexto() {
+    const nombre = document.querySelector('#input-nombre').value;
+    const email = document.querySelector('#input-email').value;
+    
+    // Guardar en Local Storage
+    localStorage.setItem('usuario-nombre', nombre);
+    localStorage.setItem('usuario-email', email);
+    
+    console.log('✅ Datos guardados!');
+}</div>
+        </div>
+
+        <!-- DEMO 2: OBJETOS CON JSON -->
+        <div class="demo-section">
+            <h2>📦 Demo 2: Guardar Objetos (JSON)</h2>
+            <p>Local Storage solo guarda <strong>strings</strong>, pero podemos usar <strong>JSON</strong> para objetos y arrays.</p>
+
+            <div class="warning-box">
+                <h3>⚠️ Importante:</h3>
+                <p>Local Storage NO puede guardar objetos directamente. Necesitamos convertirlos a texto con <code>JSON.stringify()</code> y reconvertirlos con <code>JSON.parse()</code>.</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h4>Crear perfil:</h4>
+                    <input type="text" id="perfil-nombre" class="demo-input" placeholder="Nombre">
+                    <input type="number" id="perfil-edad" class="demo-input" placeholder="Edad">
+                    <input type="text" id="perfil-ciudad" class="demo-input" placeholder="Ciudad">
+                </div>
+                <div>
+                    <h4>Perfil guardado:</h4>
+                    <div id="resultado-perfil" class="demo-result">
+                        Crea tu perfil y guárdalo...
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="guardarPerfil()">💾 Guardar Perfil</button>
+                <button class="btn" onclick="recuperarPerfil()">📱 Mostrar Perfil</button>
+                <button class="btn" onclick="borrarPerfil()">🗑️ Borrar Perfil</button>
+            </div>
+
+            <div class="code-block">function guardarPerfil() {
+    const perfil = {
+        nombre: document.querySelector('#perfil-nombre').value,
+        edad: document.querySelector('#perfil-edad').value,
+        ciudad: document.querySelector('#perfil-ciudad').value,
+        fechaCreacion: new Date().toLocaleString()
+    };
+    
+    // Convertir objeto a string JSON
+    const perfilJSON = JSON.stringify(perfil);
+    localStorage.setItem('usuario-perfil', perfilJSON);
+}</div>
+        </div>
+
+        <!-- DEMO 3: PREFERENCIAS DEL USUARIO -->
+        <div class="demo-section">
+            <h2>🎨 Demo 3: Recordar Preferencias</h2>
+            <p>Un uso típico: <strong>recordar las preferencias del usuario</strong> como tema, idioma, etc.</p>
+
+            <div class="two-column">
+                <div>
+                    <h4>Configuración:</h4>
+                    <label>
+                        <input type="checkbox" id="tema-oscuro"> 🌙 Tema oscuro
+                    </label><br><br>
+                    <label>
+                        <input type="checkbox" id="notificaciones"> 🔔 Notificaciones
+                    </label><br><br>
+                    <select id="idioma" class="demo-input">
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="pt">🇧🇷 Português</option>
+                    </select>
+                </div>
+                <div>
+                    <h4>Configuración actual:</h4>
+                    <div id="resultado-config" class="demo-result">
+                        Ajusta la configuración y guárdala...
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="guardarConfiguracion()">💾 Guardar Config</button>
+                <button class="btn" onclick="cargarConfiguracion()">📱 Cargar Config</button>
+                <button class="btn" onclick="resetearConfiguracion()">🔄 Resetear</button>
+            </div>
+
+            <div class="code-block">function guardarConfiguracion() {
+    const config = {
+        temaOscuro: document.querySelector('#tema-oscuro').checked,
+        notificaciones: document.querySelector('#notificaciones').checked,
+        idioma: document.querySelector('#idioma').value
+    };
+    
+    localStorage.setItem('configuracion', JSON.stringify(config));
+    mostrarConfiguracion(config);
+}</div>
+        </div>
+
+        <!-- DEMO 4: VER TODO EL STORAGE -->
+        <div class="demo-section">
+            <h2>🔍 Demo 4: Inspeccionar Local Storage</h2>
+            <p>Veamos <strong>todo lo que hay guardado</strong> en Local Storage.</p>
+
+            <div class="storage-status" id="storage-completo">
+                Presiona "Ver Storage" para inspeccionar...
+            </div>
+
+            <div class="demo-controls">
+                <button class="btn" onclick="mostrarStorage()">👀 Ver Storage</button>
+                <button class="btn" onclick="limpiarTodoStorage()">🧹 Limpiar Todo</button>
+                <button class="btn" onclick="abrirDevTools()">🛠️ Abrir DevTools</button>
+            </div>
+
+            <div class="success-box">
+                <h3>💡 Pro Tip:</h3>
+                <p>Abre las <strong>Developer Tools (F12)</strong> → pestaña <strong>Application</strong> → <strong>Local Storage</strong> para ver y editar datos guardados.</p>
+            </div>
+        </div>
+
+        <!-- CASOS DE USO PRÁCTICOS -->
+        <div class="demo-section">
+            <h2>🚀 Casos de Uso para tu Proyecto</h2>
+            <p>Ideas de cómo usar Local Storage en <strong>tu proyecto personal</strong>:</p>
+
+            <div class="two-column">
+                <div>
+                    <h4>💼 Portfolio:</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>🌙 Tema claro/oscuro</li>
+                        <li>📂 Filtro de proyectos</li>
+                        <li>📝 Formulario contacto</li>
+                        <li>⭐ Proyectos favoritos</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>🍽️ Restaurante:</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>🛒 Carrito de pedidos</li>
+                        <li>💖 Platos favoritos</li>
+                        <li>📅 Reservas temporales</li>
+                        <li>👤 Datos del cliente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h4>📝 Blog:</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>🏷️ Categoría preferida</li>
+                        <li>🔍 Búsquedas recientes</li>
+                        <li>💬 Comentarios borradores</li>
+                        <li>📊 Progreso de lectura</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>💼 Servicios:</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>💰 Cotización en progreso</li>
+                        <li>⭐ Servicios de interés</li>
+                        <li>📞 Datos de contacto</li>
+                        <li>📊 Configuración de calculadora</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ========================================
+        // DEMO 1: GUARDAR Y RECUPERAR TEXTO
+        // ========================================
+        
+        function guardarTexto() {
+            const nombre = document.querySelector('#input-nombre').value;
+            const email = document.querySelector('#input-email').value;
+            
+            if (!nombre || !email) {
+                alert('⚠️ Por favor completa ambos campos');
+                return;
+            }
+            
+            // Guardar en Local Storage
+            localStorage.setItem('usuario-nombre', nombre);
+            localStorage.setItem('usuario-email', email);
+            
+            // Mostrar inmediatamente
+            recuperarTexto();
+            
+            console.log('✅ Datos guardados en Local Storage');
+        }
+        
+        function recuperarTexto() {
+            const nombre = localStorage.getItem('usuario-nombre');
+            const email = localStorage.getItem('usuario-email');
+            
+            const resultado = document.querySelector('#resultado-texto');
+            
+            if (nombre && email) {
+                resultado.innerHTML = `
+                    <strong>✅ Datos recuperados:</strong><br>
+                    📝 Nombre: ${nombre}<br>
+                    📧 Email: ${email}<br>
+                    <small>🕒 Guardado en: ${new Date().toLocaleString()}</small>
+                `;
+                resultado.style.background = '#e8f5e8';
+            } else {
+                resultado.innerHTML = '❌ No hay datos guardados';
+                resultado.style.background = '#ffe8e8';
+            }
+        }
+        
+        function borrarTexto() {
+            localStorage.removeItem('usuario-nombre');
+            localStorage.removeItem('usuario-email');
+            
+            document.querySelector('#resultado-texto').innerHTML = '🗑️ Datos borrados del Local Storage';
+            document.querySelector('#resultado-texto').style.background = '#fff3cd';
+            
+            // Limpiar inputs
+            document.querySelector('#input-nombre').value = '';
+            document.querySelector('#input-email').value = '';
+        }
+        
+        function recargarPagina() {
+            if (confirm('🔄 ¿Recargar la página? (Los datos guardados deben mantenerse)')) {
+                location.reload();
+            }
+        }
+        
+        // ========================================
+        // DEMO 2: OBJETOS CON JSON
+        // ========================================
+        
+        function guardarPerfil() {
+            const nombre = document.querySelector('#perfil-nombre').value;
+            const edad = document.querySelector('#perfil-edad').value;
+            const ciudad = document.querySelector('#perfil-ciudad').value;
+            
+            if (!nombre || !edad || !ciudad) {
+                alert('⚠️ Por favor completa todos los campos del perfil');
+                return;
+            }
+            
+            const perfil = {
+                nombre: nombre,
+                edad: parseInt(edad),
+                ciudad: ciudad,
+                fechaCreacion: new Date().toLocaleString()
+            };
+            
+            // ¡IMPORTANTE! Convertir objeto a string JSON
+            const perfilJSON = JSON.stringify(perfil);
+            localStorage.setItem('usuario-perfil', perfilJSON);
+            
+            recuperarPerfil();
+            console.log('✅ Perfil guardado:', perfil);
+        }
+        
+        function recuperarPerfil() {
+            const perfilJSON = localStorage.getItem('usuario-perfil');
+            const resultado = document.querySelector('#resultado-perfil');
+            
+            if (perfilJSON) {
+                // ¡IMPORTANTE! Convertir string JSON de vuelta a objeto
+                const perfil = JSON.parse(perfilJSON);
+                
+                resultado.innerHTML = `
+                    <strong>✅ Perfil recuperado:</strong><br>
+                    👤 Nombre: ${perfil.nombre}<br>
+                    🎂 Edad: ${perfil.edad} años<br>
+                    🏙️ Ciudad: ${perfil.ciudad}<br>
+                    🕒 Creado: ${perfil.fechaCreacion}
+                `;
+                resultado.style.background = '#e8f5e8';
+            } else {
+                resultado.innerHTML = '❌ No hay perfil guardado';
+                resultado.style.background = '#ffe8e8';
+            }
+        }
+        
+        function borrarPerfil() {
+            localStorage.removeItem('usuario-perfil');
+            document.querySelector('#resultado-perfil').innerHTML = '🗑️ Perfil borrado del Local Storage';
+            document.querySelector('#resultado-perfil').style.background = '#fff3cd';
+            
+            // Limpiar inputs
+            document.querySelector('#perfil-nombre').value = '';
+            document.querySelector('#perfil-edad').value = '';
+            document.querySelector('#perfil-ciudad').value = '';
+        }
+        
+        // ========================================
+        // DEMO 3: PREFERENCIAS
+        // ========================================
+        
+        function guardarConfiguracion() {
+            const config = {
+                temaOscuro: document.querySelector('#tema-oscuro').checked,
+                notificaciones: document.querySelector('#notificaciones').checked,
+                idioma: document.querySelector('#idioma').value,
+                fechaActualizacion: new Date().toLocaleString()
+            };
+            
+            localStorage.setItem('configuracion', JSON.stringify(config));
+            mostrarConfiguracion(config);
+            console.log('✅ Configuración guardada:', config);
+        }
+        
+        function cargarConfiguracion() {
+            const configJSON = localStorage.getItem('configuracion');
+            
+            if (configJSON) {
+                const config = JSON.parse(configJSON);
+                
+                // Aplicar configuración a los elementos
+                document.querySelector('#tema-oscuro').checked = config.temaOscuro;
+                document.querySelector('#notificaciones').checked = config.notificaciones;
+                document.querySelector('#idioma').value = config.idioma;
+                
+                mostrarConfiguracion(config);
+                console.log('✅ Configuración cargada:', config);
+            } else {
+                document.querySelector('#resultado-config').innerHTML = '❌ No hay configuración guardada';
+                document.querySelector('#resultado-config').style.background = '#ffe8e8';
+            }
+        }
+        
+        function mostrarConfiguracion(config) {
+            const resultado = document.querySelector('#resultado-config');
+            resultado.innerHTML = `
+                <strong>✅ Configuración actual:</strong><br>
+                🌙 Tema oscuro: ${config.temaOscuro ? 'Activado' : 'Desactivado'}<br>
+                🔔 Notificaciones: ${config.notificaciones ? 'Activadas' : 'Desactivadas'}<br>
+                🌐 Idioma: ${config.idioma}<br>
+                🕒 Actualizado: ${config.fechaActualizacion}
+            `;
+            resultado.style.background = '#e8f5e8';
+        }
+        
+        function resetearConfiguracion() {
+            localStorage.removeItem('configuracion');
+            
+            // Resetear elementos a valores por defecto
+            document.querySelector('#tema-oscuro').checked = false;
+            document.querySelector('#notificaciones').checked = false;
+            document.querySelector('#idioma').value = 'es';
+            
+            document.querySelector('#resultado-config').innerHTML = '🔄 Configuración reseteada';
+            document.querySelector('#resultado-config').style.background = '#fff3cd';
+        }
+        
+        // ========================================
+        // DEMO 4: INSPECCIONAR STORAGE
+        // ========================================
+        
+        function mostrarStorage() {
+            const storageDiv = document.querySelector('#storage-completo');
+            let contenido = '<strong>📦 Contenido completo del Local Storage:</strong><br><br>';
+            
+            if (localStorage.length === 0) {
+                contenido += '🗂️ Local Storage está vacío';
+            } else {
+                for (let i = 0; i < localStorage.length; i++) {
+                    const clave = localStorage.key(i);
+                    const valor = localStorage.getItem(clave);
+                    
+                    contenido += `<strong>${clave}:</strong><br>`;
+                    contenido += `${valor}<br><br>`;
+                }
+                
+                contenido += `<strong>📊 Total elementos:</strong> ${localStorage.length}`;
+            }
+            
+            storageDiv.innerHTML = contenido;
+        }
+        
+        function limpiarTodoStorage() {
+            if (confirm('🧹 ¿Estás seguro de borrar TODOS los datos de Local Storage?')) {
+                localStorage.clear();
+                
+                // Limpiar todas las pantallas
+                document.querySelector('#resultado-texto').innerHTML = '🧹 Storage limpiado';
+                document.querySelector('#resultado-perfil').innerHTML = '🧹 Storage limpiado';
+                document.querySelector('#resultado-config').innerHTML = '🧹 Storage limpiado';
+                document.querySelector('#storage-completo').innerHTML = '🧹 Local Storage completamente limpiado';
+                
+                console.log('🧹 Local Storage completamente limpiado');
+            }
+        }
+        
+        function abrirDevTools() {
+            alert('💡 Presiona F12 o clic derecho → Inspeccionar\n\n📋 Luego ve a:\nApplication → Storage → Local Storage → ' + window.location.origin);
+        }
+        
+        // ========================================
+        // CARGAR DATOS AL INICIAR LA PÁGINA
+        // ========================================
+        
+        // Cuando se carga la página, recuperar datos existentes
+        document.addEventListener('DOMContentLoaded', function() {
+            recuperarTexto();
+            recuperarPerfil();
+            cargarConfiguracion();
+            mostrarStorage();
+            
+            console.log('🚀 Página cargada - Local Storage Example iniciado');
+        });
+    </script>
+</body>
+</html>
