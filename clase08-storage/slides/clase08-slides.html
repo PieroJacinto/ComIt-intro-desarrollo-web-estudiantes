@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 8: Local Storage + Proyecto Final</title>
+    <link rel="stylesheet" href="./clase08-slides.css">
+</head>
+<body>
+    <div class="slides-container">
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <div class="big-emoji">💾</div>
+            <h1>CLASE 8</h1>
+            <h2>Local Storage + Proyecto Final</h2>
+            <p>Persistencia de datos y finalización del proyecto</p>
+            <div class="highlight">¡La recta final! 🚀</div>
+        </div>
+
+        <!-- Slide 2: Objetivos -->
+        <div class="slide">
+            <div class="big-emoji">🎯</div>
+            <h2>OBJETIVOS DE HOY</h2>
+            <ul>
+                <li>💾 Aplicar <strong>tema claro/oscuro</strong> con Local Storage</li>
+                <li>📝 Implementar <strong>auto-guardado</strong> de formularios</li>
+                <li>🛠️ Dedicar tiempo a <strong>completar el proyecto final</strong></li>
+                <li>🎤 Preparar la <strong>presentación</strong> para la Clase 9</li>
+            </ul>
+            <div class="time-box">
+                <strong>⏰ Cronograma:</strong> Repaso + Teoría + Práctica + Cierre
+            </div>
+        </div>
+
+        <!-- Slide 3: Repaso rápido -->
+        <div class="slide">
+            <div class="big-emoji">🔍</div>
+            <h2>REPASO RÁPIDO</h2>
+            <p>¿Cómo están sus proyectos?</p>
+            <ul class="checklist">
+                <li>✅ ¿JavaScript funcionando?</li>
+                <li>✅ ¿Formulario validando?</li>
+                <li>✅ ¿Diseño responsive?</li>
+                <li>✅ ¿Navegación entre páginas?</li>
+            </ul>
+            <div class="importante">
+                <strong>🎯 Objetivo:</strong> Identificar qué falta para completar el proyecto
+            </div>
+        </div>
+
+        <!-- Slide 4: Qué es Local Storage -->
+        <div class="slide">
+            <div class="big-emoji">🧠</div>
+            <h2>¿QUÉ ES LOCAL STORAGE?</h2>
+            <p>Local Storage es como la <strong>"memoria del navegador"</strong> que recuerda información entre sesiones</p>
+            
+            <div class="demo-box">
+                <h3>💡 Piénsalo así:</h3>
+                <div class="two-column">
+                    <div class="column">
+                        <ul>
+                            <li>📱 <strong>Como tu celular:</strong> Guarda contactos, configuraciones</li>
+                            <li>📓 <strong>Como una libreta:</strong> Escribes y queda guardado</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <ul>
+                            <li>⚙️ <strong>Como configuración de apps:</strong> Tema, idioma</li>
+                            <li>🌐 <strong>Local Storage:</strong> ¡Hace lo mismo con tu sitio!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Para qué sirve -->
+        <div class="slide">
+            <div class="big-emoji">🎯</div>
+            <h2>¿PARA QUÉ SIRVE?</h2>
+            <div class="two-column">
+                <div class="column">
+                    <h3>🌙 Tema claro/oscuro</h3>
+                    <p>Recuerda la preferencia del usuario</p>
+                    
+                    <h3>📝 Auto-guardado</h3>
+                    <p>Mantiene formularios mientras escribes</p>
+                </div>
+                <div class="column">
+                    <h3>⭐ Favoritos</h3>
+                    <p>Recuerda selecciones del usuario</p>
+                    
+                    <h3>🔍 Configuraciones</h3>
+                    <p>Mantiene filtros y preferencias</p>
+                </div>
+            </div>
+            <div class="highlight">
+                ¡Mejor experiencia para el usuario! 🌟
+            </div>
+        </div>
+
+        <!-- Slide 6: Demo 1 -->
+        <div class="slide">
+            <div class="big-emoji">🎨</div>
+            <h2>DEMO 1: TEMA CLARO/OSCURO</h2>
+            <p>Vamos a ver el archivo: <strong>ejemplo1-storage-basico.html</strong></p>
+            
+            <div class="code-preview">
+// Guardar tema
+localStorage.setItem('tema-oscuro', 'true');
+
+// Recuperar tema
+const tema = localStorage.getItem('tema-oscuro');
+
+// Aplicar tema
+if (tema === 'true') {
+    document.body.classList.add('oscuro');
+}</div>
+            
+            <div class="importante">
+                <strong>🔄 Flujo:</strong> Cambiar tema → Recargar página → Tema persiste
+            </div>
+        </div>
+
+        <!-- Slide 7: Demo 2 -->
+        <div class="slide">
+            <div class="big-emoji">📝</div>
+            <h2>DEMO 2: AUTO-GUARDADO</h2>
+            <p>Vamos a ver el archivo: <strong>ejemplo2-storage.html</strong></p>
+            
+            <div class="code-preview">
+// Guardar formulario
+const datos = {
+    nombre: document.getElementById('nombre').value,
+    email: document.getElementById('email').value
+};
+localStorage.setItem('formulario', JSON.stringify(datos));
+
+// Recuperar formulario
+const datosJSON = localStorage.getItem('formulario');
+const datos = JSON.parse(datosJSON);</div>
+            
+            <div class="importante">
+                <strong>🔄 Flujo:</strong> Escribir → Auto-guardar → Navegar → Datos siguen ahí
+            </div>
+        </div>
+
+        <!-- Slide 8: Proyecto Ejemplo -->
+        <div class="slide">
+            <div class="big-emoji">📁</div>
+            <h2>PROYECTO EJEMPLO</h2>
+            <p>Estructura del proyecto ejemplo que van a copiar:</p>
+            
+            <div class="code-preview">
+proyecto-ejemplo/
+├── index.html
+├── contacto.html
+├── css/
+│   └── styles.css      # Con tema claro/oscuro
+├── js/
+│   ├── main.js         # Tema para todas las páginas
+│   └── contacto.js     # Auto-guardado del formulario</div>
+            
+            <div class="highlight">
+                ¡Esto es exactamente lo que van a aplicar a SU proyecto! 🎯
+            </div>
+        </div>
+
+        <!-- Slide 9: Fase 1 -->
+        <div class="slide">
+            <div class="big-emoji">🎨</div>
+            <h2>FASE 1: TEMA CLARO/OSCURO</h2>
+            <p><strong>Primera parte del trabajo práctico</strong></p>
+            
+            <div class="cronograma">
+                <h3>📋 Paso a paso:</h3>
+                <ul>
+                    <li><strong>Paso 1:</strong> Copiar CSS del tema oscuro</li>
+                    <li><strong>Paso 2:</strong> Agregar botón de tema en navegación</li>
+                    <li><strong>Paso 3:</strong> Implementar función cambiarTema()</li>
+                </ul>
+            </div>
+            
+            <div class="importante">
+                <strong>✅ Verificar:</strong> Tema persiste entre páginas y recargas
+            </div>
+        </div>
+
+        <!-- Slide 10: Fase 2 -->
+        <div class="slide">
+            <div class="big-emoji">💾</div>
+            <h2>FASE 2: AUTO-GUARDADO</h2>
+            <p><strong>Segunda parte del trabajo práctico</strong></p>
+            
+            <div class="cronograma">
+                <h3>📋 Paso a paso:</h3>
+                <ul>
+                    <li><strong>Paso 1:</strong> Verificar IDs del formulario</li>
+                    <li><strong>Paso 2:</strong> Implementar funciones de guardado</li>
+                    <li><strong>Paso 3:</strong> Agregar auto-guardado con eventos</li>
+                </ul>
+            </div>
+            
+            <div class="importante">
+                <strong>✅ Verificar:</strong> Formulario se guarda automáticamente
+            </div>
+        </div>
+
+        <!-- Slide 11: Fase 3 -->
+        <div class="slide">
+            <div class="big-emoji">🛠️</div>
+            <h2>FASE 3: COMPLETAR PROYECTO</h2>
+            <p><strong>Tercera parte - trabajo libre</strong></p>
+            
+            <div class="checklist">
+                <h3>📋 Checklist de completitud:</h3>
+                <ul>
+                    <li>✅ 4 páginas HTML con navegación</li>
+                    <li>✅ Diseño responsive en móvil y desktop</li>
+                    <li>✅ Tema claro/oscuro con Local Storage</li>
+                    <li>✅ Formulario con auto-guardado</li>
+                    <li>✅ Contenido real (no Lorem Ipsum)</li>
+                    <li>✅ Console sin errores</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 12: Tipos de proyecto -->
+        <div class="slide">
+            <div class="big-emoji">🎯</div>
+            <h2>APLICAR SEGÚN TU PROYECTO</h2>
+            <div class="two-column">
+                <div class="column">
+                    <div class="proyecto-tipo">
+                        <h3>💼 Portfolio</h3>
+                        <p>Tema + Formulario contacto</p>
+                    </div>
+                    <div class="proyecto-tipo">
+                        <h3>🍽️ Restaurante</h3>
+                        <p>Tema + Formulario contacto</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="proyecto-tipo">
+                        <h3>📝 Blog</h3>
+                        <p>Tema + Formulario contacto</p>
+                    </div>
+                    <div class="proyecto-tipo">
+                        <h3>💼 Servicio</h3>
+                        <p>Tema + Formulario contacto</p>
+                    </div>
+                </div>
+            </div>
+            <div class="highlight">
+                Todos usan las mismas 2 funcionalidades: Tema + Auto-guardado
+            </div>
+        </div>
+
+        <!-- Slide 13: Debugging -->
+        <div class="slide">
+            <div class="big-emoji">🔍</div>
+            <h2>DEBUGGING CON DEVTOOLS</h2>
+            <p>Cómo verificar que funciona:</p>
+            
+            <div class="demo-box">
+                <h3>📱 Inspeccionar Local Storage:</h3>
+                <ul>
+                    <li><strong>F12</strong> → Abrir DevTools</li>
+                    <li><strong>Application</strong> → Ir a pestaña Application</li>
+                    <li><strong>Local Storage</strong> → Expandir Local Storage</li>
+                    <li><strong>Ver datos</strong> → Verificar que se guardan</li>
+                </ul>
+            </div>
+            
+            <div class="importante">
+                <strong>🚨 Console sin errores rojos = Todo bien!</strong>
+            </div>
+        </div>
+
+        <!-- Slide 14: Preparación presentación -->
+        <div class="slide">
+            <div class="big-emoji">🎤</div>
+            <h2>PREPARACIÓN PRESENTACIÓN</h2>
+            <p><strong>Máximo 10 minutos por persona</strong></p>
+            
+            <div class="cronograma">
+                <h3>📊 Estructura:</h3>
+                <ul>
+                    <li><strong>Introducción:</strong> Presentación personal</li>
+                    <li><strong>Navegación:</strong> Demo de las 4 páginas</li>
+                    <li><strong>Tema:</strong> Demo claro/oscuro</li>
+                    <li><strong>Formulario:</strong> Demo auto-guardado</li>
+                    <li><strong>Reflexión:</strong> Aprendizajes y próximos pasos</li>
+                </ul>
+            </div>
+            
+            <div class="importante">
+                <strong>🎯 Objetivo:</strong> Mostrar con orgullo tu trabajo completo
+            </div>
+        </div>
+
+        <!-- Slide 15: Subir proyecto online -->
+        <div class="slide">
+            <div class="big-emoji">🌐</div>
+            <h2>SUBIR PROYECTO ONLINE</h2>
+            <div class="two-column">
+                <div class="column">
+                    <h3>📚 GitHub Pages</h3>
+                    <ul>
+                        <li>Subir a GitHub</li>
+                        <li>Settings → Pages</li>
+                        <li>Branch: main</li>
+                        <li>URL automática</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>📱 Netlify</h3>
+                    <ul>
+                        <li>Ir a netlify.com</li>
+                        <li>Drag & drop carpeta</li>
+                        <li>URL instantánea</li>
+                        <li>Más fácil</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight">
+                ¡Necesitas URL para compartir en la presentación! 🔗
+            </div>
+        </div>
+
+        <!-- Slide 16: Tarea -->
+        <div class="slide">
+            <div class="big-emoji">📝</div>
+            <h2>TAREA PARA LA CLASE 9</h2>
+            <div class="importante">
+                <h3>🎯 Entregables obligatorios:</h3>
+                <ul>
+                    <li>✅ <strong>Proyecto 100% terminado</strong></li>
+                    <li>✅ <strong>Presentación preparada</strong> (máx 10 min)</li>
+                    <li>✅ <strong>Proyecto subido online</strong> con URL</li>
+                </ul>
+            </div>
+            
+            <div class="time-box">
+                <strong>⏰ Deadline:</strong> Antes del inicio de la Clase 9
+                <br><strong>🚨 No hay extensiones</strong> - Es la clase de presentaciones
+            </div>
+        </div>
+
+        <!-- Slide 17: Checklist final -->
+        <div class="slide">
+            <div class="big-emoji">✅</div>
+            <h2>CHECKLIST FINAL</h2>
+            <div class="checklist">
+                <h3>🔍 Verificación técnica:</h3>
+                <ul>
+                    <li>✅ Abrir en navegador → Todo funciona</li>
+                    <li>✅ Reducir ventana → Responsive se adapta</li>
+                    <li>✅ Cambiar tema → Persiste entre páginas</li>
+                    <li>✅ Escribir formulario → Se guarda automáticamente</li>
+                    <li>✅ DevTools limpio → Sin errores rojos</li>
+                </ul>
+            </div>
+            
+            <div class="importante">
+                <strong>🎯 Si todo funciona → ¡Listo para presentar!</strong>
+            </div>
+        </div>
+
+        <!-- Slide 18: Motivación -->
+        <div class="slide">
+            <div class="big-emoji">🌟</div>
+            <h2>¡ESTÁS EN LA RECTA FINAL!</h2>
+            <div class="final-message">
+                <p>En 8 clases pasaste de <strong>no saber nada</strong> a crear:</p>
+                <ul>
+                    <li>🌐 Sitio web completo con 4 páginas</li>
+                    <li>📱 Diseño responsive profesional</li>
+                    <li>⚡ JavaScript funcional con DOM</li>
+                    <li>💾 Persistencia de datos con Local Storage</li>
+                    <li>🎨 Tema claro/oscuro moderno</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                ¡Eso es DESARROLLO WEB REAL! 🚀
+            </div>
+        </div>
+
+        <!-- Slide 19: Para la presentación -->
+        <div class="slide">
+            <div class="big-emoji">🎭</div>
+            <h2>PARA LA PRESENTACIÓN</h2>
+            <div class="demo-box">
+                <h3>💡 Recuerda:</h3>
+                <ul>
+                    <li>🎯 <strong>Tu proyecto es único</strong> - No te compares</li>
+                    <li>🌟 <strong>Muestra con orgullo</strong> lo que lograste</li>
+                    <li>🚀 <strong>Enfócate en las funcionalidades</strong> que funcionan</li>
+                    <li>😊 <strong>Disfruta el momento</strong> - ¡Es tu logro!</li>
+                </ul>
+            </div>
+            
+            <div class="importante">
+                <strong>🎤 Vas a impresionar a todos con tu trabajo!</strong>
+            </div>
+        </div>
+
+        <!-- Slide 20: Próximos pasos -->
+        <div class="slide">
+            <div class="big-emoji">🔮</div>
+            <h2>DESPUÉS DE LA CLASE 9</h2>
+            <div class="two-column">
+                <div class="column">
+                    <h3>📈 Inmediato:</h3>
+                    <ul>
+                        <li>Portfolio online funcional</li>
+                        <li>Conocimientos sólidos</li>
+                        <li>Confianza en programación</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>🚀 Futuro:</h3>
+                    <ul>
+                        <li>APIs y bases de datos</li>
+                        <li>Frameworks (React, Vue)</li>
+                        <li>Proyectos más complejos</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                ¡Este es solo el comienzo de tu viaje! 🌟
+            </div>
+        </div>
+
+        <!-- Slide 21: Tiempo de trabajo -->
+        <div class="slide">
+            <div class="big-emoji">🛠️</div>
+            <h2>¡MANOS A LA OBRA!</h2>
+            <p>Ahora van a trabajar en sus proyectos personales</p>
+            
+            <div class="cronograma">
+                <h3>📋 Secuencia de trabajo:</h3>
+                <ul>
+                    <li><strong>Fase 1:</strong> Implementar tema claro/oscuro</li>
+                    <li><strong>Fase 2:</strong> Implementar auto-guardado formulario</li>
+                    <li><strong>Fase 3:</strong> Completar proyecto final</li>
+                </ul>
+            </div>
+            
+            <div class="importante">
+                <strong>🤝 Voy a estar ayudando individualmente</strong>
+            </div>
+        </div>
+
+        <!-- Slide 22: Cierre -->
+        <div class="slide">
+            <div class="big-emoji">🎉</div>
+            <h2>¡EXCELENTE OCTAVA CLASE!</h2>
+            <p>Hoy lograste:</p>
+            <ul class="checklist">
+                <li>💾 Dominar Local Storage para persistencia</li>
+                <li>🎨 Implementar tema claro/oscuro profesional</li>
+                <li>📝 Crear auto-guardado de formularios</li>
+                <li>🛠️ Avanzar significativamente en tu proyecto final</li>
+                <li>🎤 Prepararte para la presentación final</li>
+            </ul>
+            
+            <div class="final-message">
+                <strong>¡Tu proyecto ya tiene funcionalidades de sitios web profesionales!</strong>
+            </div>
+        </div>
+
+        <!-- Slide 23: Nos vemos -->
+        <div class="slide">
+            <div class="big-emoji">👋</div>
+            <h2>¡NOS VEMOS EN LA CLASE 9!</h2>
+            <div class="final-message">
+                <h3>🎯 Para la próxima clase:</h3>
+                <ul>
+                    <li>✅ Proyecto terminado al 100%</li>
+                    <li>✅ Presentación preparada y ensayada</li>
+                    <li>✅ URL online funcionando</li>
+                    <li>✅ Mucha confianza y orgullo</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                ¡Será increíble ver todos sus proyectos terminados! 🌟
+            </div>
+            
+            <p style="margin-top: 30px;">
+                <strong>¡Gracias por su dedicación y esfuerzo! 🚀</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">23</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">◀ Anterior</button>
+        <button class="nav-btn" onclick="nextSlide()">Siguiente ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Navegación con click
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.nav-btn')) return;
+            if (e.clientX > window.innerWidth / 2) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+        });
+
+        // Mostrar slide actual al cargar
+        showSlide(0);
+    </script>
+</body>
+</html>
