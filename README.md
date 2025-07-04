@@ -107,7 +107,7 @@ cd intro-desarrollo-web-materiales
 git pull
 
 # TRABAJAR EN TU PROYECTO:
-cd ../mi-proyecto-web
+cd ../tuNombre-mi-proyecto-web
 # ... hacer cambios ...
 git add .
 git commit -m "Descripción clara"
