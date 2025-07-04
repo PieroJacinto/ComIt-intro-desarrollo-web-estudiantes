@@ -70,10 +70,12 @@ clases/claseXX-tema/
 ### 1. Clonar Este Repositorio
 
 ```bash
-# Clonar el repositorio de materiales
+# Clonar el repositorio de materiales (se crea en Clase 1)
 git clone https://github.com/comunidadit/intro-desarrollo-web-materiales.git
 cd intro-desarrollo-web-materiales
 ```
+
+**⚠️ IMPORTANTE:** Este repositorio se irá llenando clase por clase. Solo tendrás acceso al material que ya hemos visto en clase.
 
 ### 2. Crear TU Repositorio Personal
 
@@ -100,7 +102,7 @@ cd mi-proyecto-web
 ### 3. Workflow Diario
 
 ```bash
-# ACTUALIZAR MATERIALES DE CLASE:
+# ACTUALIZAR MATERIALES DE CLASE (antes de cada clase):
 cd intro-desarrollo-web-materiales
 git pull
 
@@ -111,6 +113,28 @@ git add .
 git commit -m "Descripción clara"
 git push
 ```
+
+## 📋 Sistema de Repositorios
+
+### 🎯 Tienes 2 Repositorios:
+
+1. **📚 Este Repositorio (Materiales de Clase)**
+   - Contiene ejemplos, ejercicios y recursos
+   - Se actualiza clase por clase
+   - Hacer `git pull` antes de cada clase
+   - **NO hacer push** aquí
+
+2. **💻 Tu Repositorio Personal (Tu Proyecto)**
+   - TU sitio web personal
+   - Donde aplicas lo aprendido
+   - Hacer `git add`, `git commit`, `git push`
+   - **Este es TU proyecto**
+
+### 🔄 Cómo Funciona:
+
+- **Antes de cada clase:** Haces `git pull` y recibes material nuevo
+- **Durante la clase:** Practicas con ejemplos y ejercicios
+- **Después de clase:** Aplicas conceptos a TU proyecto personal
 
 ## 📅 Cronograma del Curso
 
