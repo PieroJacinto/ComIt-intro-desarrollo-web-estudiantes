@@ -71,7 +71,7 @@ clases/claseXX-tema/
 
 ```bash
 # Clonar el repositorio de materiales (se crea en Clase 1)
-git clone https://github.com/comunidadit/intro-desarrollo-web-materiales.git
+git clone ["aqui la url del repo que se crea en clase 1 por ejemplo intro-desarrollo-web-materiales"]
 cd intro-desarrollo-web-materiales
 ```
 
@@ -79,12 +79,12 @@ cd intro-desarrollo-web-materiales
 
 ### 2. Crear TU Repositorio Personal
 
-**⚠️ IMPORTANTE:** Este repo es solo para material de clase. Tu proyecto va en TU propio repositorio.
+**⚠️ IMPORTANTE:** Este repo es solo para material de clase. Tu proyecto va en TU propio repositorio. Debe comenzar con tu nombre
 
 #### En GitHub:
 1. Ir a github.com
 2. Click "New repository"
-3. Nombre: `mi-proyecto-web` (o el que prefieras)
+3. Nombre: `tuNombre-mi-proyecto-web` (o el que prefieras)
 4. ✅ Public
 5. ✅ Add README.md
 6. Click "Create repository"
@@ -95,8 +95,8 @@ cd intro-desarrollo-web-materiales
 cd ..
 
 # Clonar TU repositorio personal
-git clone https://github.com/tu-usuario/mi-proyecto-web.git
-cd mi-proyecto-web
+git clone https://github.com/tu-usuario/tuNombre-mi-proyecto-web.git
+cd tuNombre-mi-proyecto-web
 ```
 
 ### 3. Workflow Diario
